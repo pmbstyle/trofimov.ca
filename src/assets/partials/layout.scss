@@ -26,3 +26,6 @@
         opacity: 0;
     }
 }
+.tooltip::before {
+    z-index: 99;
+}

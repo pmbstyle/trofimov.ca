@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 .terminal-wrapper {
     height:calc(100% - 1.5rem);
+    font-size: 16px;
+    font-family: 'Fira Code', monospace;
+    line-height: 1.5;
+    text-align:left;
+    code {
+        &:before, &:after {
+            content:'`'
+        }
+    }
+    ul {
+        padding-left:15px;
+        margin: 10px 0;
+        li {
+            &:before {
+                content: '*';
+                font-size:16px;
+                color:$white;
+                padding-right:10px;
+            }
+        }
+    }
+    a {
+        text-decoration:underline;
+        &:hover {
+            text-decoration:none;
+        }
+    }
 }
