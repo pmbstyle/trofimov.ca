@@ -5,7 +5,7 @@
     const dateTime = ref('')
 
     const setDateTime = () => {
-        dateTime.value = moment().format('H:mm:ss')
+        dateTime.value = moment().format('H:mm A')
     }
 
     onMounted(() => {

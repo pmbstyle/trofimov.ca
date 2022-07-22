@@ -9,8 +9,47 @@
         span {
             user-select: none;
         }
+        .top-menu-right {
+            position: relative;
+            z-index: 11;
+            a {
+                margin-right:10px;
+                svg {
+                    path {
+                        opacity: .6;
+                        transition: all .3 ease-in-out;
+                    }
+                }
+                &:hover {
+                    &.linkedin {
+                        svg path {
+                            opacity: 1;
+                            fill: #0072b1;
+                        }
+                    }
+                    &.github {
+                        svg path {
+                            opacity: 1;
+                            fill: #171515;
+                        }
+                    }
+                    &.facebook {
+                        svg path {
+                            opacity: 1;
+                            fill: #3b5998;
+                        }
+                    }
+                    &.email {
+                        svg path {
+                            opacity: 1;
+                            fill: $purple;
+                        }
+                    }
+                }
+            }
+        }
         .clock {
-            margin-left:auto;
+            user-select: none;
         }
     }
     .cactus {

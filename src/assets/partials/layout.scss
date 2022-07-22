@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .table {
     height:30vh;
     bottom:0;
@@ -5,4 +6,23 @@
 }
 .ps {
     height:100%;
+}
+.mockup-window {
+    width: calc(100% - 2.5rem);
+    height: calc(100% - 3.75rem);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    &.show {
+        opacity: 1;
+    }
+}
+.welcome {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    user-select: none;
+    transition: opacity 1s ease-in-out;
+    &.hide {
+        opacity: 0;
+    }
 }
