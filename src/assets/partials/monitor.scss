@@ -1,0 +1,89 @@
+#monitor {
+    .top-menu {
+        padding-top:5px;
+        .tux {
+            width:20px;
+            height:20px;
+            opacity: .6;
+        }
+        span {
+            user-select: none;
+        }
+        .clock {
+            margin-left:auto;
+        }
+    }
+    .cactus {
+        width: 200px;
+        height: auto;
+        position: absolute;
+        right: -50px;
+        bottom: -50px;
+        z-index: 30;
+    }
+    .monitor-screen {
+        width: 100%;
+        height: 60vh;
+        margin: auto;
+        overflow: hidden;
+        border: 20px solid #333;
+        text-align: center;
+        border-radius: 20px 20px 0 0;
+    }
+    .monitor-screen-bottom {
+        width: 100%;
+        height: 60px;
+        margin: auto;
+        position: relative;
+        border-radius: 0 0 20px 20px;
+    }
+    .monitor-screen-bottom .tux {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-20px);
+        &:hover {
+            animation: spin 3s infinite;
+        }
+    }
+    .monitor-stand {
+        width: 200px;
+        height: 100px;
+        background: #BAB9BA;
+        margin: auto;
+        &::before,
+        &::after {
+            content: "";
+            background: #BAB9BA;
+            width: 50px;
+            height: 100px;
+            display: block;
+            position: relative;
+        }
+        &::before {
+            left: 81%;
+            transform: skewX(10deg);
+        }
+        &::after {
+            top: -100px;
+            right: 5%;
+            transform: skewX(-10deg);
+        }
+    }
+    .monitor-base {
+        width: 400px;
+        height: 20px;
+        background: #D3D3D3;
+        margin: auto;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: translateX(-20px) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-20px) rotate(360deg);
+    }
+}
