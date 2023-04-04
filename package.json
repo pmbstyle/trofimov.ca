@@ -15,9 +15,15 @@
     "pinia": "^2.0.16",
     "sass": "^1.53.0",
     "vue": "^3.2.37",
-    "vue3-perfect-scrollbar": "^1.6.0"
+    "vue3-perfect-scrollbar": "^1.6.0",
+    "highlight.js": "^11.5.1",
+    "markdown-it": "^13.0.1",
+    "markdown-it-highlightjs": "^4.0.1",
+    "markdown-it-link-attributes": "^4.0.0"
   },
   "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
+    "@types/markdown-it-link-attributes": "^3.0.1",
     "@rushstack/eslint-patch": "^1.1.0",
     "@types/node": "^16.11.45",
     "@vitejs/plugin-vue": "^3.0.1",
@@ -33,6 +39,8 @@
     "tailwindcss": "^3.1.6",
     "typescript": "~4.7.4",
     "vite": "^3.0.1",
-    "vue-tsc": "^0.38.8"
+    "vue-tsc": "^0.38.8",
+    "vite-plugin-dynamic-import": "^0.9.6",
+    "vite-plugin-markdown": "^2.0.2"
   }
 }

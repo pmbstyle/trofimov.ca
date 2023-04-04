@@ -28,4 +28,134 @@
             text-decoration:none;
         }
     }
+    .input {
+        background:none;
+        color: $foreground;
+        border: none;
+        width: 500px;
+        resize: block;
+        height: 20px;
+        margin: 0px;
+        padding: 0px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    @media screen and (max-width: $break-md) {
+        .input {
+            width: 400px;
+        }
+    }
+
+    @media screen and (max-width: $break-sm) {
+        .input {
+            width: 100%;
+        }
+    }
+}
+.command-container {
+    width: 100%;
+    display: inline;
+}
+
+.command-prefix {
+    display: inline;
+
+    & .user-info {
+        display: inline;
+        font-weight: bold;
+        color: $green;
+    }
+
+    & .user-sep {
+        margin: 0px;
+    }
+
+    & .user-path {
+        color: $purple;
+        font-weight: bold;
+    }
+}
+
+.command-slot {
+    display: inline;
+
+    &::before {
+        content: "$";
+        color: $foreground;
+        display: inline;
+        margin: 0px 10px 0px 2px;
+    }
+
+    :deep(& *) {
+        display: inline;
+    }
+}
+.history-item {
+    background: none;
+    color: $foreground;
+    width: 100%;
+    display: block;
+}
+
+.history-output {
+    margin: 0px;
+}
+
+.history-output-grid {
+    display: grid;
+    grid-column: span 3;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+
+    & .history-output-grid-item {
+        display: inline;
+        margin: 0px;
+
+        & p {
+            display: inline;
+            margin: 0px;
+        }
+
+        & .text-color-green {
+            color: $green;
+        }
+
+        & .text-color-purple {
+            color: $purple;
+        }
+
+        & .text-color-blue {
+            color: $blue;
+        }
+
+        & .text-color-red {
+            color: $red;
+        }
+
+        & .text-color-white {
+            color: $white;
+        }
+
+        & .text-weight-700 {
+            font-weight: 700;
+        }
+
+        & .text-weight-400 {
+            font-weight: 400;
+        }
+    }
+}
+
+@media screen and (max-width: $break-md) {
+    .history-output-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: $break-sm) {
+    .history-output-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
