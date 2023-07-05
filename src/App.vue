@@ -1,20 +1,22 @@
 <script setup lang="ts">
     import { ref, onMounted } from 'vue'
     import Terminal from '@/components/Terminal.vue'
+    import Game from '@/components/Game.vue'
     import Clock from '@/components/Clock.vue'
     import Tux from '@/assets/img/tux.svg'
     import Cactus from '@/assets/img/cactus.png'
 
     const hideWelcome = ref(false)
     const showTerminal = ref(false)
+    const showGame = ref(true)
 
     onMounted(()=> {
-        setTimeout(() => {
-            hideWelcome.value = true
-        }, 2000)
-        setTimeout(() => {
-            showTerminal.value = true
-        }, 4000)
+        // setTimeout(() => {
+        //     hideWelcome.value = true
+        // }, 2000)
+        // setTimeout(() => {
+        //     showTerminal.value = true
+        // }, 4000)
     })
 </script>
 
@@ -73,6 +75,12 @@
                         :class="{ show: showTerminal }">
                         <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
                             <Terminal />
+                        </div>
+                    </div>
+                    <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
+                        :class="{ show: showGame}">
+                        <div class="flex justify-left bg-base-200 game-wrapper relative">
+                            <Game />
                         </div>
                     </div>
                 </div>

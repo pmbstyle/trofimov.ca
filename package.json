@@ -11,15 +11,17 @@
   },
   "dependencies": {
     "daisyui": "^2.19.1",
-    "moment": "^2.29.4",
-    "pinia": "^2.0.16",
-    "sass": "^1.53.0",
-    "vue": "^3.2.37",
-    "vue3-perfect-scrollbar": "^1.6.0",
     "highlight.js": "^11.5.1",
     "markdown-it": "^13.0.1",
     "markdown-it-highlightjs": "^4.0.1",
-    "markdown-it-link-attributes": "^4.0.0"
+    "markdown-it-link-attributes": "^4.0.0",
+    "moment": "^2.29.4",
+    "phaser": "^3.60.0",
+    "phaser-matter-collision-plugin": "^1.0.0",
+    "pinia": "^2.0.16",
+    "sass": "^1.53.0",
+    "vue": "^3.2.37",
+    "vue3-perfect-scrollbar": "^1.6.0"
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
