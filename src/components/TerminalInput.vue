@@ -2,6 +2,7 @@
 	<TerminalCommand :pwd="store.pwd">
 		<input
 			class="input"
+			id="termInput"
 			v-model="store.currentCommand"
 			@keyup.enter="onEnter"
 			@keydown.up="onUp"
@@ -21,18 +22,15 @@
 	const currentCommandHistory = ref(-1)
 	const currentTypedCommand = ref("")
 
+	const emit = defineEmits(['termInput'])
+
 	const onEnter = () => {
 		runCommand()
 		currentCommandHistory.value = -1
 		currentTypedCommand.value = ""
-		setTimeout(
-			() =>
-				window.scrollTo(
-					0,
-					document.body.scrollHeight || document.documentElement.scrollHeight
-				),
-			50
-		)
+		setTimeout(() => {
+			emit('termInput')
+		},50)
 	}
 
 	const onUp = (event: KeyboardEvent) => {
