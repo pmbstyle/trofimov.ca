@@ -7,6 +7,7 @@
 			@keyup.enter="onEnter"
 			@keydown.up="onUp"
 			@keydown.down="onDown"
+			@keydown.tab="onTab"
 			autofocus
 		/>
 	</TerminalCommand>
@@ -16,6 +17,7 @@
 	import { useTerminalStore } from "@/stores/terminal"
 	import TerminalCommand from "./TerminalCommand.vue"
 	import runCommand from "@/commands/execCommand"
+	import filesystem from "@/config/filesystem"
 	import { ref } from "vue"
 
 	const store = useTerminalStore()
@@ -57,6 +59,23 @@
 		} else {
 			currentCommandHistory.value = -1
 			store.currentCommand = currentTypedCommand.value
+		}
+	}
+
+	const onTab = (event: KeyboardEvent) => {
+		event.preventDefault()
+		
+		let options = []
+		filesystem.forEach((item) => {
+			if (item.name.startsWith(store.currentCommand.split(" ")[1])) {
+				options.push(item.name)
+			}
+		})
+		if (options.length === 1) {
+			store.currentCommand = store.currentCommand.split(" ")[0] + " " + options[0]
+		} else if (options.length > 1) {
+			store.currentCommand = store.currentCommand.split(" ")[0] + " " + options[0]
+			store.currentCommand += "\n" + options.join("\t")
 		}
 	}
 </script>

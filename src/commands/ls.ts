@@ -16,54 +16,55 @@ const getFileWeight = (fileType: string) => {
 };
 
 const ls = (flags: string) => {
-const store = useTerminalStore()
-const currentFiles: File[] = []
-if (flags && flags.includes("-a")) {
-	currentFiles.push({
-		text: ".",
-		color: getFileColor("folder"),
-		weight: getFileWeight("folder"),
-	});
-	currentFiles.push({
-		text: "..",
-		color: getFileColor("folder"),
-		weight: getFileWeight("folder"),
-	});
-}
-const pwd = store.pwd + "/"
+	console
+	const store = useTerminalStore()
+	const currentFiles: File[] = []
+	if (flags && flags.includes("-a")) {
+		currentFiles.push({
+			text: ".",
+			color: getFileColor("folder"),
+			weight: getFileWeight("folder"),
+		});
+		currentFiles.push({
+			text: "..",
+			color: getFileColor("folder"),
+			weight: getFileWeight("folder"),
+		});
+	}
+	const pwd = store.pwd + "/"
 
-for (let i = 0; i < filesystem.length; i++) {
-	const file = filesystem[i]
-	const normalPath = file.path.slice(
-		0,
-		file.path[file.path.length - 1] === "/" ? -1 : undefined
-	)
-	const normalPathSlashes = normalPath.match(/\//g)?.length || 0,
-	pwdPathSlashes = pwd.match(/\//g)?.length || 0;
-	if (
-		file.type === "folder" &&
-		normalPath !== pwd &&
-		normalPathSlashes === pwdPathSlashes &&
-		normalPath.startsWith(pwd)
-	) {
-	currentFiles.push({
-		text: file.name,
-		color: getFileColor(file.type),
-		weight: getFileWeight(file.type),
-	})
-	} else if (
-		file.type !== "folder" &&
-		pwd.slice(0, -1) === normalPath &&
-		pwdPathSlashes - normalPathSlashes === 1
-	) {
+	for (let i = 0; i < filesystem.length; i++) {
+		const file = filesystem[i]
+		const normalPath = file.path.slice(
+			0,
+			file.path[file.path.length - 1] === "/" ? -1 : undefined
+		)
+		const normalPathSlashes = normalPath.match(/\//g)?.length || 0,
+		pwdPathSlashes = pwd.match(/\//g)?.length || 0;
+		if (
+			file.type === "folder" &&
+			normalPath !== pwd &&
+			normalPathSlashes === pwdPathSlashes &&
+			normalPath.startsWith(pwd)
+		) {
 		currentFiles.push({
 			text: file.name,
 			color: getFileColor(file.type),
 			weight: getFileWeight(file.type),
 		})
+		} else if (
+			file.type !== "folder" &&
+			pwd.slice(0, -1) === normalPath &&
+			pwdPathSlashes - normalPathSlashes === 1
+		) {
+			currentFiles.push({
+				text: file.name,
+				color: getFileColor(file.type),
+				weight: getFileWeight(file.type),
+			})
+		}
 	}
-}
-store.endCurrentCommand(currentFiles)
+	store.endCurrentCommand(currentFiles)
 }
 
 export default ls

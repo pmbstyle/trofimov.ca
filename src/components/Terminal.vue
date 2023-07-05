@@ -7,16 +7,16 @@ const store = useTerminalStore()
 
 const termScroll = ref(null)
 const scrollBottom = () => {
-    termScroll.value.$el.scrollTop = termScroll.value.$el.scrollHeight
+	termScroll.value.$el.scrollTop = termScroll.value.$el.scrollHeight
 }
 </script>
 
 <template>
-    <div class="terminal w-full">
-        <perfect-scrollbar ref="termScroll">
-            <div class="term-header" v-html="store.staticHeader" v-if="store.showHeader"></div>
-            <TerminalHistory />
-            <TerminalInput @termInput="scrollBottom"/>
-        </perfect-scrollbar>
-    </div>
+	<div class="terminal w-full">
+		<perfect-scrollbar ref="termScroll">
+			<div class="term-header" v-html="store.staticHeader" v-if="store.showHeader"></div>
+			<TerminalHistory />
+			<TerminalInput @termInput="scrollBottom"/>
+		</perfect-scrollbar>
+	</div>
 </template>
