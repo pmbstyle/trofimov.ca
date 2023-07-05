@@ -77,7 +77,7 @@
                             <Terminal />
                         </div>
                     </div>
-                    <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
+                    <div class="mockup-window game-window  border bg-base-300 flex-1 mt-5 drop-shadow-md absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         :class="{ show: showGame}">
                         <div class="flex justify-left bg-base-200 game-wrapper relative">
                             <Game />

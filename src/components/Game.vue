@@ -7,8 +7,12 @@ import MainScene  from "@/game/MainScene"
 
 const config = ref<Phaser.Types.Core.GameConfig>({
     type: Phaser.AUTO,
-    width:300,
-    height:300,
+    width:768,
+    height:500,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: [
         MainScene
     ],
@@ -33,9 +37,9 @@ const config = ref<Phaser.Types.Core.GameConfig>({
 })
 
 onMounted(async () => {
-    config.value.width = document.getElementById('game')?.offsetWidth
-    config.value.height = document.getElementById('game')?.offsetHeight
-    
+    // config.value.width = document.getElementById('game')?.offsetWidth
+    // config.value.height = document.getElementById('game')?.offsetHeight
+
     await nextTick()
    
     new Phaser.Game(config.value)
