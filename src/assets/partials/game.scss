@@ -1,3 +1,47 @@
 .game-wrapper {
     height:calc(100% - 1.5rem);
+    .game-dialog {
+        position:absolute;
+        bottom:10px;
+        left:10px;
+        width:calc(100% - 20px);
+        height: 250px;
+        padding:25px;
+        z-index: 60;
+        background:rgba(0,0,0,0.9);
+        text-align:left;
+        color:#fff;
+        border:#fff 1px solid;
+        border-radius:5px;
+        .ps__rail-y {
+            opacity:1;
+        }
+        p {
+            margin-bottom:10px;
+            strong {
+                color:#78a205;
+                text-shadow: 0px 0px 5px #000;
+            }
+        }
+        .close-dialog {
+            width:20px;
+            height:20px;
+            border:#fff 1px solid;
+            border-radius:50%;
+            position:absolute;
+            top:-10px;
+            right:-10px;
+            cursor:pointer;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom:2px;
+            background: #000;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background:#fff;
+                color:#000;
+            }
+        }
+    }
 }

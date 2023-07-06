@@ -2,6 +2,7 @@
     import { ref, onMounted } from 'vue'
     import Terminal from '@/components/Terminal.vue'
     import Game from '@/components/Game.vue'
+    import GameDialog from '@/components/GameDialog.vue'
     import Clock from '@/components/Clock.vue'
     import Tux from '@/assets/img/tux.svg'
     import Cactus from '@/assets/img/cactus.png'
@@ -10,6 +11,23 @@
     const showTerminal = ref(false)
     const showGame = ref(true)
 
+    const dialogues = ref({
+        blacksmith: {
+            show: false,
+            type: 'skills'
+        }
+    })
+
+    const openBlacksmithDialog = () => {
+        console.log('here')
+        let checkbox = document.getElementById('blacksmithDialog')
+        if(checkbox.checked) {
+            dialogues.value.blacksmith.show = true
+        } else {
+            dialogues.value.blacksmith.show = false
+        }
+    }
+
     onMounted(()=> {
         // setTimeout(() => {
         //     hideWelcome.value = true
@@ -17,6 +35,7 @@
         // setTimeout(() => {
         //     showTerminal.value = true
         // }, 4000)
+
     })
 </script>
 
@@ -81,7 +100,9 @@
                         :class="{ show: showGame}">
                         <div class="flex justify-left bg-base-200 game-wrapper relative">
                             <Game />
+                            <GameDialog @close="dialogues.blacksmith.show = false" :show="dialogues.blacksmith.show" :type="dialogues.blacksmith.type" />
                         </div>
+                        <input type="checkbox" id="blacksmithDialog" class="hidden" @change="openBlacksmithDialog()" :checked="dialogues.blacksmith.show">
                     </div>
                 </div>
                 <div class="monitor-screen-bottom bg-gradient-to-t from-slate-300 to-slate-200">

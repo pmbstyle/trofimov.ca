@@ -1,6 +1,7 @@
 import playerPng from '@/assets/game/npc/player.png'
 import playerAtlas from '@/assets/game/npc/player_atlas.json'
 import playerAnimation from '@/assets/game/npc/player_anim.json'
+import { doc } from 'prettier'
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
     constructor(data) {
@@ -50,6 +51,14 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
             this.anims.play('walk', true)
         } else {
             this.anims.play('idle', true)
+        }
+
+        let blacksmithBody = this.scene.blacksmith.body
+        let playerSensor = this.body.parts[1]
+        let collision = this.scene.matter.overlap(playerSensor, blacksmithBody)
+        if(collision && Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
+            let checkbox = document.getElementById('blacksmithDialog')
+            checkbox.click()
         }
 	}
 }

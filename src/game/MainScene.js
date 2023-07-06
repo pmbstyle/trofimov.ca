@@ -4,6 +4,11 @@ import waterPipo from '@/assets/game/map/[A]Water_pipo.png'
 import dirtPipo from '@/assets/game/map/[A]Dirt_pipo.png'
 import mapJson from '@/assets/game/map/map.json'
 
+import blacksmithPng from '@/assets/game/npc/blacksmith.png'
+import blacksmithAtlas from '@/assets/game/npc/blacksmith_atlas.json'
+import blacksmithAnimation from '@/assets/game/npc/blacksmith_anim.json'
+import { space } from 'postcss/lib/list'
+
 export default class MainScene extends Phaser.Scene {
 	constructor() {
 		super('MainScene');
@@ -15,6 +20,9 @@ export default class MainScene extends Phaser.Scene {
 		this.load.image('water', waterPipo)
 		this.load.image('dirt', dirtPipo)
 		this.load.tilemapTiledJSON('map', mapJson)
+
+		this.load.atlas('blacksmith', blacksmithPng, blacksmithAtlas)
+        this.load.animation('blacksmith_anim', blacksmithAnimation)
 	}
 
 	create() {
@@ -25,10 +33,13 @@ export default class MainScene extends Phaser.Scene {
 		const layer1 = map.createLayer('Tile Layer 1', tileset, 0, 0)
 		const layer2 = map.createLayer('Tile Layer 2', [water,tileset,dirt], 0, 0)
 		const layer3 = map.createLayer('Tile Layer 3', [dirt,tileset], 0, 0)
-		// const layer3 = map.createLayer('Tile Layer 3', [water,tileset], 0, 0)
 		layer2.setCollisionByProperty({ collides: true })
 		this.matter.world.convertTilemapLayer(layer2)
-		
+
+		this.blacksmith = this.matter.add.sprite(340, 120, 'blacksmith')
+		this.blacksmith.play('blacksmith_idle')
+		this.blacksmith.setFixedRotation()
+		this.blacksmith.body.isStatic = true
 
 		this.player = new Player({
 			scene: this,
@@ -41,7 +52,8 @@ export default class MainScene extends Phaser.Scene {
 			up: Phaser.Input.Keyboard.KeyCodes.W,
 			down: Phaser.Input.Keyboard.KeyCodes.S,
 			left: Phaser.Input.Keyboard.KeyCodes.A,
-			right: Phaser.Input.Keyboard.KeyCodes.D
+			right: Phaser.Input.Keyboard.KeyCodes.D,
+			space: Phaser.Input.Keyboard.KeyCodes.SPACE
 		})
 	}
 
