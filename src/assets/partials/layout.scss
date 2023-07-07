@@ -12,10 +12,6 @@
     height: calc(100% - 3.75rem);
     opacity: 0;
     transition: opacity 2s ease-in-out;
-    &.game-window {
-        width:auto;
-        height:auto;
-    }
     &.show {
         opacity: 1;
     }

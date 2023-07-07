@@ -21,7 +21,7 @@ const config = ref<Phaser.Types.Core.GameConfig>({
         default: 'matter',
         matter: {
             gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     },
     transparent: true,
@@ -45,5 +45,5 @@ onMounted(async () => {
 </script>
 
 <template>
-	<div id="game" class="game w-full"></div>
+	<div id="game" class="game w-full overflow-hidden"></div>
 </template>
