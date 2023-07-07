@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import { ref, onMounted, nextTick } from "vue"
-import Phaser from "phaser"
+import * as Phaser from 'phaser'
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin"
 import MainScene  from "@/game/MainScene"
 
@@ -10,7 +10,7 @@ const config = ref<Phaser.Types.Core.GameConfig>({
     width:768,
     height:500,
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.ENVELOP,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     scene: [
@@ -24,7 +24,7 @@ const config = ref<Phaser.Types.Core.GameConfig>({
             debug: true
         }
     },
-    backgroundColor: '#999',
+    transparent: true,
     plugins: {
         scene: [
             {
@@ -37,13 +37,10 @@ const config = ref<Phaser.Types.Core.GameConfig>({
 })
 
 onMounted(async () => {
-    // config.value.width = document.getElementById('game')?.offsetWidth
-    // config.value.height = document.getElementById('game')?.offsetHeight
-
     await nextTick()
-   
     new Phaser.Game(config.value)
 })
+
 
 </script>
 

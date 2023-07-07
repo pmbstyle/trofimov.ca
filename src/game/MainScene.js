@@ -33,18 +33,22 @@ export default class MainScene extends Phaser.Scene {
 		const layer1 = map.createLayer('Tile Layer 1', tileset, 0, 0)
 		const layer2 = map.createLayer('Tile Layer 2', [water,tileset,dirt], 0, 0)
 		const layer3 = map.createLayer('Tile Layer 3', [dirt,tileset], 0, 0)
+		layer1.setCollisionByProperty({ collides: true })
+		this.matter.world.convertTilemapLayer(layer1)
 		layer2.setCollisionByProperty({ collides: true })
 		this.matter.world.convertTilemapLayer(layer2)
+		layer3.setCollisionByProperty({ collides: true })
+		this.matter.world.convertTilemapLayer(layer3)
 
-		this.blacksmith = this.matter.add.sprite(340, 120, 'blacksmith')
+		this.blacksmith = this.matter.add.sprite(720, 260, 'blacksmith')
 		this.blacksmith.play('blacksmith_idle')
 		this.blacksmith.setFixedRotation()
 		this.blacksmith.body.isStatic = true
 
 		this.player = new Player({
 			scene: this,
-			x: 100,
-			y: 230,
+			x: 470,
+			y: 370,
 			texture: 'player',
 			frame: 'townsfolk_m_idle_1'
 		})
@@ -55,6 +59,10 @@ export default class MainScene extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 			space: Phaser.Input.Keyboard.KeyCodes.SPACE
 		})
+
+		this.cameras.main.setSize(this.game.scale.width, this.game.scale.height);
+		this.cameras.main.startFollow(this.player, true, 0.09, 0.09);
+		this.cameras.main.setZoom(1);
 	}
 
 	update() {

@@ -33,3 +33,8 @@
 .tooltip::before {
     z-index: 99;
 }
+@media (max-width:1980px) {
+    .table {
+        height:20vh;
+    }
+}

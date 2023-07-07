@@ -1,7 +1,6 @@
 import playerPng from '@/assets/game/npc/player.png'
 import playerAtlas from '@/assets/game/npc/player_atlas.json'
 import playerAnimation from '@/assets/game/npc/player_anim.json'
-import { doc } from 'prettier'
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
     constructor(data) {

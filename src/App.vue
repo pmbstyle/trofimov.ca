@@ -19,7 +19,6 @@
     })
 
     const openBlacksmithDialog = () => {
-        console.log('here')
         let checkbox = document.getElementById('blacksmithDialog')
         if(checkbox.checked) {
             dialogues.value.blacksmith.show = true
