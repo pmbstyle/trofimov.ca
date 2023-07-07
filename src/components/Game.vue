@@ -25,6 +25,7 @@ const config = ref<Phaser.Types.Core.GameConfig>({
         }
     },
     transparent: true,
+    autoFocus: true,
     plugins: {
         scene: [
             {

@@ -7,7 +7,6 @@ import mapJson from '@/assets/game/map/map.json'
 import blacksmithPng from '@/assets/game/npc/blacksmith.png'
 import blacksmithAtlas from '@/assets/game/npc/blacksmith_atlas.json'
 import blacksmithAnimation from '@/assets/game/npc/blacksmith_anim.json'
-import { space } from 'postcss/lib/list'
 
 export default class MainScene extends Phaser.Scene {
 	constructor() {
@@ -39,12 +38,22 @@ export default class MainScene extends Phaser.Scene {
 		this.matter.world.convertTilemapLayer(layer2)
 		layer3.setCollisionByProperty({ collides: true })
 		this.matter.world.convertTilemapLayer(layer3)
+		
+		this.initNPC()
+		this.initPlayer()
+		this.initCamera()
+	}
 
-		this.blacksmith = this.matter.add.sprite(720, 260, 'blacksmith')
-		this.blacksmith.play('blacksmith_idle')
-		this.blacksmith.setFixedRotation()
-		this.blacksmith.body.isStatic = true
+	update() {
+		this.player.update()
+	}
 
+	initCamera() {
+		this.cameras.main.setSize(this.game.scale.width, this.game.scale.height);
+		this.cameras.main.startFollow(this.player, true, 0.09, 0.09);
+		this.cameras.main.setZoom(1);
+	}
+	initPlayer() {
 		this.player = new Player({
 			scene: this,
 			x: 470,
@@ -59,14 +68,11 @@ export default class MainScene extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 			space: Phaser.Input.Keyboard.KeyCodes.SPACE
 		})
-
-		this.cameras.main.setSize(this.game.scale.width, this.game.scale.height);
-		this.cameras.main.startFollow(this.player, true, 0.09, 0.09);
-		this.cameras.main.setZoom(1);
 	}
-
-	update() {
-		this.player.update()
+	initNPC() {
+		this.blacksmith = this.matter.add.sprite(720, 260, 'blacksmith')
+		this.blacksmith.play('blacksmith_idle')
+		this.blacksmith.setFixedRotation()
+		this.blacksmith.body.isStatic = true
 	}
-
 }
