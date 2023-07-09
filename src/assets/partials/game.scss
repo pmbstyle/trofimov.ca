@@ -2,17 +2,43 @@
     height:calc(100% - 1.5rem);
     .game-dialog {
         position:absolute;
-        bottom:10px;
-        left:10px;
-        width:calc(100% - 20px);
-        height: 250px;
-        padding:25px;
+        top:100px;
+        right:10px;
+        width:33%;
+        height: calc(100% - 125px);
+        padding:75px 25px 25px 25px;
         z-index: 60;
         background:rgba(0,0,0,0.9);
         text-align:left;
         color:#fff;
         border:#fff 1px solid;
         border-radius:5px;
+        .game-dialog__icon {
+            width:114px;
+            height:114px;
+            padding:10px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background:#78a205;
+            border:#fff 1px solid;
+            border-radius:5px;
+            position:absolute;
+            top:-75px;
+            left:25px;
+            img {
+                width:auto;
+                height:100%;
+            }
+        }
+        .game-dialog__title {
+            font-size:24px;
+            font-weight:bold;
+            text-shadow: 0px 0px 5px #000;
+            position: absolute;
+            top: 8px;
+            left: 175px;
+        }
         .ps__rail-y {
             opacity:1;
         }
@@ -22,6 +48,21 @@
                 color:#78a205;
                 text-shadow: 0px 0px 5px #000;
             }
+            a {
+                border-bottom:#78a205 1px solid;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                    border-bottom: 0;
+                }
+            }
+        }
+        ul {
+            li {
+                list-style-type: disc;
+                list-style-position: inside;
+            }
+            margin-left:10px;
+            margin-bottom:10px;
         }
         .close-dialog {
             width:20px;
@@ -42,6 +83,13 @@
                 background:#fff;
                 color:#000;
             }
+        }
+    }
+    .game-controls {
+        p {
+            color:#fff;
+            font-size:18px;
+            text-shadow: 0px 0px 5px #000;
         }
     }
 }

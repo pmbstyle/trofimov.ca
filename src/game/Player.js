@@ -52,12 +52,21 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
             this.anims.play('idle', true)
         }
 
-        let blacksmithBody = this.scene.blacksmith.body
-        let playerSensor = this.body.parts[1]
-        let collision = this.scene.matter.overlap(playerSensor, blacksmithBody)
-        if(collision && Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
-            let checkbox = document.getElementById('blacksmithDialog')
-            checkbox.click()
-        }
+        let npcs = ['blacksmith', 'scarecrow', 'mailbox', 'stand', 'statue']
+        npcs.forEach(npc => {
+            let npcBody = this.scene[npc].body
+            let playerSensor = this.body.parts[1]
+            let npcCollision = this.scene.matter.overlap(playerSensor, npcBody)
+            if(npcCollision && Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
+                let checkboxes = document.querySelectorAll('.game input[type="checkbox"]')
+                checkboxes.forEach(checkbox => {
+                    if(checkbox.checked) {
+                        checkbox.click()
+                    }
+                })
+                let checkbox = document.getElementById(`${npc}Dialog`)
+                checkbox.click()
+            }
+        })
 	}
 }

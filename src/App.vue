@@ -11,26 +11,47 @@
     const showTerminal = ref(false)
     const showGame = ref(true)
 
-    const dialogues = ref({
-        blacksmith: {
+    const dialogues = ref([
+        {
+            name: 'blacksmith',
             show: false,
             type: 'skills'
+        },
+        {
+            name: 'scarecrow',
+            show: false,
+            type: 'experience'
+        },
+        {
+            name: 'mailbox',
+            show: false,
+            type: 'contacts'
+        },
+        {
+            name: 'stand',
+            show: false,
+            type: 'education'
+        },
+        {
+            name: 'statue',
+            show: false,
+            type: 'about'
         }
-    })
+    ])
 
-    const openBlacksmithDialog = () => {
-        let checkbox = document.getElementById('blacksmithDialog')
-        if(checkbox.checked) {
-            dialogues.value.blacksmith.show = true
+    const openDialog = (index:Int,name:String) => {
+        let checkbox = document.getElementById(name+'Dialog')
+        if(checkbox?.checked) {
+            dialogues.value[index].show = true
         } else {
-            dialogues.value.blacksmith.show = false
+            dialogues.value[index].show = false
         }
     }
 
     onMounted(()=> {
-        // setTimeout(() => {
-        //     hideWelcome.value = true
-        // }, 2000)
+        setTimeout(() => {
+            hideWelcome.value = true
+        }, 2000)
         // setTimeout(() => {
         //     showTerminal.value = true
         // }, 4000)
@@ -95,13 +116,20 @@
                             <Terminal />
                         </div>
                     </div>
-                    <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
+                    <div class="game mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
                         :class="{ show: showGame}">
                         <div class="flex justify-left bg-base-200 game-wrapper relative">
+                            <div class="game-controls absolute mt-5 ml-5 text-left">
+                                <p >Movement: [W], [A], [S], [D]</p>
+                                <p>Action: [SPACEBAR]</p>
+                            </div>
                             <Game />
-                            <GameDialog @close="dialogues.blacksmith.show = false" :show="dialogues.blacksmith.show" :type="dialogues.blacksmith.type" />
+                            <GameDialog v-for="(dialog,index) in dialogues" :key="index"
+                                @close="dialog.show = false" :show="dialog.show" :type="dialog.type"/>
                         </div>
-                        <input type="checkbox" id="blacksmithDialog" class="hidden" @change="openBlacksmithDialog()" :checked="dialogues.blacksmith.show">
+                        <input type="checkbox" :id="dialog.name+'Dialog'" class="hidden"
+                            v-for="(dialog,index) in dialogues" :key="index"
+                            @change="openDialog(index,dialog.name)" :checked="dialog.show">
                     </div>
                 </div>
                 <div class="monitor-screen-bottom bg-gradient-to-t from-slate-300 to-slate-200">
