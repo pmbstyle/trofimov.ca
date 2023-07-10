@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, computed } from 'vue'
     import Terminal from '@/components/Terminal.vue'
     import Game from '@/components/Game.vue'
     import GameDialog from '@/components/GameDialog.vue'
@@ -8,8 +8,9 @@
     import Cactus from '@/assets/img/cactus.png'
 
     const hideWelcome = ref(false)
+    const showDesktop = ref(false)
     const showTerminal = ref(false)
-    const showGame = ref(true)
+    const showGame = ref(false)
 
     const dialogues = ref([
         {
@@ -48,13 +49,56 @@
         }
     }
 
+    const switchWindow = (name:String) => {
+        switch(name) {
+            case 'terminal':
+                showGame.value = false
+                showDesktop.value = false
+                showTerminal.value = true
+                break
+            case 'game':
+                showDesktop.value = false
+                showTerminal.value = false
+                showGame.value = true
+                break
+            case 'desktop':
+                showTerminal.value = false
+                showGame.value = false
+                showDesktop.value = true
+                break
+        }
+    }
+
+    const currentWindow = computed(() => {
+        if(showTerminal.value) {
+            return 'Terminal'
+        } else if(showGame.value) {
+            return 'Game of resume'
+        } else if(showDesktop.value) {
+            return 'Slava Trofimov'
+        }
+    })
+
+    const reload = () => {
+        window.location = window.location + '?g=true'
+    }
+
     onMounted(()=> {
-        setTimeout(() => {
+        const urlParams = new URLSearchParams(window.location.search)
+        const g = urlParams.get('g')
+        console.log(urlParams.get('g'))
+        if(g) {
+            showDesktop.value = true
             hideWelcome.value = true
-        }, 2000)
-        // setTimeout(() => {
-        //     showTerminal.value = true
-        // }, 4000)
+            window.history.replaceState({}, document.title, "/")
+        } else {
+            setTimeout(() => {
+                hideWelcome.value = true
+                showDesktop.value = true
+            }, 2000)
+        }
+
+        
 
     })
 </script>
@@ -67,7 +111,7 @@
                 <div class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
                     <div class="top-menu glass absolute h-8 w-full bg-slate-100/50 pl-5 pr-5 flex z-30">
                         <img :src="Tux" class="tux" />
-                        <span class="text-black ml-3 text-sm">Slava Trofimov</span>
+                        <span class="text-black ml-3 text-sm">{{currentWindow}}</span>
                         <div class="flex ml-auto top-menu-right">
                             <a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/" class="linkedin tooltip tooltip-bottom" data-tip="LinkedIn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3333 3333"
@@ -107,17 +151,38 @@
                         </div>
                     </div>
                     <div class="welcome absolute z-10 text-8xl text-white text-bold w-full h-full flex justify-center items-center opacity-80"
-                        :class="{ hide: hideWelcome }">
+                        :class="{ hide: hideWelcome }" v-if="!hideWelcome">
                         Welcome
                     </div>
+                    <div class="desktop absolute z-10 w-full h-full"
+                        :class="{ show: showDesktop }" v-if="showDesktop">
+                        <div class="desktop-item item-terminal" @click="switchWindow('terminal')">
+                            <div class="icon"></div>
+                            <div class="name">Terminal</div>
+                        </div>
+                        <div class="desktop-item item-game" @click="switchWindow('game')">
+                            <div class="icon"></div>
+                            <div class="name">Game</div>
+                        </div>
+                    </div>
                     <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-                        :class="{ show: showTerminal }">
+                        :class="{ show: showTerminal }" v-if="showTerminal">
+                        <div class="window-header">
+                            <div class="close-window" @click="switchWindow('desktop')">x</div>
+                            <div class="minimize-window" @click="switchWindow('desktop')">–</div>
+                            <div class="maximize-window">□</div>
+                        </div>
                         <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
                             <Terminal />
                         </div>
                     </div>
                     <div class="game mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-                        :class="{ show: showGame}">
+                        :class="{ show: showGame}" v-if="showGame">
+                        <div class="window-header">
+                            <div class="close-window" @click="reload()">x</div>
+                            <div class="minimize-window" @click="reload()">–</div>
+                            <div class="maximize-window">□</div>
+                        </div>
                         <div class="flex justify-left bg-base-200 game-wrapper relative">
                             <div class="game-controls absolute mt-5 ml-5 text-left">
                                 <p >Movement: [W], [A], [S], [D]</p>
