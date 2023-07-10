@@ -197,3 +197,12 @@
         width:80% !important;
     }
 }
+@media (max-width:700px) {
+    .desktop-dialog {
+        width:calc(100% - 30px) !important;
+        height: calc(100% - 62px) !important;
+    }
+    .window-title {
+        display:none !important;
+    }
+}

@@ -88,7 +88,7 @@
         } else if(showGame.value) {
             return 'Game of resume'
         } else if(showResume.value) {
-            return 'Slava-Trofimov.pdf (Document viewer)'
+            return 'Resume.pdf'
         } else if(showDesktop.value) {
             return 'Slava Trofimov'
         }
@@ -130,7 +130,7 @@
                 <div class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
                     <div class="top-menu glass absolute h-8 w-full bg-slate-100/50 pl-5 pr-5 flex z-30">
                         <img :src="Tux" class="tux" />
-                        <span class="text-black ml-3 text-sm">{{currentWindow}}</span>
+                        <span class="text-black ml-3 text-sm window-title">{{currentWindow}}</span>
                         <div class="flex ml-auto top-menu-right">
                             <a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/" class="linkedin tooltip tooltip-bottom" data-tip="LinkedIn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3333 3333"
