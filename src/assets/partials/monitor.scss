@@ -52,6 +52,24 @@
             user-select: none;
         }
     }
+    .controller {
+        width: 300px;
+        height: auto;
+        position: absolute;
+        left: 50px;
+        bottom: -50px;
+        z-index: 30;
+        animation: flyin 1s;
+        @keyframes flyin {
+            from {
+                bottom: -150px;
+            }
+            to {
+                bottom: -50px;
+            }
+        }
+
+    }
     .cactus {
         width: 200px;
         height: auto;
@@ -68,6 +86,11 @@
         border: 20px solid #333;
         text-align: center;
         border-radius: 20px 20px 0 0;
+    }
+    @media (max-width: 1980px) {
+        .monitor-screen {
+            height: 70vh;
+        }
     }
     .monitor-screen-bottom {
         width: 100%;
