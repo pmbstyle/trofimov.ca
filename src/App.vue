@@ -192,18 +192,22 @@
                         <div class="desktop-dialog" v-if="showHelloDialog">
                             <div class="close-dialog" @click="showHelloDialog = false">x</div>
                             <div class="desktop-dialog__content">
-                                <h3>Hello!</h3>
-                                <p>My name is Slava Trofimov and I am a Web developer.</p>
-                                <p>This website represents information about me in several different ways:</p>
-                                <ul>
-                                    <li>as a simple terminal application where you will need to type in commands to get content on a specific topic about me</li>
-                                    <li>as a small game where you can walk around and chat with NPCs, etc</li>
-                                    <li>old-fashion resume (downloadable)</li>
-                                </ul>
-                                <p></p>
-                                <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git profile</a> page.</p>
-                                <p>Feel free to contact me if you have any questions or offers.<br/>
-                                Thank you for visiting, have a nice day!</p>
+                                <perfect-scrollbar ref="helloScroll">
+                                    
+                                        <h3>Hello!</h3>
+                                        <p>My name is Slava Trofimov and I am a Web developer.</p>
+                                        <p>This website represents information about me in several different ways:</p>
+                                        <ul>
+                                            <li>as a simple terminal application where you will need to type in commands to get content on a specific topic about me</li>
+                                            <li>as a small game where you can walk around and chat with NPCs, etc</li>
+                                            <li>old-fashion resume (downloadable)</li>
+                                        </ul>
+                                        <p></p>
+                                        <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git profile</a> page.</p>
+                                        <p>Feel free to contact me if you have any questions or offers.<br/>
+                                        Thank you for visiting, have a nice day!</p>
+                                   
+                                </perfect-scrollbar>
                             </div>
                         </div>
                     </div>
@@ -216,7 +220,7 @@
                             <div class="maximize-window">□</div>
                         </div>
                         <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
-                            <perfect-scrollbar ref="termScroll">
+                            <perfect-scrollbar ref="resumeScroll">
                                 <Resume />
                             </perfect-scrollbar>
                         </div>

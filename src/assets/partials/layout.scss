@@ -152,6 +152,9 @@
                 color:#000;
             }
         }
+        .desktop-dialog__content {
+            width:100%;
+        }
         p {
             margin-bottom:10px;
             strong {
@@ -187,5 +190,10 @@
 @media (max-width:1980px) {
     .table {
         height:20vh;
+    }
+}
+@media (max-width:1560px) {
+    .desktop-dialog {
+        width:80% !important;
     }
 }
