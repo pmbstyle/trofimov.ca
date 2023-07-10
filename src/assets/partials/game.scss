@@ -93,3 +93,19 @@
         }
     }
 }
+@media (max-width:1560px) {
+    .game-dialog {
+        width:55% !important;
+        padding-top:45px !important;
+        .game-dialog__icon {
+            width:64px !important;
+            height:64px !important;
+            top:-32px !important;
+        }
+        .game-dialog__title {
+            font-size:18px !important;
+            top: 8px !important;
+            left: 100px !important;
+        }
+    }
+}
