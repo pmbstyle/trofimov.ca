@@ -4,13 +4,17 @@
     import Game from '@/components/Game.vue'
     import GameDialog from '@/components/GameDialog.vue'
     import Clock from '@/components/Clock.vue'
+    import Resume from '@/components/Resume.vue'
     import Tux from '@/assets/img/tux.svg'
     import Cactus from '@/assets/img/cactus.png'
+    import Controller from '@/assets/img/controller.png'
 
     const hideWelcome = ref(false)
     const showDesktop = ref(false)
     const showTerminal = ref(false)
     const showGame = ref(false)
+    const showResume = ref(false)
+    const showHelloDialog = ref(false)
 
     const dialogues = ref([
         {
@@ -54,16 +58,25 @@
             case 'terminal':
                 showGame.value = false
                 showDesktop.value = false
+                showResume.value = false
                 showTerminal.value = true
                 break
             case 'game':
                 showDesktop.value = false
                 showTerminal.value = false
+                showResume.value = false
                 showGame.value = true
+                break
+            case 'resume':
+                showDesktop.value = false
+                showTerminal.value = false
+                showGame.value = false
+                showResume.value = true
                 break
             case 'desktop':
                 showTerminal.value = false
                 showGame.value = false
+                showResume.value = false
                 showDesktop.value = true
                 break
         }
@@ -74,6 +87,8 @@
             return 'Terminal'
         } else if(showGame.value) {
             return 'Game of resume'
+        } else if(showResume.value) {
+            return 'Slava-Trofimov.pdf (Document viewer)'
         } else if(showDesktop.value) {
             return 'Slava Trofimov'
         }
@@ -95,6 +110,7 @@
             setTimeout(() => {
                 hideWelcome.value = true
                 showDesktop.value = true
+                showHelloDialog.value = true
             }, 2000)
         }
 
@@ -107,7 +123,10 @@
     <main class="h-full w-full h-full relative">
         <div class="container mx-auto flex flex-col h-full justify-center relative z-20">
             <div id="monitor" class="relative">
+
                 <img :src="Cactus" class="cactus" />
+                <img :src="Controller" class="controller" v-if="showGame"/>
+
                 <div class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
                     <div class="top-menu glass absolute h-8 w-full bg-slate-100/50 pl-5 pr-5 flex z-30">
                         <img :src="Tux" class="tux" />
@@ -150,10 +169,12 @@
                             <Clock />
                         </div>
                     </div>
+
                     <div class="welcome absolute z-10 text-8xl text-white text-bold w-full h-full flex justify-center items-center opacity-80"
                         :class="{ hide: hideWelcome }" v-if="!hideWelcome">
                         Welcome
                     </div>
+
                     <div class="desktop absolute z-10 w-full h-full"
                         :class="{ show: showDesktop }" v-if="showDesktop">
                         <div class="desktop-item item-terminal" @click="switchWindow('terminal')">
@@ -164,7 +185,43 @@
                             <div class="icon"></div>
                             <div class="name">Game</div>
                         </div>
+                        <div class="desktop-item item-resume" @click="switchWindow('resume')">
+                            <div class="icon"></div>
+                            <div class="name">Resume</div>
+                        </div>
+                        <div class="desktop-dialog" v-if="showHelloDialog">
+                            <div class="close-dialog" @click="showHelloDialog = false">x</div>
+                            <div class="desktop-dialog__content">
+                                <h3>Hello!</h3>
+                                <p>My name is Slava Trofimov and I am a Web developer.</p>
+                                <p>This website represents information about me in several different ways:</p>
+                                <ul>
+                                    <li>as a simple terminal application where you will need to type in commands to get content on a specific topic about me</li>
+                                    <li>as a small game where you can walk around and chat with NPCs, etc</li>
+                                    <li>old-fashion resume (downloadable)</li>
+                                </ul>
+                                <p></p>
+                                <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git profile</a> page.</p>
+                                <p>Feel free to contact me if you have any questions or offers.<br/>
+                                Thank you for visiting, have a nice day!</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
+                        :class="{ show: showResume }" v-if="showResume">
+                        <div class="window-header">
+                            <div class="close-window" @click="switchWindow('desktop')">x</div>
+                            <div class="minimize-window" @click="switchWindow('desktop')">–</div>
+                            <div class="maximize-window">□</div>
+                        </div>
+                        <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
+                            <perfect-scrollbar ref="termScroll">
+                                <Resume />
+                            </perfect-scrollbar>
+                        </div>
+                    </div>
+
                     <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
                         :class="{ show: showTerminal }" v-if="showTerminal">
                         <div class="window-header">
@@ -176,6 +233,7 @@
                             <Terminal />
                         </div>
                     </div>
+
                     <div class="game mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
                         :class="{ show: showGame}" v-if="showGame">
                         <div class="window-header">
@@ -196,6 +254,7 @@
                             v-for="(dialog,index) in dialogues" :key="index"
                             @change="openDialog(index,dialog.name)" :checked="dialog.show">
                     </div>
+
                 </div>
                 <div class="monitor-screen-bottom bg-gradient-to-t from-slate-300 to-slate-200">
                     <img :src="Tux" class="tux">

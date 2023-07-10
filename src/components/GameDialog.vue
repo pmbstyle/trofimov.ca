@@ -11,7 +11,7 @@ defineProps({
 const content = {
 	about: `<p><strong>Hello traveler!</strong></p>
 	<p>Here is a letter that I found in that box:</p>
-	<p>"My name is Slava Trofimov, I'm a Full Stack End Developer from Toronto, Canada.</p>
+	<p>"My name is Slava Trofimov, I'm a Full StackDeveloper from Toronto, Canada.</p>
 	<p>I have more than 12 years of experience as a Front End Developer and 2+ years as a Full Stack Developer.<br/>
 	Experienced in several high-traffic projects from educational to real-time data management and social networks.</p>
 	<p>I specialize in all aspects of web development from basic HTML/CSS/JS coding to creating full-scale web applications with rich REST API(PHP/NodeJs).</br>
@@ -52,8 +52,10 @@ const content = {
 	<strong>Skills:</strong> HTML · HTML5 · CSS · SCSS · JavaScript · VueJS · SPA · Laravel · OpenCart · WordPress · Git · Linux</p>`,
 	education: `<p><strong>Hello traveler!</strong></p>
 	<p>Here you can find Slava's education.</p>
-	<p><strong><u>Moscow State Open University</u></strong><br/>
-	Master's Computer Science<br/><i>2003 - 2008</i></p>`,
+	<p><strong><u>Master in Computer Science</u></strong><br/>
+	Moscow Technological University<br/><i>2007 - 2008</i></p>
+	<p><strong><u>Diploma in Computer Science</u></strong><br/>
+	Moscow Technological University<br/><i>2003 - 2007</i></p>`,
 	contacts: `<p><strong>Hello traveler!</strong></p>
 	<p>Here you can find Slava's contacts.</p>
 	<p>His email is <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
