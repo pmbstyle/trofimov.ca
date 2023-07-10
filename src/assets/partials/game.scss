@@ -95,7 +95,9 @@
 }
 @media (max-width:1560px) {
     .game-dialog {
+        top:50px !important;
         width:55% !important;
+        height: calc(100% - 75px) !important;
         padding-top:45px !important;
         .game-dialog__icon {
             width:64px !important;
