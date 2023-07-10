@@ -123,6 +123,15 @@
         color:#fff;
         border:#fff 1px solid;
         border-radius:5px;
+        animation: fadein 3s;
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
         .close-dialog {
             width:20px;
             height:20px;
