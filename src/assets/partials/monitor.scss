@@ -52,6 +52,24 @@
             user-select: none;
         }
     }
+    .keyboard {
+        width: 400px;
+        height: auto;
+        position: absolute;
+        left: 50px;
+        bottom: -80px;
+        z-index: 30;
+        transform: rotate(20deg);
+        animation: flyin 1s;
+        @keyframes flyin {
+            from {
+                bottom: -150px;
+            }
+            to {
+                bottom: -80px;
+            }
+        }
+    }
     .controller {
         width: 300px;
         height: auto;
@@ -68,7 +86,6 @@
                 bottom: -50px;
             }
         }
-
     }
     .cactus {
         width: 200px;
@@ -149,7 +166,7 @@
     }
 }
 @media (max-width:700px) {
-    .cactus, .controller,
+    .cactus, .controller, .keyboard,
     .monitor-base, .monitor-stand {
         display:none !important;
     }

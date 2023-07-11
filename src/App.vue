@@ -6,8 +6,10 @@
     import Clock from '@/components/Clock.vue'
     import Resume from '@/components/Resume.vue'
     import Tux from '@/assets/img/tux.svg'
+    import Slava from '@/assets/img/slava.png'
     import Cactus from '@/assets/img/cactus.png'
     import Controller from '@/assets/img/controller.png'
+    import Keyboard from '@/assets/img/keyboard.png'
 
     const hideWelcome = ref(false)
     const showDesktop = ref(false)
@@ -126,10 +128,11 @@
 
                 <img :src="Cactus" class="cactus" />
                 <img :src="Controller" class="controller" v-if="showGame"/>
+                <img :src="Keyboard" class="keyboard" v-if="showTerminal"/>
 
                 <div class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
                     <div class="top-menu glass absolute h-8 w-full bg-slate-100/50 pl-5 pr-5 flex z-30">
-                        <img :src="Tux" class="tux" />
+                        <img :src="Slava" class="tux" />
                         <span class="text-black ml-3 text-sm window-title">{{currentWindow}}</span>
                         <div class="flex ml-auto top-menu-right">
                             <a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/" class="linkedin tooltip tooltip-bottom" data-tip="LinkedIn">
