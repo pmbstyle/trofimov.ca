@@ -180,11 +180,11 @@
 
                     <div class="desktop absolute z-10 w-full h-full"
                         :class="{ show: showDesktop }" v-if="showDesktop">
-                        <div class="desktop-item item-terminal" @click="switchWindow('terminal')">
+                        <div class="desktop-item item-terminal hide-mobile" @click="switchWindow('terminal')">
                             <div class="icon"></div>
                             <div class="name">Terminal</div>
                         </div>
-                        <div class="desktop-item item-game" @click="switchWindow('game')">
+                        <div class="desktop-item item-game hide-mobile" @click="switchWindow('game')">
                             <div class="icon"></div>
                             <div class="name">Game</div>
                         </div>
@@ -192,7 +192,7 @@
                             <div class="icon"></div>
                             <div class="name">Resume</div>
                         </div>
-                        <div class="desktop-dialog" v-if="showHelloDialog">
+                        <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
                             <div class="close-dialog" @click="showHelloDialog = false">x</div>
                             <div class="desktop-dialog__content">
                                 <perfect-scrollbar ref="helloScroll">
@@ -202,11 +202,11 @@
                                         <p>This website represents information about me in several different ways:</p>
                                         <ul>
                                             <li>as a simple terminal application where you will need to type in commands to get content on a specific topic about me</li>
-                                            <li>as a small game where you can walk around and chat with NPCs, etc</li>
+                                            <li>as a small game where you can walk around and chat with NPCs, etc.</li>
                                             <li>old-fashion resume (downloadable)</li>
                                         </ul>
                                         <p></p>
-                                        <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git profile</a> page.</p>
+                                        <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
                                         <p>Feel free to contact me if you have any questions or offers.<br/>
                                         Thank you for visiting, have a nice day!</p>
                                    

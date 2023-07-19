@@ -187,6 +187,9 @@
 .tooltip::before {
     z-index: 99;
 }
+.show-mobile {
+    display:none;
+}
 @media (max-width:1980px) {
     .table {
         height:20vh;
@@ -207,5 +210,18 @@
     }
     .welcome {
         font-size:3rem !important;
+    }
+    span.show-mobile {
+        display:inline-block !important;
+    }
+    .hide-mobile {
+        display:none !important;
+    }
+    .mockup-window  {
+        width: calc(100% - 1rem) !important;
+        margin-left: .5rem !important;
+    }
+    #monitor .monitor-screen {
+        border-width:10px !important;
     }
 }
