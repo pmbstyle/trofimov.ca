@@ -1,61 +1,91 @@
 <script lang="ts" setup>
-import pdf from '@/assets/Slava_Trofimov-Senior_Front_End_Developer.pdf'
+import pdf from '@/assets/Slava_Trofimov_Front_End(Full_Stack)_Developer.pdf'
 const experience = [
     {
         title: 'Senior Front End Developer',
         company: 'Codepxl - Toronto, ON',
         date: 'January 2019 to Present',
-        description: `Toronto-based App development, website design, complex system development, and graphic design
-        agency. Vue3/Nuxt3, SPA, Laravel, Electron, WordPress.`
+        description: [
+            'Proficiently employed Vue.js, Nuxt.js, Laravel, WordPress, jQuery, and Vanilla JavaScript for Front End and Full Stack development.',
+            'Skillfully translated Figma designs into responsive web interfaces, utilizing HTML5, CSS3 (SASS), and TailwindCSS/Bootstrap.',
+            'Demonstrated expertise in building Single Page and Progressive Web Applications while actively contributing to project planning, code structuring, and maintaining legacy code.',
+            'Successfully managed a wide range of projects, from small-scale WordPress websites to extensive social networks and multi-application ecosystems.'
+        ]
     },
     {
         title: 'Front End Developer',
         company: 'EvolutionInDesignZ - Toronto, ON',
         date: 'May 2018 to December 2018',
-        description: `Web app development, graphic design, and online marketing agency. HTML5, SCSS, SPA, Laravel +
-        Vue.js, Opencart, WordPress`
+        description: [
+            'Spearheaded various custom projects spanning across Laravel, WordPress, and Opencart, encompassing diverse industries such as real estate, education, non-profit, large data, and thin-client solutions.',
+            'Translated Figma and Sketch designs into cross-platform accessible, SEO-friendly front-end code using a skill set that included HTML5, SASS, JavaScript, Vue.js, Laravel Blade, jQuery, and Bootstrap.',
+            'Delivered exceptional results by seamlessly implementing these projects, ensuring they met accessibility standards and SEO requirements while providing top-notch user experiences.'
+        ]
     },
     {
-        title: 'Web Master',
+        title: 'Web Developer',
         company: 'Electrolight Enterprises - Toronto, ON',
         date: 'August 2017 to May 2018',
-        description: `Lighting & Design Services for the GTA. Corporate website maintenance. HTML5 / JS / SCSS / PHP, etc.`
+        description: [
+            'Led the development and ongoing maintenance of custom corporate websites built on WordPress and Opencart, employing a tech stack featuring HTML5, CSS3, JavaScript, and jQuery.',
+            'Streamlined operations by seamlessly integrating third-party APIs, transforming mockups into user-friendly interfaces, and enhancing SEO and web accessibility.',
+            'Innovatively contributed to end-user training by developing and implementing content management systems and security resource tutorials, empowering teams to utilize web resources efficiently and securely.'
+        ]
     },
     {
         title: 'Front End Developer',
         company: 'iMoan.ru - Moscow',
         date: 'August 2015 to July 2017',
-        description: `One of the fast-growing e-commerce projects in the adult industry. HTML5 (PUG) / CSS3 (SCSS) / JS(jQuery,
-        Angular) / Opencart, Web/UI design, VPS administrative, SEO, project menagment, work with remote employees.`
+        description: [
+            'Collaborated seamlessly with cross-functional teams including client services, sales, and design, ensuring project success in a fast-paced, deadline-driven environment.',
+            'Successfully crafted and launched e-commerce websites on Opencart and Django framework, utilizing a technology stack that encompassed HTML5, LESS, jQuery, PHP, and Python.',
+            'Designed and constructed impactful landing pages and corporate resources to enhance the online presence of the company.',
+            'Achieved significant SEO improvements, resulting in remarkable outcomes, and enhanced overall UI/UX to elevate user experiences.'
+        ]
     },
     {
         title: 'Lead Front End Developer',
         company: 'Web Solution Ltd. - Moscow',
         date: 'March 2013 to August 2015',
-        description: `Web design studio with hundreds of clients. Front-end development and UI design. HTML5 (PUG) /CSS
-        (LESS) / JS (jQuery) / Joomla, WordPress, Opencart.`
+        description: [
+            'Spearheaded the design and development of a diverse portfolio of websites, ranging from small-scale WordPress/Joomla-based corporate sites to expansive e-commerce solutions.',
+            'Proficiently implemented front-end interfaces using HTML/CSS, jQuery, Bootstrap, and PHP to ensure seamless user experiences.',
+            'Conducted market research and successfully integrated SEO best practices, resulting in improved online visibility and search engine rankings.',
+            'Fostered strong client relationships by collaborating closely with end clients, facilitating the creation of modern and highly productive web applications.'
+        ]
     },
     {
         title: 'Front End Developer',
         company: 'Giftery corp. - Moscow',
         date: 'February 2012 to March 2013',
-        description: `Startup Giftery.ru is a buyer's bonus card system with many commerce partners. Front-end development.
-        HTML5 / CSS3 / JS (jQuery)`
+        description: [
+            'Collaborated on corporate websites with Django(Python) backend, applying HTML/CSS, jQuery, and JavaScript to create cross-browser compatible and user-friendly user interfaces.',
+            'Established a strong partnership with designers and the development team, actively contributing to the incorporation of modern best practices in website development, ensuring cutting-edge results.'
+        ]
     },
     {
         title: 'Front End Developer',
         company: 'Predestination.ru - Moscow',
         date: 'January 2011 to February 2012',
-        description: `Popular business training project with multiple courses and programs. Front-end development, Web
-        design, UI Design. HTML / CSS / JS (jQuery) / WordPress`
-    },
-    {
-        title: 'Junior Front End Developer',
-        company: 'KM ONLINE, R-STYLE COMPANY GROUP - Moscow',
-        date: '2008 to 2010',
-        description: `News, entertainment, and media. Work on social media project - vkrugudruzei.ru. Front-end
-        development. HTML / CSS / JS (jQuery)`
+        description: [
+            'Contributed to the development of multiple corporate websites using WordPress, skillfully utilizing HTML/CSS, jQuery, JavaScript, and PHP to ensure optimal functionality and aesthetics.',
+            "Took charge of the design and development of impactful landing pages and product websites, enhancing the company's online presence and user engagement."
+        ]
     }
+]
+const profile = [
+    'HTML5 & CSS3 for precise styling',
+    'JavaScript/TypeScript (with or without frameworks)',
+    'JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)',
+    'Mobile-first, pixel-perfect styling',
+    'SPA, PWA, SSR development',
+    'CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)',
+    'RESTful Service and Third-Party API interaction',
+    'Unit Testing (Jest), Debugging, Application Maintenance',
+    'Desktop App Development (Electron.js)',
+    'Web Accessibility (WCAG) and SEO Best Practices',
+    'Full Stack Development (Laravel, WordPress, Node.js)',
+    'Git/Version Control, Pull Requests, Code Reviews'
 ]
 const education = [
     {
@@ -70,24 +100,22 @@ const education = [
     }
 ]
 const skills = [
-'JavaScript (7 years)',
-'Vue.js (5 years)',
-'Nuxt.js (3 years)',
-'Laravel (4 years)',
-'Node.js (3 years)',
-'TypeScript (2 years)',
-'PHP (5 years)',
-'jQuery (7 years)',
-'REST (6 years)',
-'CSS (10+ years)',
-'SASS (5 years)',
-'HTML5 (10+ years)',
-'Responsive styling (8 years)',
-'Bootstrap (5 years)',
-'TailwindCss (3 years)',
-'MySQL (5 years)',
-'GitHub (6 years)',
-'Docker (4 years)'
+    'Vue.js / Nuxt.js (5 years)',
+    'React.js / Next.js (1 year)',
+    'HTML5 / SCSS (8 years)',
+    'Bootstrap / Tailwindcss (5 years)',
+    'Javascript (8 years)',
+    'REST (6 years)',
+    'jQuery (7 years)',
+    'Laravel / PHP (3 years)',
+    'MySQL/ MangoDB (6 years)',
+    'Node.js (3 years)',
+    'TypeScript (2 years)',
+    'Responsive styling (8 years)',
+    'Webpack / Vite / Gulp (5 years)',
+    'WordPress / OpenCart (8 years)',
+    'GitHub (6 years)',
+    'Docker (4 years)'
 ]
 </script>
 <template>
@@ -98,24 +126,36 @@ const skills = [
         <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a><br/>
         <a href="tel:2899808683">+1(289)980-8683</a></p>
         <section>
-            <p>I'm working in the web development industry for more than 12 years and am familiar with all aspects
-            of a website/app development cycle, from initial analysis and planning, creating wireframes to
-            production deployment.</p>
-            <p>I have strong JavaScript, Vue.js, REST, CSS/SCSS, and HTML5 skills. For the last several years I've
-            gained wide experience with Laravel and PHP in general and worked on many Laravel+Vue.js/Nuxt.js
-            projects as a Lead developer.</p>
-            <p>Have wide experience with MySQL, WordPress, Opencart, and Electron.js.</p>
-            <p>I feel confident working with technologies like Git, Docker, Figma, Jira / ClickUp, Slack, etc.</p>
-            <p>Always seeking skill improvement and better practices.</p>
+            <p>
+                Front End Developer with strong expertise in JavaScript, Vue.js, REST, and HTML5/SCSS.
+                Bring a Full Stack skill set, having worked extensively with Laravel and PHP, contributing to numerous
+                Laravel+Vue.js/Nuxt.js projects. I'm also proficient in React.js, WordPress, Opencart, and Electron.js.
+                Well-versed in essential development tools like Git and Docker and have experience with collaboration
+                platforms such as Figma, Jira/ClickUp, and Slack. Dedication to ongoing enhancement and a knack for
+                resolving challenges add value to any development environment.
+            </p>
+        </section>
+
+        <section>
+            <p class="dashed"><strong>Work Profile</strong></p>
+            <ul class="my-4 py-2">
+                <li v-for="(p,index) in profile" :key="index">
+                    {{p}}
+                </li>
+            </ul>
         </section>
 
         <section>
             <p class="dashed"><strong>Work Experience</strong></p>
-            <p v-for="(e,index) in experience" :key="index">
+            <p class="my-4 py-2" v-for="(e,index) in experience" :key="index">
                 <b>{{e.title}}</b><br/>
                 <small>{{e.company}}</small><br/>
                 <small>{{e.date}}</small><br/>
-                {{e.description}}<br/>
+                <ul>
+                    <li v-for="(d,index) in e.description" :key="index">
+                        {{d}}
+                    </li>
+                </ul>
             </p>
         </section>
 

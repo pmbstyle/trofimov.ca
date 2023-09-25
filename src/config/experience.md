@@ -5,7 +5,7 @@
 
 <br />
 
-Last 5 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-a1b919128/) profile.
+Last 5 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-a1b919128/) profile or Resume section.
 
 <br />
 
@@ -25,7 +25,12 @@ Last 5 years of experience, for more information please check out my [LinkedIn](
 
   
 
-Many SPA projects, based on Vue.js/Nuxt.js with Laravel backend/REST API. Tailwind CSS, SCSS, Vanilla JavaScript, Electron, WordPress, and more.
+* Teamed on user-centric design strategy in translation of UX and business requirements into coded solutions.
+* Formed a team for a particular project needs, estimated and planned development process close with Product Manager.
+* Coded using Vue.js/React.js to develop features for both mobile and desktop platforms.
+* Transformed native applications designs into desktop and mobile-friendly SPA/SSR products.
+* Produced websites based on Laravel or WordPress compatible with multiple browsers and platforms.
+* Improved tools to boost user interaction and deliver design versatility.
 
   
 
@@ -51,7 +56,12 @@ Many SPA projects, based on Vue.js/Nuxt.js with Laravel backend/REST API. Tailwi
 
   
 
-Web app development, website development, graphic design and online marketing agency. HTML5, SCSS, SPA, Vue.js, Laravel, OpenCart, WordPress projects development.
+* Coded using HTML, CSS/SCSS and JavaScript(Vue.js) to develop features for both mobile and desktop platforms.
+* Contributed to projects within Scrum project management environments.
+* Collaborated with stakeholders during development processes to confirm creative proposals and design best practices.
+* Worked cooperatively with client services, sales and design team in deadline-driven environment.
+* Designed and updated layouts to meet usability and performance requirements.
+* Produced websites compatible with multiple browsers.
 
   
 

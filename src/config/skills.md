@@ -2,15 +2,15 @@
 
 <br/>
 
-My primary stack is **Laravel + Vue / Nuxt**.
+My primary stack is **Laravel + Vue / React**.
 
 Using **SCSS, LESS, TailwindCSS, Bootstrap**, etc.
 
 Compiling with **Vite, Webpack** and **Gulp**.
 
-Have a wide experience with many frameworks and platforms, such as:
+Have a wide experience with many frameworks, libraries and platforms, such as:
 
-**NodeJs, WordPress, Electron, Opencart, React, jQuery**, etc.
+**NodeJs, WordPress, Electron, Opencart, jQuery**, etc.
 
 <br/>
 
