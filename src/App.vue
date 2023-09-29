@@ -5,6 +5,7 @@
     import GameDialog from '@/components/GameDialog.vue'
     import Clock from '@/components/Clock.vue'
     import Resume from '@/components/Resume.vue'
+    import Telegram from '@/components/Telegram.vue'
     import Tux from '@/assets/img/tux.svg'
     import Slava from '@/assets/img/slava.png'
     import Cactus from '@/assets/img/cactus.png'
@@ -215,6 +216,7 @@
                                 </perfect-scrollbar>
                             </div>
                         </div>
+                        <Telegram />
                     </div>
 
                     <div class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
@@ -252,8 +254,8 @@
                         </div>
                         <div class="flex justify-left bg-base-200 game-wrapper relative">
                             <div class="game-controls absolute mt-5 ml-5 text-left">
-                                <p >Movement: [W], [A], [S], [D]</p>
-                                <p>Action: [SPACEBAR]</p>
+                                <p>Movement: <kbd class="kbd">W</kbd> <kbd class="kbd">A</kbd> <kbd class="kbd">S</kbd> <kbd class="kbd">D</kbd></p>
+                                <p>Action: <kbd class="kbd">SPACE</kbd></p>
                             </div>
                             <Game />
                             <GameDialog v-for="(dialog,index) in dialogues" :key="index"
