@@ -5,6 +5,7 @@
     import GameDialog from '@/components/GameDialog.vue'
     import Clock from '@/components/Clock.vue'
     import Resume from '@/components/Resume.vue'
+    import Contact from '@/components/Contact.vue'
     import Tux from '@/assets/img/tux.svg'
     import Slava from '@/assets/img/slava.png'
     import Cactus from '@/assets/img/cactus.png'
@@ -18,6 +19,7 @@
     const showTerminal = ref(false)
     const showGame = ref(false)
     const showResume = ref(false)
+    const showContact = ref(false)
     const showHelloDialog = ref(false)
 
     const dialogues = ref([
@@ -48,8 +50,8 @@
         }
     ])
 
-    const openDialog = (index:Int,name:String) => {
-        let checkbox = document.getElementById(name+'Dialog')
+    const openDialog = (index:integer,name:string) => {
+        let checkbox = document.getElementById(name+'Dialog') as HTMLInputElement
         if(checkbox?.checked) {
             dialogues.value[index].show = true
         } else {
@@ -57,30 +59,41 @@
         }
     }
 
-    const switchWindow = (name:String) => {
+    const switchWindow = (name:string) => {
         switch(name) {
             case 'terminal':
                 showGame.value = false
                 showDesktop.value = false
                 showResume.value = false
+                showContact.value = false
                 showTerminal.value = true
                 break
             case 'game':
                 showDesktop.value = false
                 showTerminal.value = false
                 showResume.value = false
+                showContact.value = false
                 showGame.value = true
                 break
             case 'resume':
                 showDesktop.value = false
                 showTerminal.value = false
                 showGame.value = false
+                showContact.value = false
                 showResume.value = true
+                break
+            case 'contact':
+                showDesktop.value = false
+                showTerminal.value = false
+                showGame.value = false
+                showResume.value = false
+                showContact.value = true
                 break
             case 'desktop':
                 showTerminal.value = false
                 showGame.value = false
                 showResume.value = false
+                showContact.value = false
                 showDesktop.value = true
                 break
         }
@@ -95,6 +108,9 @@
             return 'Resume.pdf'
         } else if(showDesktop.value) {
             return 'Slava Trofimov'
+        }
+        else if(showContact.value) {
+            return 'Send me email'
         }
     })
 
@@ -117,9 +133,6 @@
                 showHelloDialog.value = true
             }, 2000)
         }
-
-        
-
     })
 </script>
 
@@ -192,7 +205,11 @@
                         </div>
                         <div class="desktop-item item-resume" @click="switchWindow('resume')">
                             <div class="icon"></div>
-                            <div class="name">Resume</div>
+                            <div class="name">Resume.pdf</div>
+                        </div>
+                        <div class="desktop-item item-contact" @click="switchWindow('contact')">
+                            <div class="icon"></div>
+                            <div class="name">Contact</div>
                         </div>
                         <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
                             <div class="close-dialog" @click="showHelloDialog = false">x</div>
@@ -203,17 +220,28 @@
                                         <p>My name is Slava Trofimov and I am a Web developer.</p>
                                         <p>This website represents information about me in several different ways:</p>
                                         <ul>
-                                            <li>as a simple terminal application where you will need to type in commands to get content on a specific topic about me</li>
-                                            <li>as a small game where you can walk around and chat with NPCs, etc.</li>
-                                            <li>old-fashion resume (downloadable)</li>
+                                            <li><strong>Terminal Interface:</strong> Navigate by entering commands to access content and learn more about various aspects of my journey.</li>
+                                            <li><strong>Interactive Experience:</strong> Immerse yourself in an interactive journey, where you can explore this digital landscape, interact with NPCs, and uncover hidden details.</li>
+                                            <li><strong>Classic Resume:</strong> If you prefer a more traditional approach, you can download a conventional resume that offers a snapshot of my experiences in the field of web development.</li>
                                         </ul>
-                                        <p>You can switch to <a href="https://react.trofimov.ca">React.js</a> version clicking on React logo at the bottom.</p>
-                                        <p>Source code for this website you can find on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
-                                        <p>Feel free to contact me if you have any questions or offers.<br/>
-                                        Thank you for visiting, have a nice day!</p>
+                                        <p>If you'd like to experience this site from a different angle, you can switch to the <a href="https://react.trofimov.ca">React.js</a> version by clicking on the React logo at the bottom.</p>
+                                        <p>For those curious about the inner workings, you can find the source code for this website on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
+                                        <p>If you have any questions or opportunities you'd like to discuss, please feel free to contact me. Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>
                                    
                                 </perfect-scrollbar>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mockup-window border bg-base-300 flex-1 flex flex-col mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
+                        :class="{ show: showContact }" v-if="showContact">
+                        <div class="window-header">
+                            <div class="close-window" @click="switchWindow('desktop')">x</div>
+                            <div class="minimize-window" @click="switchWindow('desktop')">–</div>
+                            <div class="maximize-window">□</div>
+                        </div>
+                        <div class="flex justify-left px-4 pb-6 bg-base-200 flex-1 relative">
+                            <Contact/>
                         </div>
                     </div>
 

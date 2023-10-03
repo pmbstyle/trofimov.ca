@@ -109,6 +109,11 @@
                 background-image:url(../assets/img/pdf.png);
             }
         }
+        &.item-contact {
+            .icon {
+                background-image:url(../assets/img/thunderbird.png);
+            }
+        }
     }
     .desktop-dialog {
         position:absolute;

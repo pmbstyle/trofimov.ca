@@ -9,57 +9,82 @@ defineProps({
 	type: String,
 })
 const content = {
-	about: `<p><strong>Hello traveler!</strong></p>
-	<p>Here is a letter that I found in that box:</p>
-	<p>"My name is Slava Trofimov, I'm a Web Developer from Toronto, Canada.</p>
-	<p>I have more than 12 years of experience as a Front End Developer and 2+ years as a Full Stack Developer.<br/>
-	Experienced in several high-traffic projects from educational to real-time data management and social networks.</p>
-	<p>I specialize in all aspects of web development from basic HTML/CSS/JS coding to creating full-scale web applications with rich REST API(PHP/NodeJs).</br>
-	A fast learner, problem solver, and team player, always seeking skill improvement and better practices.</p>
-	<p>On free time I prefer:</p>
+	about: `<p><strong>Greetings, intrepid explorer!</strong>
+	<p>Within this box, I stumbled upon a letter that unveils a fascinating individual:</p>
+	<p>Meet Slava Trofimov, a Web Wizard hailing from the vibrant city of Toronto, Canada. With over a dozen years of spellbinding experience as a Front End Enchanter and two years delving into the arcane arts of Full Stack Sorcery, Slava is a true maestro of the digital realm.</p>
+	<p>In the mystical world of web development, Slava's mastery knows no bounds. From the humble incantations of HTML, CSS, and JavaScript to conjuring magnificent web applications imbued with potent REST APIs using PHP and Node.js, his skills are a sight to behold.</p>
+	<p>A seeker of knowledge, Slava is a swift learner, a troubleshooter extraordinaire, and a valuable member of any team. His insatiable thirst for wisdom and penchant for pioneering best practices ensure that he is always on the cutting edge of his craft.</p>
+	<p>When he's not weaving digital enchantments, Slava's heart beats to the rhythm of various passions:</p>
 	<ul>
-		<li>Web development =)</li>
-		<li>Video games</li>
-		<li>Astronomy and astrophotography</li>
-		<li>Music</li>
-		<li>Outdoors</li>
+	<li>The mystical world of web development, of course!</li>
+	<li>Epic quests in the realm of video games.</li>
+	<li>Stargazing and capturing the wonders of the cosmos through the lens of astrophotography.</li>
+	<li>Harmonizing with the melodies of music.</li>
+	<li>Embarking on adventures in the great outdoors.</li>
+	<li>Intrigued by the ever-evolving world of technology and enchanted by new opportunities, Slava is a true explorer of the digital frontier.</li>
 	</ul>
-	<p>Always interested in new technologies and opportunities.</p>
-	<p>I hope you enjoy this site, and if you have any questions, please feel free to contact me.</p>
-	<p>Have a nice day! :)"</p>`,
-	skills: `<p><strong>Hello traveler!</strong></p>
-	<p>I'll tell you a little about Slava's skills.</p>
-	<p>His primary stack is <strong>Laravel + Vue / React</strong>.<br/>
-	He is using <strong>SCSS, LESS, TailwindCSS, Bootstrap</strong>, etc.,
-	compiling with <strong>Vite, Webpack</strong> and <strong>Gulp</strong>.</p>
-	<p>Have a wide experience with many frameworks,libraries and platforms, such as:<br/>
-	<strong>Node.js, WordPress, Electron, Opencart, jQuery</strong>, etc.</p>
-	<p>He is working with <strong>PHP, JavaScript, TypeScript</strong>, connecting all of it to <strong>MySQL, MongoDB, SQLite</strong>, etc.</p>
-	<p>Version control with <strong>Github</strong> and <strong>BitBucket</strong>.<br/>
-	He is using <strong>Docker</strong> for local development.<br/>
-	Task management in <strong>Jira, ClickUp</strong>.<br/>
-	Using <strong>Linux/Mac/Windows</strong> on a daily basis.</p>`,
-	experience: `<p><strong>Hello traveler!</strong></p>
-	<p>Here you can find Slava's experience.</p>
-	<p>Last 5 years of experience, for more information please check out Slava's <strong><a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/">LinkedIn</a></strong> profile or Resume section.</p>
+	<p>As you embark on your journey through this site, may you find inspiration and delight. And should you seek guidance or simply wish to share your own tales of adventure, do not hesitate to reach out.</p>
+	<p>May your day be as enchanting as the mysteries of the web itself! ✨🌟</p>`,
+	skills: `<p><strong>Greetings, traveler,</strong></p>
+	<p>Allow me to regale you with tales of Slava's formidable skills, which are as diverse and impressive as the stars in the night sky.</p>
+	<p>His Primary Arsenal:</p>
+	<ul>
+	<li><strong>Laravel + Vue / React:</strong> With these mighty weapons in his hands, Slava crafts digital realms that are both elegant and powerful.</li>
+	<li><strong>CSS Sorcery:</strong> His mastery extends to the arcane arts of SCSS, LESS, TailwindCSS, Bootstrap, and more, wielding them to shape the very fabric of the web.</li>
+	<li><strong>Magic of Compilation:</strong>  Using the mystical powers of Vite, Webpack, and Gulp, Slava compiles his creations, bringing them to life with finesse.</li>
+	</ul>
+	<p>A Trove of Experience:</p>
+	<ul>
+	<li><strong>Versatile Frameworks and Libraries:</strong> Slava has ventured into many realms, taming Node.js, WordPress, Electron, Opencart, jQuery, and more, harnessing their strengths to his will.</li>
+	<li><strong>The Language of the Web:</strong> He speaks the tongues of PHP, JavaScript, and TypeScript, connecting them seamlessly to the likes of MySQL, MongoDB, SQLite, and other data sources.</li>
+	<li><strong>Version Control:</strong> With the sacred scrolls of Github and BitBucket, he ensures the integrity of his creations.</li>
+	<li><strong>Container Conjuring:</strong> Slava wields Docker, conjuring and shaping environments for his local development endeavors.</li>
+	<li><strong>Taskmaster Extraordinaire:</strong> His command of Jira and ClickUp allows him to orchestrate projects with the precision of a seasoned commander.</li>
+	<li><strong>Multiverse Explorer:</strong> Navigating the realms of Linux, Mac, and Windows, Slava is truly a denizen of the digital multiverse, adapting effortlessly to each realm's nuances.</li>
+	</ul>
+	<p>As you traverse the digital landscapes, remember that Slava's skills are like a treasure map, guiding you to new heights of web development mastery. May your own journey be as rich and rewarding as the knowledge he possesses! 🌌🔮✨</p>
+	`,
+	experience: `<p><strong>Greetings, curious wayfarer,</strong></p>
+	<p>Allow me to unveil the captivating tapestry of Slava's recent professional adventures, a testament to his mastery in the ever-evolving realm of web development:</p>
 	<p><strong><u>Senior Front End Developer</u></strong><br/>
 	Codepxl (Toronto, Canada)<br/><i>Jan 2019 - Present</i></p>
-	<ul><li>Teamed on user-centric design strategy in translation of UX and business requirements into coded solutions.</li><li>Formed a team for a particular project needs, estimated and planned development process close with Product Manager.</li><li>Coded using Vue.js/React.js to develop features for both mobile and desktop platforms.</li><li>Transformed native applications designs into desktop and mobile-friendly SPA/SSR products.</li><li>Produced websites based on Laravel or WordPress compatible with multiple browsers and platforms.</li><li>Improved tools to boost user interaction and deliver design versatility.</li></ul>
+	<p>In his role as a Senior Front End Developer at Codepxl, Slava has been a guiding light in the creation of digital wonders. His journey in this enchanted realm over the last five years is a testament to his prowess:</p>
+	<ul>
+		<li><strong>Architect of User-Centric Magic:</strong> Slava orchestrated the translation of UX and business requirements into exquisite coded solutions, placing the user at the heart of every enchantment.</li>
+		<li><strong>Team Alchemist:</strong> He summoned and led teams tailored to the unique needs of each project, masterfully estimating and planning development processes in close collaboration with the Product Manager.</li>
+		<li><strong>Coding Sorcerer:</strong> Armed with Vue.js and React.js, he conjured captivating features for both the mobile and desktop domains, breathing life into native application designs and transforming them into elegant SPA/SSR creations.</li>
+		<li><strong>Web Weaver:</strong> Slava weaved webs of wonder based on Laravel and WordPress, ensuring compatibility across a multitude of browsers and platforms.</li>
+		<li><strong>Tool Artisan:</strong> With a craftsman's touch, he enhanced user interaction tools and bestowed design versatility upon his creations.</li>
+	</ul>
 	<p><strong><u>Front End Developer</u></strong><br/>
 	EvolutionInDesignZ (Toronto, Canada)<br/><i>May 2018 - Dec 2018</i></p>
-	<ul><li>Coded using HTML, CSS/SCSS and JavaScript(Vue.js) to develop features for both mobile and desktop platforms.</li><li>Contributed to projects within Scrum project management environments.</li><li>Collaborated with stakeholders during development processes to confirm creative proposals and design best practices.</li><li>Worked cooperatively with client services, sales and design team in deadline-driven environment.</li><li>Designed and updated layouts to meet usability and performance requirements.</li><li>Produced websites compatible with multiple browsers.</li></ul>`,
-	education: `<p><strong>Hello traveler!</strong></p>
-	<p>Here you can find Slava's education.</p>
+	<p>During his tenure as a Front End Developer at EvolutionInDesignZ, Slava's journey through the digital wilderness continued to dazzle:</p>
+	<ul>
+		<li><strong>Coding Maestro:</strong> Armed with HTML, CSS/SCSS, and the spellbinding Vue.js, he crafted features for both the mobile and desktop realms, leaving his mark on the digital landscape.</li>
+		<li><strong>Scrum Sage:</strong> Slava ventured into the heart of Scrum project management environments, where his expertise contributed to the successful realization of projects.</li>
+		<li><strong>Collaborative Enchanter:</strong> He collaborated closely with stakeholders, validating creative proposals and championing design best practices, ensuring that every endeavor was touched by his magic.</li>
+		<li><strong>Deadline Magician:</strong> In a fast-paced, deadline-driven environment, Slava worked harmoniously with client services, sales, and the design team, creating digital wonders that defied time constraints.</li>
+		<li><strong>Usability and Performance Artisan:</strong> With an eye for detail, he designed and updated layouts that not only dazzled the eye but also met the highest standards of usability and performance.</li>
+		<li><strong>Browser Compatibility Maven:</strong> His creations transcended browser boundaries, offering a seamless experience to users across the digital spectrum.</li>
+	</ul>
+	<p>For a deeper dive into Slava's mystical journey and to uncover the full extent of his magical exploits, I beckon you to explore his LinkedIn profile or Resume section. There, you shall find the complete chronicle of his adventures in the realm of web development. May your own journey be as enchanting as the tales you've uncovered here! 🌟🔮🚀</p>`,
+	education: `<p><strong>Greetings, fellow wanderer,</strong></p>
+	<p>In this sacred scroll, we unveil the illustrious educational journey of Slava:</p>
 	<p><strong><u>Master in Computer Science</u></strong><br/>
 	Moscow Technological University<br/><i>2007 - 2008</i></p>
+	<p>Here, in the hallowed halls of Moscow Technological University, Slava delved deep into the mysteries of Computer Science, mastering its arcane secrets and emerging as a true scholar of the digital realm.</p>
 	<p><strong><u>Diploma in Computer Science</u></strong><br/>
-	Moscow Technological University<br/><i>2003 - 2007</i></p>`,
-	contacts: `<p><strong>Hello traveler!</strong></p>
-	<p>Here you can find Slava's contacts.</p>
-	<p>His email is <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
-	<p>You can also find him on <strong><a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/">LinkedIn</a></strong>.</p>
-	<p>GitHub: <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
-	<p>Facebook: <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>`,
+	Moscow Technological University<br/><i>2003 - 2007</i></p>
+	<p>During the years 2003 to 2007, Slava embarked on a remarkable quest, earning his Diploma in Computer Science from the very same institution. This marked the beginning of his epic journey into the world of technology and innovation.</p>
+	<p>With these sacred educational credentials, Slava has fortified his knowledge and skills, making him a formidable force in the realm of web development.</p>
+	<p>May these educational achievements serve as an inspiration on your own path of discovery and adventure! 📜🌟</p>`,
+	contacts: `<p><strong>Greetings, intrepid traveler,</strong></p>
+	<p>Now that we've set the stage, behold, the keys to unlock the portal to Slava's digital realm:</p>
+	<p>Email: 📧 <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
+	<p>LinkedIn: 💼 <strong><a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/">LinkedIn</a></strong>.</p>
+	<p>GitHub: 🐱 <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
+	<p>Facebook: 👤 <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>
+	<p>With these mystical coordinates, you can embark on a quest to connect with Slava, delve deeper into his digital world, and perhaps even forge new alliances in the realms of technology and innovation. May your journey be filled with discovery and camaraderie! 🌐🤝🌟</p>`,
 }
 const icons = {
 	about: statue,
