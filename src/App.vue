@@ -213,7 +213,7 @@
                         </div>
                         <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
                             <div class="close-dialog" @click="showHelloDialog = false">x</div>
-                            <div class="desktop-dialog__content">
+                            <div class="desktop-dialog__content h-[100%]">
                                 <perfect-scrollbar ref="helloScroll">
                                     
                                         <h3>Hello!</h3>
