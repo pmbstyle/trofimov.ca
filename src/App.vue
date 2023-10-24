@@ -226,7 +226,7 @@
                                         </ul>
                                         <p>If you'd like to experience this site from a different angle, you can switch to the <a href="https://react.trofimov.ca">React.js</a> version by clicking on the React logo at the bottom.</p>
                                         <p>For those curious about the inner workings, you can find the source code for this website on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
-                                        <p>If you have any questions or opportunities you'd like to discuss, please feel free to contact me. Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>
+                                        <p>Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>
                                    
                                 </perfect-scrollbar>
                             </div>

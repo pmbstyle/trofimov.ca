@@ -5,72 +5,72 @@ const experience = [
         title: 'Senior Front End Developer',
         company: 'Codepxl - Toronto, ON',
         date: 'January 2019 to Present',
-        description: [
-            'Proficiently employed Vue.js, Nuxt.js, Laravel, WordPress, jQuery, and Vanilla JavaScript for Front End and Full Stack development.',
-            'Skillfully translated Figma designs into responsive web interfaces, utilizing HTML5, CSS3 (SASS), and TailwindCSS/Bootstrap.',
-            'Demonstrated expertise in building Single Page and Progressive Web Applications while actively contributing to project planning, code structuring, and maintaining legacy code.',
-            'Successfully managed a wide range of projects, from small-scale WordPress websites to extensive social networks and multi-application ecosystems.'
-        ]
+        description:`
+        <p>Front End and Full Stack development using Vue, Nuxt, Laravel,
+        WordPress, jQuery, and Vanilla Javascript. Styling based on Figma
+        designs with HTML5, CSS3 (SASS), and TailwindCSS/Bootstrap.</p>
+        <p>Single page and Progressive Web Applications development,
+        project planning, structuring, maintaining legacy code, and
+        mentoring.</p>`
+    },
+    {
+        title: 'Front End Developer',
+        company: 'eQuoto, - Toronto, ON',
+        date: 'November 2018 to November 2019',
+        description: `
+        <p>Worked on a wide variety of marketing websites based on Laravel
+        and WordPress. Used Vue, React, Bootstrap and Tailwindcss.</p>`
     },
     {
         title: 'Front End Developer',
         company: 'EvolutionInDesignZ - Toronto, ON',
         date: 'May 2018 to December 2018',
-        description: [
-            'Spearheaded various custom projects spanning across Laravel, WordPress, and Opencart, encompassing diverse industries such as real estate, education, non-profit, large data, and thin-client solutions.',
-            'Translated Figma and Sketch designs into cross-platform accessible, SEO-friendly front-end code using a skill set that included HTML5, SASS, JavaScript, Vue.js, Laravel Blade, jQuery, and Bootstrap.',
-            'Delivered exceptional results by seamlessly implementing these projects, ensuring they met accessibility standards and SEO requirements while providing top-notch user experiences.'
-        ]
+        description: `
+        <p>Worked on many different custom Laravel, WordPress and
+        Opencart-based real-estate, educational, non-profit, large-data,
+        and thin-client projects. Implemented Figma/Sketch designs into
+        cross- platform accessible and SEO-friendly front-end code using
+        HTML5/SASS, JavaScript, Vue, Laravel blade, jQuery, and Bootstrap.</p>`
     },
     {
         title: 'Web Developer',
-        company: 'Electrolight Enterprises - Toronto, ON',
+        company: 'Electrolight Ent. - Toronto, ON',
         date: 'August 2017 to May 2018',
-        description: [
-            'Led the development and ongoing maintenance of custom corporate websites built on WordPress and Opencart, employing a tech stack featuring HTML5, CSS3, JavaScript, and jQuery.',
-            'Streamlined operations by seamlessly integrating third-party APIs, transforming mockups into user-friendly interfaces, and enhancing SEO and web accessibility.',
-            'Innovatively contributed to end-user training by developing and implementing content management systems and security resource tutorials, empowering teams to utilize web resources efficiently and securely.'
-        ]
+        description: `
+        <p>Developed and maintained custom corporate websites based on
+        WordPress and Opencart using HTML5/CSS3, JavaScript, and
+        jQuery. Integrated third-party APIs, converted mockups into UI, and
+        improved SEO and web accessibility. Implemented content
+        management and security resource tutorials to assist end-user
+        training.</p>`
     },
     {
         title: 'Front End Developer',
-        company: 'iMoan.ru - Moscow',
+        company: 'iMoan - Moscow',
         date: 'August 2015 to July 2017',
-        description: [
-            'Collaborated seamlessly with cross-functional teams including client services, sales, and design, ensuring project success in a fast-paced, deadline-driven environment.',
-            'Successfully crafted and launched e-commerce websites on Opencart and Django framework, utilizing a technology stack that encompassed HTML5, LESS, jQuery, PHP, and Python.',
-            'Designed and constructed impactful landing pages and corporate resources to enhance the online presence of the company.',
-            'Achieved significant SEO improvements, resulting in remarkable outcomes, and enhanced overall UI/UX to elevate user experiences.'
-        ]
+        description: `
+        <p>
+            Worked cooperatively with client services, sales, and design teams
+            in a deadline-driven environment. Developed e-commerce
+            websites based on Opencart and Django framework using
+            HTML5/LESS, jQuery, PHP, and Python.<br/>
+            Designed and built landing pages and corporate resources.<br/>
+            Improved SEO and UI/UX in general.
+        </p>`
     },
     {
-        title: 'Lead Front End Developer',
+        title: 'Front End Developer / Web Designer',
         company: 'Web Solution Ltd. - Moscow',
         date: 'March 2013 to August 2015',
-        description: [
-            'Spearheaded the design and development of a diverse portfolio of websites, ranging from small-scale WordPress/Joomla-based corporate sites to expansive e-commerce solutions.',
-            'Proficiently implemented front-end interfaces using HTML/CSS, jQuery, Bootstrap, and PHP to ensure seamless user experiences.',
-            'Conducted market research and successfully integrated SEO best practices, resulting in improved online visibility and search engine rankings.',
-            'Fostered strong client relationships by collaborating closely with end clients, facilitating the creation of modern and highly productive web applications.'
-        ]
-    },
-    {
-        title: 'Front End Developer',
-        company: 'Giftery corp. - Moscow',
-        date: 'February 2012 to March 2013',
-        description: [
-            'Collaborated on corporate websites with Django(Python) backend, applying HTML/CSS, jQuery, and JavaScript to create cross-browser compatible and user-friendly user interfaces.',
-            'Established a strong partnership with designers and the development team, actively contributing to the incorporation of modern best practices in website development, ensuring cutting-edge results.'
-        ]
-    },
-    {
-        title: 'Front End Developer',
-        company: 'Predestination.ru - Moscow',
-        date: 'January 2011 to February 2012',
-        description: [
-            'Contributed to the development of multiple corporate websites using WordPress, skillfully utilizing HTML/CSS, jQuery, JavaScript, and PHP to ensure optimal functionality and aesthetics.',
-            "Took charge of the design and development of impactful landing pages and product websites, enhancing the company's online presence and user engagement."
-        ]
+        description: `
+        <p>Designed and built a wide variety of websites from small
+        WordPress/Joomla-based corporate sites to big e-commerce
+        solutions as Front End and Full Stack developer.<br/>
+        Implemented front-end interfaces using HTML/CSS, jQuery,
+        Bootstrap, and PHP.<br/>
+        Made market research and implemented SEO best practices.
+        Worked closely with end clients to develop modern and productive
+        web applications.</p>`
     }
 ]
 const profile = [
@@ -90,13 +90,8 @@ const profile = [
 const education = [
     {
         title: 'Master in Computer Science',
-        place: 'Moscow State Open University - Moscow',
-        date: '2007 to 2008'
-    },
-    {
-        title: 'Diploma in Computer Science',
-        place: 'Moscow Technological University - Moscow',
-        date: '2003 to 2007'
+        place: 'Moscow State Open University',
+        date: '2003 to 2008'
     }
 ]
 const skills = [
@@ -151,11 +146,7 @@ const skills = [
                 <b>{{e.title}}</b><br/>
                 <small>{{e.company}}</small><br/>
                 <small>{{e.date}}</small><br/>
-                <ul>
-                    <li v-for="(d,index) in e.description" :key="index">
-                        {{d}}
-                    </li>
-                </ul>
+                <div v-html="e.description"></div>
             </p>
         </section>
 
@@ -169,7 +160,7 @@ const skills = [
         </section>
 
         <section>
-            <p class="dashed"><strong>Skills</strong></p>
+            <p class="dashed"><strong>Technical Profile</strong></p>
             <ul>
                 <li v-for="(s,index) in skills" :key="index">
                     {{s}}
@@ -178,13 +169,30 @@ const skills = [
         </section>
 
         <section>
+            <p class="dashed"><strong>Competencies</strong></p>
+            <ul>
+                <li>Effective communication</li>
+                <li>Team player</li>
+                <li>Strong problem solver</li>
+                <li>Good time management</li>
+            </ul>
+        </section>
+
+        <section>
+            <p class="dashed"><strong>Interests</strong></p>
+            <ul>
+                <li>Astrophotography</li>
+                <li>Video games</li>
+                <li>Travelling</li>
+                <li>Music</li>
+            </ul>
+        </section>
+
+        <section>
             <p class="dashed"><strong>Languages</strong></p>
             <ul>
                 <li>
                     English - Fluent
-                </li>
-                <li>
-                    Russian - Expert
                 </li>
             </ul>
         </section>
