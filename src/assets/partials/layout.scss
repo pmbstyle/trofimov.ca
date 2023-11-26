@@ -114,6 +114,44 @@
                 background-image:url(../assets/img/thunderbird.png);
             }
         }
+        &.item-projects-folder {
+            justify-self: flex-end;
+            .icon {
+                background-image:url(../assets/img/projects.png);
+            }
+        }
+        &.item-gol {
+            justify-self: flex-end;
+            .icon {
+                background-image:url(../assets/img/gol.png);
+            }
+        }
+    }
+    .side-grid {
+        margin-left:auto;
+        position:relative;
+        .items {
+            width:100%;
+            display:flex;
+            flex-direction:row;
+            align-items:flex-start;
+            justify-content:flex-end;
+        }        
+        .folder {
+            position:absolute;
+            right:0;
+            margin-top:15px;
+            padding:15px;
+            border-radius: 5px;
+            background:rgba(0,0,0,0.6);
+            display:flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            .desktop-item:last-child {
+                margin-right:0;
+            }
+        }
     }
     .desktop-dialog {
         position:absolute;
@@ -195,6 +233,17 @@
 .show-mobile {
     display:none;
 }
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
 @media (max-width:1980px) {
     .table {
         height:20vh;

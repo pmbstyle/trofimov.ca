@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref, onMounted, computed } from 'vue'
+    import { ref, onMounted, computed, nextTick } from 'vue'
     import Terminal from '@/components/Terminal.vue'
     import Game from '@/components/Game.vue'
     import GameDialog from '@/components/GameDialog.vue'
@@ -50,6 +50,10 @@
         }
     ])
 
+    const folders = ref({
+        projects: false
+    })
+
     const openDialog = (index:integer,name:string) => {
         let checkbox = document.getElementById(name+'Dialog') as HTMLInputElement
         if(checkbox?.checked) {
@@ -97,6 +101,45 @@
                 showDesktop.value = true
                 break
         }
+    }
+
+    let outsideClickListener = null
+
+    const openFolder = (name: string) => {
+        switch(name) {
+            case 'projects':
+                if(folders.value.projects) {
+                    folders.value.projects = false
+                    removeClickListener()
+                } else {
+                    folders.value.projects = true
+                    outsideClickListener = (e) => clickOutside(e, '.folder')
+                    setTimeout(() => {
+                        const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement
+                        monitor.addEventListener('click', outsideClickListener)
+                    }, 0)
+                }
+                break
+        }
+    }
+
+    const clickOutside = (event, selector) => {
+        if (!event.target.closest(selector)) {
+            folders.value.projects = false
+            removeClickListener()
+        }
+    }
+
+    function removeClickListener() {
+        const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement;
+        if (outsideClickListener && monitor) {
+            monitor.removeEventListener('click', outsideClickListener);
+            outsideClickListener = null;
+        }
+    }
+
+    const openUrl = (url:string) => {
+        window.open(url, '_blank')
     }
 
     const currentWindow = computed(() => {
@@ -211,6 +254,23 @@
                             <div class="icon"></div>
                             <div class="name">Contact</div>
                         </div>
+                        <div class="side-grid">
+                            <div class="items">
+                                <div class="desktop-item item-projects-folder" @click="openFolder('projects')">
+                                    <div class="icon"></div>
+                                    <div class="name">Small projects</div>
+                                </div>
+                            </div>
+                            <Transition>
+                                <div class="folder" v-show="folders.projects">
+                                    <div class="desktop-item item-gol" @click="openUrl('http://gol.trofimov.ca')">
+                                        <div class="icon"></div>
+                                        <div class="name">Game of Life</div>
+                                    </div>
+                                </div>
+                            </Transition>
+                        </div>
+                        
                         <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
                             <div class="close-dialog" @click="showHelloDialog = false">x</div>
                             <div class="desktop-dialog__content h-[100%]">
