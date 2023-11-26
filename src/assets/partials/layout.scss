@@ -126,6 +126,12 @@
                 background-image:url(../assets/img/gol.png);
             }
         }
+        &.item-csg {
+            justify-self: flex-end;
+            .icon {
+                background-image:url(../assets/img/csg.png);
+            }
+        }
     }
     .side-grid {
         margin-left:auto;

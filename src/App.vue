@@ -265,7 +265,11 @@
                                 <div class="folder" v-show="folders.projects">
                                     <div class="desktop-item item-gol" @click="openUrl('http://gol.trofimov.ca')">
                                         <div class="icon"></div>
-                                        <div class="name">Game of Life</div>
+                                        <div class="name">Conway's Game of Life</div>
+                                    </div>
+                                    <div class="desktop-item item-csg" @click="openUrl('http://csg.trofimov.ca')">
+                                        <div class="icon"></div>
+                                        <div class="name">AI Color Palette Generator</div>
                                     </div>
                                 </div>
                             </Transition>
