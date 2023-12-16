@@ -103,7 +103,7 @@
         }
     }
 
-    let outsideClickListener = null
+    let outsideClickListener: (event: Event, selector: string) => void = () => {};
 
     const openFolder = (name: string) => {
         switch(name) {
@@ -116,15 +116,15 @@
                     outsideClickListener = (e) => clickOutside(e, '.folder')
                     setTimeout(() => {
                         const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement
-                        monitor.addEventListener('click', outsideClickListener)
+                        monitor.addEventListener('click', outsideClickListener as EventListener);
                     }, 0)
                 }
                 break
         }
     }
 
-    const clickOutside = (event, selector) => {
-        if (!event.target.closest(selector)) {
+    const clickOutside = (event: Event, selector: string) => {
+        if (event.target && !(event.target as Element).closest(selector)) {
             folders.value.projects = false
             removeClickListener()
         }
@@ -133,8 +133,8 @@
     function removeClickListener() {
         const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement;
         if (outsideClickListener && monitor) {
-            monitor.removeEventListener('click', outsideClickListener);
-            outsideClickListener = null;
+            monitor.removeEventListener('click', outsideClickListener as EventListener);
+            outsideClickListener = () => {};
         }
     }
 
@@ -158,7 +158,7 @@
     })
 
     const reload = () => {
-        window.location = window.location + '?g=true'
+        window.location.assign(window.location + '?g=true');
     }
 
     onMounted(()=> {
