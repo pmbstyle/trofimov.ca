@@ -1,6 +1,6 @@
-# trofimov.ca
+# Trofimov.ca
 
-Personal website
+Personal website Vue3+Vite / TailwindCss+DaisyUI
 
 ## Project Setup
 
@@ -14,14 +14,20 @@ npm install
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Run e2e tests with [Cypress](https://cypress.io/)
 
 ```sh
-npm run build
+npm run run-cypress
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
 ```
