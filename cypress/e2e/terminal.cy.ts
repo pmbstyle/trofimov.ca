@@ -1,99 +1,61 @@
-import "cypress-real-events"
-describe('Terminal fn spec', () => {
-  const openTerminal = () => {
-    cy.visit('/')
-    cy.get('.item-terminal').should('be.visible')
-    cy.get('.item-terminal').click()
-  }
-  
-  const checkTerminalOutput = (input: string, outputItems: string[], outputType: string) => {
-    cy.get('#termInput').type(input).type('{enter}')
-    if(outputType === 'list') {
-      cy.get('.history-item').last().get('.history-output-grid .history-output-grid-item p').each(($el, index) => {
-        cy.wrap($el).should('have.text', outputItems[index])
-      })
-    }
-    if(outputType === 'cd') {
-      let userPath = cy.get('.terminal > .ps > .command-container .command-prefix .user-path')
-      userPath.should('have.text', outputItems[0])
-    }
-    if(outputType === 'help' || outputType === 'cat') {
-      cy.get('.history-output.markdown-content').get('ul').should('not.be.empty')
-    }
-    if(outputType === 'clear') {
-      cy.get('.term-header').should('not.exist')
-    }
-    if(outputType === 'pwd') {
-      cy.get('.history-output.markdown-content').should('have.text', outputItems[0])
-    }
-  }
+import "cypress-real-events";
 
-  const runTest = (test) => {
-    switch(test) {
-      case 'open':
-        it('Terminal opens', () => {
-          openTerminal()
-          cy.get('.terminal-wrapper').should('be.visible')
-        })
-        break
-      case 'help':
-        it('Command: help', () => {
-          openTerminal()
-          checkTerminalOutput('help', [], '')
-        })
-        break
-      case 'ls':
-        it('Command: ls', () => {
-          openTerminal()
-          checkTerminalOutput('ls', ['projects', 'about.md', 'skills.md', 'contact.md', 'experience.md'], 'list')
-        })
-        break
-      case 'cd':
-        it('Command: cd', () => {
-          openTerminal()
-          checkTerminalOutput('cd projects', ['~/projects'], 'cd')
-        })
-        break
-      case 'clear':
-        it('Command: clear', () => {
-          openTerminal()
-          checkTerminalOutput('clear', [''], 'clear')
-        })
-        break
-      case 'pwd':
-        it('Command: pwd', () => {
-          openTerminal()
-          checkTerminalOutput('pwd', ['/home/user'], 'pwd')
-        })
-        break
-      case 'cat':
-        it('Command: cat', () => {
-          openTerminal()
-          checkTerminalOutput('cat about.md', [''], 'cat')
-        })
-        break
-      case 'tab':
-        it('Action: tab', () => {
-          openTerminal()
-          cy.get('#termInput').type('cat a')
-          cy.realPress("Tab")
-          cy.get('#termInput').should('have.value', 'cat about.md')
-        })
-        break
-      case 'close':
-        it('Terminal closes', () => {
-          openTerminal()
-          cy.get('.close-window').click()
-          cy.get('.terminal-wrapper').should('not.exist')
-        })
-        break
-      default:
-        break
-    }
-  }
+describe('Terminal functionality spec', () => {
+  const terminalInputSelector = '#termInput';
+  const outputSelector = '.history-output';
 
-  let tests = ['open', 'close', 'help', 'ls', 'cd', 'clear', 'pwd', 'cat', 'tab']
-  tests.forEach((test) => {
-    runTest(test)
-  })
-})
+  beforeEach(() => {
+    cy.visit('/');
+    cy.get('.item-terminal').should('be.visible').click();
+  });
+
+  it('opens the terminal', () => {
+    cy.get('.terminal-wrapper').should('be.visible');
+  });
+
+  it('executes the ls command and checks the output', () => {
+    const expectedFiles = ['projects', 'about.md', 'skills.md', 'contact.md', 'experience.md'];
+    cy.get(terminalInputSelector).type('ls{enter}');
+    expectedFiles.forEach((file, index) => {
+      cy.get(`${outputSelector}-grid .history-output-grid-item p`).eq(index).should('have.text', file);
+    });
+  });
+
+  it('changes directory with the cd command', () => {
+    const expectedPath = '~/projects';
+    cy.get(terminalInputSelector).type('cd projects{enter}');
+    cy.get('.terminal > .ps > .command-container .command-prefix .user-path').should('have.text', expectedPath);
+  });
+
+  it('clears the terminal with the clear command', () => {
+    cy.get(terminalInputSelector).type('clear{enter}');
+    cy.get('.term-header').should('not.exist');
+  });
+
+  it('displays the current directory with pwd command', () => {
+    const expectedPath = '/home/user';
+    cy.get(terminalInputSelector).type('pwd{enter}');
+    cy.get(`${outputSelector}.markdown-content`).should('have.text', expectedPath);
+  });
+
+  it('shows help with the help command', () => {
+    cy.get(terminalInputSelector).type('help{enter}');
+    cy.get(`${outputSelector}.markdown-content ul`).should('not.be.empty');
+  });
+
+  it('reads file content with the cat command', () => {
+    cy.get(terminalInputSelector).type('cat about.md{enter}');
+    cy.get(`${outputSelector}.markdown-content`).should('not.be.empty');
+  });
+
+  it('autocompletes with the tab key', () => {
+    cy.get(terminalInputSelector).type('cat a');
+    cy.realPress("Tab");
+    cy.get(terminalInputSelector).should('have.value', 'cat about.md');
+  });
+
+  it('closes the terminal', () => {
+    cy.get('.close-window').click();
+    cy.get('.terminal-wrapper').should('not.exist');
+  });
+});
