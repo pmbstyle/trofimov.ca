@@ -2,17 +2,14 @@ import "cypress-real-events"
 describe('Terminal fn spec', () => {
   const openTerminal = () => {
     cy.visit('/')
-    let terminal = cy.get('.item-terminal')
-    terminal.should('be.visible')
-    terminal.click()
+    cy.get('.item-terminal').should('be.visible')
+    cy.get('.item-terminal').click()
   }
   
   const checkTerminalOutput = (input: string, outputItems: string[], outputType: string) => {
-    let terminalInput = cy.get('#termInput')
-    terminalInput.type(input).type('{enter}')
+    cy.get('#termInput').type(input).type('{enter}')
     if(outputType === 'list') {
-      let terminalOutput = cy.get('.history-item').last()
-      terminalOutput.get('.history-output-grid .history-output-grid-item p').each(($el, index) => {
+      cy.get('.history-item').last().get('.history-output-grid .history-output-grid-item p').each(($el, index) => {
         cy.wrap($el).should('have.text', outputItems[index])
       })
     }
@@ -21,15 +18,13 @@ describe('Terminal fn spec', () => {
       userPath.should('have.text', outputItems[0])
     }
     if(outputType === 'help' || outputType === 'cat') {
-      let terminalOutput = cy.get('.history-output.markdown-content')
-      terminalOutput.get('ul').should('not.be.empty')
+      cy.get('.history-output.markdown-content').get('ul').should('not.be.empty')
     }
     if(outputType === 'clear') {
       cy.get('.term-header').should('not.exist')
     }
     if(outputType === 'pwd') {
-      let terminalOutput = cy.get('.history-output.markdown-content')
-      terminalOutput.should('have.text', outputItems[0])
+      cy.get('.history-output.markdown-content').should('have.text', outputItems[0])
     }
   }
 
