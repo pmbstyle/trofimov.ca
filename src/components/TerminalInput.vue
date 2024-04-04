@@ -1,7 +1,7 @@
 <template>
 	<TerminalCommand :pwd="store.pwd">
 		<input
-			class="input"
+			class="input rounded-none"
 			id="termInput"
 			v-model="store.currentCommand"
 			@keyup.enter="onEnter"
