@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import scarecrow from '@/assets/game/npc/scarecrow.png'
-import mailbox from '@/assets/game/npc/mailbox.png'
-import stand from '@/assets/game/npc/stand.png'
-import statue from '@/assets/game/npc/statue.png'
-import blacksmith from '@/assets/game/npc/blacksmith-solo.png'
+import scarecrow from "@/assets/game/npc/scarecrow.png";
+import mailbox from "@/assets/game/npc/mailbox.png";
+import stand from "@/assets/game/npc/stand.png";
+import statue from "@/assets/game/npc/statue.png";
+import blacksmith from "@/assets/game/npc/blacksmith-solo.png";
 defineProps({
-	show: Boolean,
-	type: String,
-})
+  show: Boolean,
+  type: String,
+});
 const content = {
-	about: `<p><strong>Greetings, intrepid explorer!</strong>
+  about: `<p><strong>Greetings, intrepid explorer!</strong>
 	<p>Within this box, I stumbled upon a letter that unveils a fascinating individual:</p>
 	<p>Meet Slava Trofimov, a Web Wizard hailing from the vibrant city of Toronto, Canada. With over a dozen years of spellbinding experience as a Front End Enchanter and two years delving into the arcane arts of Full Stack Sorcery, Slava is a true maestro of the digital realm.</p>
 	<p>In the mystical world of web development, Slava's mastery knows no bounds. From the humble incantations of HTML, CSS, and JavaScript to conjuring magnificent web applications imbued with potent REST APIs using PHP and Node.js, his skills are a sight to behold.</p>
@@ -25,7 +25,7 @@ const content = {
 	</ul>
 	<p>As you embark on your journey through this site, may you find inspiration and delight. And should you seek guidance or simply wish to share your own tales of adventure, do not hesitate to reach out.</p>
 	<p>May your day be as enchanting as the mysteries of the web itself! ✨🌟</p>`,
-	skills: `<p><strong>Greetings, traveler,</strong></p>
+  skills: `<p><strong>Greetings, traveler,</strong></p>
 	<p>Allow me to regale you with tales of Slava's formidable skills, which are as diverse and impressive as the stars in the night sky.</p>
 	<p>His Primary Arsenal:</p>
 	<ul>
@@ -44,7 +44,7 @@ const content = {
 	</ul>
 	<p>As you traverse the digital landscapes, remember that Slava's skills are like a treasure map, guiding you to new heights of web development mastery. May your own journey be as rich and rewarding as the knowledge he possesses! 🌌🔮✨</p>
 	`,
-	experience: `<p><strong>Greetings, curious wayfarer,</strong></p>
+  experience: `<p><strong>Greetings, curious wayfarer,</strong></p>
 	<p>Allow me to unveil the captivating tapestry of Slava's recent professional adventures, a testament to his mastery in the ever-evolving realm of web development:</p>
 	<p><strong><u>Senior Front End Developer</u></strong><br/>
 	Codepxl (Toronto, Canada)<br/><i>Jan 2019 - Present</i></p>
@@ -68,7 +68,7 @@ const content = {
 		<li><strong>Browser Compatibility Maven:</strong> His creations transcended browser boundaries, offering a seamless experience to users across the digital spectrum.</li>
 	</ul>
 	<p>For a deeper dive into Slava's mystical journey and to uncover the full extent of his magical exploits, I beckon you to explore his LinkedIn profile or Resume section. There, you shall find the complete chronicle of his adventures in the realm of web development. May your own journey be as enchanting as the tales you've uncovered here! 🌟🔮🚀</p>`,
-	education: `<p><strong>Greetings, fellow wanderer,</strong></p>
+  education: `<p><strong>Greetings, fellow wanderer,</strong></p>
 	<p>In this sacred scroll, we unveil the illustrious educational journey of Slava:</p>
 	<p><strong><u>Master in Computer Science</u></strong><br/>
 	Moscow Technological University<br/><i>2007 - 2008</i></p>
@@ -78,38 +78,38 @@ const content = {
 	<p>During the years 2003 to 2007, Slava embarked on a remarkable quest, earning his Diploma in Computer Science from the very same institution. This marked the beginning of his epic journey into the world of technology and innovation.</p>
 	<p>With these sacred educational credentials, Slava has fortified his knowledge and skills, making him a formidable force in the realm of web development.</p>
 	<p>May these educational achievements serve as an inspiration on your own path of discovery and adventure! 📜🌟</p>`,
-	contacts: `<p><strong>Greetings, intrepid traveler,</strong></p>
+  contacts: `<p><strong>Greetings, intrepid traveler,</strong></p>
 	<p>Now that we've set the stage, behold, the keys to unlock the portal to Slava's digital realm:</p>
 	<p>Email: 📧 <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
 	<p>LinkedIn: 💼 <strong><a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/">LinkedIn</a></strong>.</p>
 	<p>GitHub: 🐱 <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
 	<p>Facebook: 👤 <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>
 	<p>With these mystical coordinates, you can embark on a quest to connect with Slava, delve deeper into his digital world, and perhaps even forge new alliances in the realms of technology and innovation. May your journey be filled with discovery and camaraderie! 🌐🤝🌟</p>`,
-}
+};
 const icons = {
-	about: statue,
-	skills: blacksmith,
-	experience: scarecrow,
-	education: stand,
-	contacts: mailbox,
-}
+  about: statue,
+  skills: blacksmith,
+  experience: scarecrow,
+  education: stand,
+  contacts: mailbox,
+};
 const names = {
-	about: 'Statue',
-	skills: 'Blacksmith',
-	experience: 'Scarecrow',
-	education: 'Bulletin board',
-	contacts: 'Mailbox',
-}
+  about: "Statue",
+  skills: "Blacksmith",
+  experience: "Scarecrow",
+  education: "Bulletin board",
+  contacts: "Mailbox",
+};
 </script>
 <template>
-	<div class="game-dialog" v-if="show">
-		<div class="close-dialog" @click="$emit('close')">x</div>
-		<div class="game-dialog__icon">
-			<img :src="icons[type]" alt="icon" />
-		</div>
-		<div class="game-dialog__title">{{ names[type] }}</div>
-		<perfect-scrollbar ref="termScroll">
-			<div class="game-dialog__content " v-html="content[type]"></div>
-		</perfect-scrollbar>
-	</div>
+  <div class="game-dialog" v-if="show">
+    <div class="close-dialog" @click="$emit('close')">x</div>
+    <div class="game-dialog__icon">
+      <img :src="icons[type]" alt="icon" />
+    </div>
+    <div class="game-dialog__title">{{ names[type] }}</div>
+    <perfect-scrollbar ref="termScroll">
+      <div class="game-dialog__content" v-html="content[type]"></div>
+    </perfect-scrollbar>
+  </div>
 </template>
