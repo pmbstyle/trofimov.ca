@@ -284,6 +284,10 @@
   .mockup-window {
     width: calc(100% - 1rem) !important;
     margin-left: 0.5rem !important;
+    &.fullscreen {
+      width: 100% !important;
+      margin-left:0 !important;
+    }
   }
   #monitor .monitor-screen {
     border-width: 10px !important;
