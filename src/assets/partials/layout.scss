@@ -18,6 +18,10 @@
   &.show {
     opacity: 1;
   }
+  &.fullscreen {
+    width: 100%;
+    height: calc(100% - 2rem);
+  }
   .window-header {
     height: 30px;
     display: flex;
