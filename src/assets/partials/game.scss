@@ -1,118 +1,118 @@
 .game-wrapper {
-    height:calc(100% - 1.5rem);
-    .game-dialog {
-        position:absolute;
-        top:100px;
-        right:10px;
-        width:50%;
-        height: calc(100% - 125px);
-        padding:75px 25px 25px 25px;
-        z-index: 60;
-        background:rgba(0,0,0,0.9);
-        text-align:left;
-        color:#fff;
-        border:#fff 1px solid;
-        border-radius:5px;
-        .game-dialog__icon {
-            width:114px;
-            height:114px;
-            padding:10px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            background:#78a205;
-            border:#fff 1px solid;
-            border-radius:5px;
-            position:absolute;
-            top:-75px;
-            left:25px;
-            img {
-                width:auto;
-                height:100%;
-            }
-        }
-        .game-dialog__title {
-            font-size:24px;
-            font-weight:bold;
-            text-shadow: 0px 0px 5px #000;
-            position: absolute;
-            top: 8px;
-            left: 175px;
-        }
-        .ps__rail-y {
-            opacity:1;
-        }
-        p {
-            margin-bottom:10px;
-            strong {
-                color:#78a205;
-                text-shadow: 0px 0px 5px #000;
-            }
-            a {
-                border-bottom:#78a205 1px solid;
-                transition: all 0.2s ease-in-out;
-                &:hover {
-                    border-bottom: 0;
-                }
-            }
-        }
-        ul {
-            li {
-                list-style-type: disc;
-                list-style-position: inside;
-            }
-            margin-left:10px;
-            margin-bottom:10px;
-        }
-        .close-dialog {
-            width:20px;
-            height:20px;
-            border:#fff 1px solid;
-            border-radius:50%;
-            position:absolute;
-            top:-10px;
-            right:-10px;
-            cursor:pointer;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            padding-bottom:2px;
-            background: #000;
-            transition: all 0.2s ease-in-out;
-            &:hover {
-                background:#fff;
-                color:#000;
-            }
-        }
+  height: calc(100% - 1.5rem);
+  .game-dialog {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    width: 50%;
+    height: calc(100% - 125px);
+    padding: 75px 25px 25px 25px;
+    z-index: 60;
+    background: rgba(0, 0, 0, 0.9);
+    text-align: left;
+    color: #fff;
+    border: #fff 1px solid;
+    border-radius: 5px;
+    .game-dialog__icon {
+      width: 114px;
+      height: 114px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #78a205;
+      border: #fff 1px solid;
+      border-radius: 5px;
+      position: absolute;
+      top: -75px;
+      left: 25px;
+      img {
+        width: auto;
+        height: 100%;
+      }
     }
-    .game-controls {
-        p {
-            color:#fff;
-            font-size:18px;
-            text-shadow: 0px 0px 5px #000;
-        }
+    .game-dialog__title {
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0px 0px 5px #000;
+      position: absolute;
+      top: 8px;
+      left: 175px;
     }
+    .ps__rail-y {
+      opacity: 1;
+    }
+    p {
+      margin-bottom: 10px;
+      strong {
+        color: #78a205;
+        text-shadow: 0px 0px 5px #000;
+      }
+      a {
+        border-bottom: #78a205 1px solid;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          border-bottom: 0;
+        }
+      }
+    }
+    ul {
+      li {
+        list-style-type: disc;
+        list-style-position: inside;
+      }
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+    .close-dialog {
+      width: 20px;
+      height: 20px;
+      border: #fff 1px solid;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 2px;
+      background: #000;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+  .game-controls {
+    p {
+      color: #fff;
+      font-size: 18px;
+      text-shadow: 0px 0px 5px #000;
+    }
+  }
 }
-@media (max-width:1560px) {
-    .game-dialog {
-        top:50px !important;
-        width:55% !important;
-        height: calc(100% - 75px) !important;
-        padding-top:45px !important;
-        .game-dialog__icon {
-            width:64px !important;
-            height:64px !important;
-            top:-32px !important;
-        }
-        .game-dialog__title {
-            font-size:18px !important;
-            top: 8px !important;
-            left: 100px !important;
-        }
+@media (max-width: 1560px) {
+  .game-dialog {
+    top: 50px !important;
+    width: 55% !important;
+    height: calc(100% - 75px) !important;
+    padding-top: 45px !important;
+    .game-dialog__icon {
+      width: 64px !important;
+      height: 64px !important;
+      top: -32px !important;
     }
+    .game-dialog__title {
+      font-size: 18px !important;
+      top: 8px !important;
+      left: 100px !important;
+    }
+  }
 }
-@media (max-width:700px) {
-    .game-dialog {
-        width:calc(100% - 20px) !important;
-    }
+@media (max-width: 700px) {
+  .game-dialog {
+    width: calc(100% - 20px) !important;
+  }
 }

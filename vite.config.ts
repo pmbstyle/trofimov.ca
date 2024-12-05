@@ -1,7 +1,7 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 import markdown, { Mode } from "vite-plugin-markdown";
 import MarkdownIt from "markdown-it";
 import mila from "markdown-it-link-attributes";
@@ -24,12 +24,11 @@ export default defineConfig({
     }),
   ],
   build: {
-    assetsInlineLimit: 0
+    assetsInlineLimit: 0,
   },
   resolve: {
-    
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+});

@@ -21,6 +21,6 @@ const emit = defineEmits(["close"]);
         <img :src="ExpandIcon" />
       </div>
     </div>
-    <slot/>
+    <slot />
   </div>
 </template>

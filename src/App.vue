@@ -410,42 +410,48 @@ onMounted(() => {
             </div>
           </div>
 
-          <Window 
+          <Window
             v-if="showContact"
             :class="{ show: showContact }"
             :component="Contact"
             @close="switchWindow('desktop')"
           >
-            <div class="flex justify-left px-4 pb-6 bg-base-200 flex-1 relative">
+            <div
+              class="flex justify-left px-4 pb-6 bg-base-200 flex-1 relative"
+            >
               <Contact />
             </div>
           </Window>
 
-          <Window 
+          <Window
             v-if="showResume"
             :class="{ show: showResume }"
             :component="Resume"
             @close="switchWindow('desktop')"
           >
-            <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
+            <div
+              class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative"
+            >
               <perfect-scrollbar ref="resumeScroll">
                 <Resume />
               </perfect-scrollbar>
             </div>
           </Window>
 
-          <Window 
+          <Window
             v-if="showTerminal"
             :class="{ show: showTerminal }"
             :component="Terminal"
             @close="switchWindow('desktop')"
           >
-            <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
+            <div
+              class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative"
+            >
               <Terminal />
             </div>
           </Window>
 
-          <Window 
+          <Window
             v-if="showGame"
             :class="{ show: showGame }"
             :component="Terminal"

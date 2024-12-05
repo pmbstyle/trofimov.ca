@@ -1,172 +1,173 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
 .terminal-wrapper {
-    height:calc(100% - 1.5rem);
-    font-size: 16px;
-    font-family: 'Fira Code', monospace;
-    line-height: 1.5;
-    text-align:left;
-    code {
-        &:before, &:after {
-            content:'`'
-        }
+  height: calc(100% - 1.5rem);
+  font-size: 16px;
+  font-family: "Fira Code", monospace;
+  line-height: 1.5;
+  text-align: left;
+  code {
+    &:before,
+    &:after {
+      content: "`";
     }
-    ul {
-        padding-left:15px;
-        margin: 10px 0;
-        li {
-            &:before {
-                content: '*';
-                font-size:16px;
-                color:$white;
-                padding-right:10px;
-            }
-        }
+  }
+  ul {
+    padding-left: 15px;
+    margin: 10px 0;
+    li {
+      &:before {
+        content: "*";
+        font-size: 16px;
+        color: $white;
+        padding-right: 10px;
+      }
     }
-    a {
-        text-decoration:underline;
-        &:hover {
-            text-decoration:none;
-        }
+  }
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
     }
+  }
+  .input {
+    background: none;
+    color: $foreground;
+    border: none;
+    width: 500px;
+    display: inline-block;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @media screen and (max-width: $break-md) {
     .input {
-        background:none;
-        color: $foreground;
-        border: none;
-        width: 500px;
-        display: inline-block;
-        height: 20px;
-        margin: 0px;
-        padding: 0px;
-
-        &:focus {
-            outline: none;
-        }
+      width: 400px;
     }
+  }
 
-    @media screen and (max-width: $break-md) {
-        .input {
-            width: 400px;
-        }
+  @media screen and (max-width: $break-sm) {
+    .input {
+      width: 100%;
     }
-
-    @media screen and (max-width: $break-sm) {
-        .input {
-            width: 100%;
-        }
-    }
+  }
 }
 .command-container {
-    width: 100%;
-    display: inline;
+  width: 100%;
+  display: inline;
 }
 
 .command-prefix {
+  display: inline;
+
+  & .user-info {
     display: inline;
+    font-weight: bold;
+    color: $green;
+  }
 
-    & .user-info {
-        display: inline;
-        font-weight: bold;
-        color: $green;
-    }
+  & .user-sep {
+    margin: 0px;
+  }
 
-    & .user-sep {
-        margin: 0px;
-    }
-
-    & .user-path {
-        color: $purple;
-        font-weight: bold;
-    }
+  & .user-path {
+    color: $purple;
+    font-weight: bold;
+  }
 }
 
 .command-slot {
+  display: inline;
+
+  &::before {
+    content: "$";
+    color: $foreground;
     display: inline;
+    margin: 0px 10px 0px 2px;
+  }
 
-    &::before {
-        content: "$";
-        color: $foreground;
-        display: inline;
-        margin: 0px 10px 0px 2px;
-    }
-
-    :deep(& *) {
-        display: inline;
-    }
+  :deep(& *) {
+    display: inline;
+  }
 }
 .history-item {
-    background: none;
-    color: $foreground;
-    width: 100%;
-    display: block;
+  background: none;
+  color: $foreground;
+  width: 100%;
+  display: block;
 }
 
 .history-output {
-    margin: 0px;
+  margin: 0px;
 }
 
 .history-output-grid {
-    display: grid;
-    grid-column: span 3;
-    grid-template-columns: repeat(9, minmax(0, 1fr));
+  display: grid;
+  grid-column: span 3;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
 
-    & .history-output-grid-item {
-        display: inline;
-        margin: 0px;
+  & .history-output-grid-item {
+    display: inline;
+    margin: 0px;
 
-        & p {
-            display: inline;
-            margin: 0px;
-        }
-
-        & .text-color-green {
-            color: $green;
-        }
-
-        & .text-color-purple {
-            color: $purple;
-        }
-
-        & .text-color-blue {
-            color: $blue;
-        }
-
-        & .text-color-red {
-            color: $red;
-        }
-
-        & .text-color-white {
-            color: $white;
-        }
-
-        & .text-weight-700 {
-            font-weight: 700;
-        }
-
-        & .text-weight-400 {
-            font-weight: 400;
-        }
+    & p {
+      display: inline;
+      margin: 0px;
     }
+
+    & .text-color-green {
+      color: $green;
+    }
+
+    & .text-color-purple {
+      color: $purple;
+    }
+
+    & .text-color-blue {
+      color: $blue;
+    }
+
+    & .text-color-red {
+      color: $red;
+    }
+
+    & .text-color-white {
+      color: $white;
+    }
+
+    & .text-weight-700 {
+      font-weight: 700;
+    }
+
+    & .text-weight-400 {
+      font-weight: 400;
+    }
+  }
 }
 
 @media screen and (max-width: $break-md) {
-    .history-output-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
+  .history-output-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: $break-sm) {
-    .history-output-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .history-output-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
-@media (max-width:700px) {
-    .terminal-wrapper {
-        font-size: 14px;
-        .term-header {
-           word-break: break-all; 
-        }
-        ul {
-            padding-left:10px;
-        }
+@media (max-width: 700px) {
+  .terminal-wrapper {
+    font-size: 14px;
+    .term-header {
+      word-break: break-all;
     }
+    ul {
+      padding-left: 10px;
+    }
+  }
 }

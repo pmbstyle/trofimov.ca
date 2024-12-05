@@ -1,4 +1,5 @@
 ## Contact me
+
 <br />
 You can find me online via:
 
@@ -6,4 +7,3 @@ You can find me online via:
 - [LinkedIn](https://www.linkedin.com/in/slava-trofimov-a1b919128/)
 - [Facebook](https://www.facebook.com/vyacheslav.pmb)
 - [Email](mailto:slava@trofimov.ca)
-
