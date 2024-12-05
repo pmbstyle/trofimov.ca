@@ -352,10 +352,17 @@ onMounted(() => {
                   </div>
                   <div
                     class="desktop-item item-csg"
-                    @click="openUrl('http://csg.trofimov.ca')"
+                    @click="openUrl('https://github.com/pmbstyle/acpg')"
                   >
                     <div class="icon"></div>
-                    <div class="name">AI Color Palette Generator</div>
+                    <div class="name">Color Palette Generator</div>
+                  </div>
+                  <div
+                    class="desktop-item item-alice"
+                    @click="openUrl('https://github.com/pmbstyle/Alice')"
+                  >
+                    <div class="icon"></div>
+                    <div class="name">Alice AI assistant</div>
                   </div>
                 </div>
               </Transition>

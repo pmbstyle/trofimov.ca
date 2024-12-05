@@ -136,6 +136,12 @@
         background-image: url(../assets/img/csg.png);
       }
     }
+    &.item-alice {
+      justify-self: flex-end;
+      .icon {
+        background-image: url(../assets/img/alice.png);
+      }
+    }
   }
   .side-grid {
     margin-left: auto;
