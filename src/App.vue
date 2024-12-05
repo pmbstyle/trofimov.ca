@@ -13,6 +13,7 @@ import Controller from "@/assets/img/controller.png";
 import Keyboard from "@/assets/img/keyboard.png";
 import VueLogo from "@/assets/img/vue.png";
 import ReactLogo from "@/assets/img/react.png";
+import Window from "@/components/Window.vue";
 
 const hideWelcome = ref(false);
 const showDesktop = ref(false);
@@ -409,75 +410,47 @@ onMounted(() => {
             </div>
           </div>
 
-          <div
-            class="mockup-window border bg-base-300 flex-1 flex flex-col mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-            :class="{ show: showContact }"
+          <Window 
             v-if="showContact"
+            :class="{ show: showContact }"
+            :component="Contact"
+            @close="switchWindow('desktop')"
           >
-            <div class="window-header">
-              <div class="close-window" @click="switchWindow('desktop')">x</div>
-              <div class="minimize-window" @click="switchWindow('desktop')">
-                –
-              </div>
-              <div class="maximize-window">□</div>
-            </div>
-            <div
-              class="flex justify-left px-4 pb-6 bg-base-200 flex-1 relative"
-            >
+            <div class="flex justify-left px-4 pb-6 bg-base-200 flex-1 relative">
               <Contact />
             </div>
-          </div>
+          </Window>
 
-          <div
-            class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-            :class="{ show: showResume }"
+          <Window 
             v-if="showResume"
+            :class="{ show: showResume }"
+            :component="Resume"
+            @close="switchWindow('desktop')"
           >
-            <div class="window-header">
-              <div class="close-window" @click="switchWindow('desktop')">x</div>
-              <div class="minimize-window" @click="switchWindow('desktop')">
-                –
-              </div>
-              <div class="maximize-window">□</div>
-            </div>
-            <div
-              class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative"
-            >
+            <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
               <perfect-scrollbar ref="resumeScroll">
                 <Resume />
               </perfect-scrollbar>
             </div>
-          </div>
+          </Window>
 
-          <div
-            class="mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-            :class="{ show: showTerminal }"
+          <Window 
             v-if="showTerminal"
+            :class="{ show: showTerminal }"
+            :component="Terminal"
+            @close="switchWindow('desktop')"
           >
-            <div class="window-header">
-              <div class="close-window" @click="switchWindow('desktop')">x</div>
-              <div class="minimize-window" @click="switchWindow('desktop')">
-                –
-              </div>
-              <div class="maximize-window">□</div>
-            </div>
-            <div
-              class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative"
-            >
+            <div class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper relative">
               <Terminal />
             </div>
-          </div>
+          </Window>
 
-          <div
-            class="game mockup-window border bg-base-300 flex-1 mt-10 mb-5 ml-5 mr-5 drop-shadow-md absolute z-20"
-            :class="{ show: showGame }"
+          <Window 
             v-if="showGame"
+            :class="{ show: showGame }"
+            :component="Terminal"
+            @close="reload()"
           >
-            <div class="window-header">
-              <div class="close-window" @click="reload()">x</div>
-              <div class="minimize-window" @click="reload()">–</div>
-              <div class="maximize-window">□</div>
-            </div>
             <div class="flex justify-left bg-base-200 game-wrapper relative">
               <div class="game-controls absolute mt-5 ml-5 text-left">
                 <p>
@@ -504,7 +477,7 @@ onMounted(() => {
               @change="openDialog(index, dialog.name)"
               :checked="dialog.show"
             />
-          </div>
+          </Window>
         </div>
         <div
           class="monitor-screen-bottom bg-gradient-to-t from-slate-300 to-slate-200"
