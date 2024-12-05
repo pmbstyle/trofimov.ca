@@ -364,48 +364,41 @@ onMounted(() => {
             <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
               <div class="close-dialog" @click="showHelloDialog = false">x</div>
               <div class="desktop-dialog__content h-[100%]">
-                <perfect-scrollbar ref="helloScroll">
-                  <h3>Hello!</h3>
-                  <p>My name is Slava Trofimov and I am a Web developer.</p>
-                  <p>
-                    This website represents information about me in several
-                    different ways:
-                  </p>
-                  <ul>
-                    <li>
-                      <strong>Terminal Interface:</strong> Navigate by entering
-                      commands to access content and learn more about various
-                      aspects of my journey.
-                    </li>
-                    <li>
-                      <strong>Interactive Experience:</strong> Immerse yourself
-                      in an interactive journey, where you can explore this
-                      digital landscape, interact with NPCs, and uncover hidden
-                      details.
-                    </li>
-                    <li>
-                      <strong>Classic Resume:</strong> If you prefer a more
-                      traditional approach, you can download a conventional
-                      resume that offers a snapshot of my experiences in the
-                      field of web development.
-                    </li>
-                  </ul>
-                  <p>
-                    If you'd like to experience this site from a different
-                    angle, you can switch to the
-                    <a href="https://react.trofimov.ca">React.js</a> version by
-                    clicking on the React logo at the bottom.
-                  </p>
-                  <p>
-                    For those curious about the inner workings, you can find the
-                    source code for this website on my
-                    <a href="https://github.com/pmbstyle">Git Profile</a> page.
-                  </p>
-                  <p>
-                    Your visit is greatly appreciated, and I wish you a pleasant
-                    day ahead! 🌐🌟
-                  </p>
-                </perfect-scrollbar>
+                <h3 class="font-semibold">Hello!</h3>
+                <p>
+                  My name is Slava Trofimov and I am a Full Stack Web engineer.
+                </p>
+                <p>
+                  This website represents information about me in several
+                  different ways:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Terminal Interface:</strong> Navigate by entering
+                    commands to access content and learn more about various
+                    aspects of my journey.
+                  </li>
+                  <li>
+                    <strong>Interactive Experience:</strong> Immerse yourself in
+                    an interactive journey, where you can explore this digital
+                    landscape, interact with NPCs, and uncover hidden details.
+                  </li>
+                  <li>
+                    <strong>Classic Resume:</strong> If you prefer a more
+                    traditional approach, you can download a conventional resume
+                    that offers a snapshot of my experiences in the field of web
+                    development.
+                  </li>
+                </ul>
+                <p>
+                  For those curious about the inner workings, you can find the
+                  source code for this website on my
+                  <a href="https://github.com/pmbstyle">Git Profile</a> page.
+                </p>
+                <p>
+                  Your visit is greatly appreciated, and I wish you a pleasant
+                  day ahead! 🌐🌟
+                </p>
               </div>
             </div>
           </div>
@@ -490,31 +483,7 @@ onMounted(() => {
         >
           <img :src="Tux" class="tux" />
         </div>
-        <div class="monitor-stand">
-          <div class="framework-switch">
-            <a href="https://react.trofimov.ca"><img :src="ReactLogo" /></a>
-            <svg
-              fill="#666"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmln:link="http://www.w3.org/1999/xlink"
-              width="30px"
-              height="30px"
-              viewBox="0 0 400.004 400.004"
-              xml:space="preserve"
-            >
-              <g>
-                <path
-                  d="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757
-                                c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072
-                                c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315
-                                C400.004,190.438,392.251,182.686,382.688,182.686z"
-                />
-              </g>
-            </svg>
-            <a href="#" class="active"><img :src="VueLogo" /></a>
-          </div>
-        </div>
+        <div class="monitor-stand"></div>
         <div class="monitor-base drop-shadow-xl"></div>
       </div>
     </div>
