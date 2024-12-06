@@ -56,7 +56,7 @@ const folders = ref({
 });
 
 const openDialog = (index: integer, name: string) => {
-  let checkbox = document.getElementById(name + "Dialog") as HTMLInputElement;
+  const checkbox = document.getElementById(name + "Dialog") as HTMLInputElement;
   if (checkbox?.checked) {
     dialogues.value[index].show = true;
   } else {
