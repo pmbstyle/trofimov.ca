@@ -46,8 +46,11 @@ const content = {
 	`,
   experience: `<p><strong>Greetings, curious wayfarer,</strong></p>
 	<p>Allow me to unveil the captivating tapestry of Slava's recent professional adventures, a testament to his mastery in the ever-evolving realm of web development:</p>
+	<p><strong><u>Senior Full Stack Engineer</u></strong><br/>
+	Jobscan (Seattle, WA)<br/><i>Feb 2024 - Present</i></p>
+	<p>Building industry-leading tools for job seekers.</p>
 	<p><strong><u>Senior Front End Developer</u></strong><br/>
-	Codepxl (Toronto, Canada)<br/><i>Jan 2019 - Present</i></p>
+	Codepxl (Toronto, Canada)<br/><i>Jan 2019 - Feb 2024</i></p>
 	<p>In his role as a Senior Front End Developer at Codepxl, Slava has been a guiding light in the creation of digital wonders. His journey in this enchanted realm over the last five years is a testament to his prowess:</p>
 	<ul>
 		<li><strong>Architect of User-Centric Magic:</strong> Slava orchestrated the translation of UX and business requirements into exquisite coded solutions, placing the user at the heart of every enchantment.</li>

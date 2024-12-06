@@ -6,11 +6,23 @@ Last 5 years of experience, for more information please check out my [LinkedIn](
 
 <br />
 
+**Senior Full Stack Engineer**
+
+_Jobscan_
+
+_Feb 2024 - Present_
+
+_Seattle, WA_
+
+- Building industry-leading tools for job seekers.
+
+<br/>
+
 **Senior Front End Developer**
 
 _codepxl_
 
-_Jan 2019 - Present_
+_Jan 2019 - Feb 2024_
 
 _Toronto, Canada_
 

@@ -2,9 +2,16 @@
 import pdf from "@/assets/Slava_Trofimov_Front_End(Full_Stack)_Developer.pdf";
 const experience = [
   {
+    title: "Senior Full Stack Engineer",
+    company: "Jobscan - Seattle, WA",
+    date: "February 2024 to Present",
+    description: `
+        <p>Building industry-leading tools for job seekers.</p>`,
+  },
+  {
     title: "Senior Front End Developer",
     company: "Codepxl - Toronto, ON",
-    date: "January 2019 to Present",
+    date: "January 2019 to February 2024",
     description: `
         <p>Front End and Full Stack development using Vue, Nuxt, Laravel,
         WordPress, jQuery, and Vanilla Javascript. Styling based on Figma
@@ -74,9 +81,9 @@ const experience = [
   },
 ];
 const profile = [
-  "HTML5 & CSS3 for precise styling",
-  "JavaScript/TypeScript (with or without frameworks)",
+  "JavaScript/TypeScript",
   "JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)",
+  "HTML5 & CSS3, POSTCSS, SCSS",
   "Mobile-first, pixel-perfect styling",
   "SPA, PWA, SSR development",
   "CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)",
@@ -84,7 +91,7 @@ const profile = [
   "Unit Testing (Jest), Debugging, Application Maintenance",
   "Desktop App Development (Electron.js)",
   "Web Accessibility (WCAG) and SEO Best Practices",
-  "Full Stack Development (Laravel, WordPress, Node.js)",
+  "Full Stack Development (PHP, Python, Node.js)",
   "Git/Version Control, Pull Requests, Code Reviews",
 ];
 const education = [
@@ -117,7 +124,7 @@ const skills = [
   <article class="resume">
     <h1>
       Slava Trofimov
-      <span>(<a :href="pdf" target="_blank">download PDF</a>)</span>
+      <!-- <span>(<a :href="pdf" target="_blank">download PDF</a>)</span> -->
     </h1>
     <p>
       <strong>Senior Front End Developer</strong><br />
@@ -195,6 +202,7 @@ const skills = [
       <p class="dashed"><strong>Interests</strong></p>
       <ul>
         <li>Astrophotography</li>
+        <li>Artificial intelligence</li>
         <li>Video games</li>
         <li>Travelling</li>
         <li>Music</li>
