@@ -63,6 +63,11 @@ const sendEmail = async () => {
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     );
     displayToast("success");
+    message.value = {
+      from: "",
+      subject: "",
+      text: "",
+    };
   } catch (e) {
     console.error("FAILED...", e.text);
     displayToast("error");
