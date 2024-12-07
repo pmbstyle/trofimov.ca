@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-
-const telegramToken = import.meta.env.VITE_TELEGRAM_TOKEN;
-const telegramChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+import { ref } from 'vue';
+import emailjs from '@emailjs/browser';
 
 const error = ref({
   status: false,
@@ -13,46 +11,12 @@ const sent = ref(false);
 
 const message = ref({
   from: "",
-  to: "slava@trofimov.ca",
   subject: "",
   text: "",
-  attachments: [],
 });
 
-const editorOptions = {
-  debug: "info",
-  modules: {
-    toolbar: [
-      { font: [] },
-      { align: [] },
-      "bold",
-      "italic",
-      "underline",
-      "strike",
-      "blockquote",
-      "code-block",
-      { color: [] },
-      { background: [] },
-    ],
-  },
-  placeholder: "Your message",
-  theme: "snow",
-};
-
-const handleToChange = () => {
-  let input = document.getElementById("to") as HTMLInputElement;
-  input.value = message.value.to;
-};
-
 const validateInput = () => {
-  if (message.value.from === "") {
-    error.value.message = "Please enter your email address.";
-    displayToast("error");
-    return;
-  }
-  if (message.value.from.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-    error.value.message = "";
-  } else {
+  if (!message.value.from.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
     error.value.message = "Please enter a valid email address.";
     displayToast("error");
     return;
@@ -67,20 +31,13 @@ const validateInput = () => {
     displayToast("error");
     return;
   }
-  error.value.status = false;
-  error.value.message = "";
-  sendMail();
+  sendEmail();
 };
 
 const displayToast = (type: string) => {
   if (type === "success") {
     sent.value = true;
-    setTimeout(() => {
-      sent.value = false;
-      let closeWindow = document.querySelector(".close-window") as HTMLElement;
-      closeWindow.click();
-    }, 5000);
-    return;
+    setTimeout(() => (sent.value = false), 5000);
   } else {
     error.value.status = true;
     setTimeout(() => {
@@ -90,26 +47,26 @@ const displayToast = (type: string) => {
   }
 };
 
-const sendMail = async () => {
-  await fetch("https://api.telegram.org/bot" + telegramToken + "/sendMessage", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      chat_id: telegramChatId,
-      text:
-        "From: " +
-        message.value.from +
-        "\n" +
-        "Subject: " +
-        message.value.subject +
-        "\n" +
-        "Message: " +
-        message.value.text,
-    }),
-  });
-  displayToast("success");
+const sendEmail = async () => {
+
+  const templateParams = {
+    from_name: message.value.from,
+    subject: message.value.subject,
+    message: message.value.text,
+  };
+
+  try {
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+    displayToast("success");
+  } catch (e) {
+    console.error("FAILED...", e.text);
+    displayToast("error");
+  }
 };
 </script>
 <template>
