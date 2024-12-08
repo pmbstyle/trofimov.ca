@@ -197,6 +197,13 @@
     background: #d3d3d3;
     margin: auto;
   }
+  .aichar-canvas {
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+  }
 }
 
 @keyframes spin {

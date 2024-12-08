@@ -11,9 +11,8 @@ import Slava from "@/assets/img/slava.png";
 import Cactus from "@/assets/img/cactus.png";
 import Controller from "@/assets/img/controller.png";
 import Keyboard from "@/assets/img/keyboard.png";
-import VueLogo from "@/assets/img/vue.png";
-import ReactLogo from "@/assets/img/react.png";
 import Window from "@/components/Window.vue";
+import Companion from "@/components/companion/charWrapper.vue";
 
 const hideWelcome = ref(false);
 const showDesktop = ref(false);
@@ -408,6 +407,8 @@ onMounted(() => {
                 </p>
               </div>
             </div>
+
+            <Companion/>
           </div>
 
           <Window
