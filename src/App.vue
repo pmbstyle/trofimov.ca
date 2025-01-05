@@ -16,11 +16,6 @@ import WelcomeScreen from '@/components/desktop/WelcomeScreen.vue'
 import Companion from '@/components/companion/CharWrapper.vue'
 
 const hideWelcome = ref(false)
-const showDesktop = ref(false)
-const showTerminal = ref(false)
-const showGame = ref(false)
-const showResume = ref(false)
-const showContact = ref(false)
 const showHelloDialog = ref(false)
 
 const dialogues = ref([
@@ -157,13 +152,13 @@ onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search)
   const g = urlParams.get('g')
   if (g) {
-    showDesktop.value = true
+    windowStates.value.desktop = true
     hideWelcome.value = true
     window.history.replaceState({}, document.title, '/')
   } else {
     setTimeout(() => {
       hideWelcome.value = true
-      showDesktop.value = true
+      windowStates.value.desktop = true
       showHelloDialog.value = true
     }, 2000)
   }
@@ -177,8 +172,8 @@ onMounted(() => {
     >
       <div id="monitor" class="relative">
         <img :src="Cactus" class="cactus" />
-        <img :src="Controller" class="controller" v-if="showGame" />
-        <img :src="Keyboard" class="keyboard" v-if="showTerminal" />
+        <img :src="Controller" class="controller" v-if="windowStates.game" />
+        <img :src="Keyboard" class="keyboard" v-if="windowStates.terminal" />
 
         <div
           class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative"
@@ -188,8 +183,8 @@ onMounted(() => {
 
           <div
             class="desktop absolute z-10 w-full h-full"
-            :class="{ show: showDesktop }"
-            v-if="showDesktop"
+            :class="{ show: windowStates.desktop }"
+            v-if="windowStates.desktop"
           >
             <DesktopIcons @switchWindow="switchWindow" @openUrl="openUrl" />
 
