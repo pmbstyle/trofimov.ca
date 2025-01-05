@@ -52,6 +52,13 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     playerVelocity.normalize()
     playerVelocity.scale(speed)
     this.setVelocity(playerVelocity.x, playerVelocity.y)
+
+    if (this.velocity.x < 0) {
+      this.flipX = true
+    } else if (this.velocity.x > 0) {
+      this.flipX = false
+    }
+
     if (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
       this.anims.play('walk', true)
     } else {
@@ -79,5 +86,4 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         checkbox.click()
       }
     })
-  }
-}
+  }}
