@@ -119,9 +119,20 @@ onMounted(() => {
           >
             <DesktopIcons @switchWindow="switchWindow" @openUrl="openUrl" />
 
-            <div class="desktop-dialog hide-mobile" v-if="dialogStore.dialogues.hello.show">
-              <div class="close-dialog" @click="dialogStore.dialogues.hello.show = false">x</div>
-              <div class="desktop-dialog__content h-[100%]" v-html="dialogStore.getDialog('hello')"></div>
+            <div
+              class="desktop-dialog hide-mobile"
+              v-if="dialogStore.dialogues.hello.show"
+            >
+              <div
+                class="close-dialog"
+                @click="dialogStore.dialogues.hello.show = false"
+              >
+                x
+              </div>
+              <div
+                class="desktop-dialog__content h-[100%]"
+                v-html="dialogStore.getDialog('hello')"
+              ></div>
             </div>
 
             <Companion />

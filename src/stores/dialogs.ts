@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useDialogsStore = defineStore('dialogs', () => {
-
   const content = {
     about: `<p><strong>Greetings, intrepid explorer!</strong>
     <p>Within this box, I stumbled upon a letter that unveils a fascinating individual:</p>
@@ -92,7 +91,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
       <li><strong>Classic Resume:</strong> If you prefer a more traditional approach, you can download a conventional resume that offers a snapshot of my experiences in the field of we development.</li>
     </ul>
     <p>For those curious about the inner workings, you can find the source code for this website on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
-    <p>Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>`
+    <p>Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>`,
   }
 
   const dialogues = ref({

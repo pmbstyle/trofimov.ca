@@ -13,7 +13,9 @@ const props = defineProps({
   type: String,
 })
 
-const dialog = dialogStore.getGameDialog(props.type as "about" | "skills" | "experience" | "education" | "contacts")
+const dialog = dialogStore.getGameDialog(
+  props.type as 'about' | 'skills' | 'experience' | 'education' | 'contacts'
+)
 
 const icons = {
   about: statue,
@@ -33,5 +35,5 @@ const icons = {
     <perfect-scrollbar ref="termScroll">
       <div class="game-dialog__content" v-html="dialog.content"></div>
     </perfect-scrollbar>
-	</div>
+  </div>
 </template>
