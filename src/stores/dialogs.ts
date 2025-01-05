@@ -89,7 +89,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
       <li><strong>Terminal Interface:</strong> Navigate by entering commands to access content and learn more about various aspects of my journey.</li>
       <li><strong>Interactive Experience:</strong> Immerse yourself in an interactive journey, where you can explore this digital landscape, interact with NPCs, and uncover hidden details.</li>
       <li><strong>Classic Resume:</strong> If you prefer a more traditional approach, you can download a conventional resume that offers a snapshot of my experiences in the field of we development.</li>
-      <li><strong>AI chat bot:</strong> Engage in a conversation with Whisker (click on the cat 🐾 if you can catch him 😂) who can answer questions and provide insights into my experiences and skills.</li>
+      <li><strong>AI chat bot:</strong> Engage in a conversation with Whiskers (click on the cat 🐾 if you can catch him 😂) who can answer questions and provide insights into my experiences and skills.</li>
     </ul>
     <p>For those curious about the inner workings, you can find the source code for this website on my <a href="https://github.com/pmbstyle">Git Profile</a> page.</p>
     <p>Your visit is greatly appreciated, and I wish you a pleasant day ahead! 🌐🌟</p>`,
