@@ -15,40 +15,11 @@ import TopMenu from '@/components/desktop/TopMenu.vue'
 import WelcomeScreen from '@/components/desktop/WelcomeScreen.vue'
 import Companion from '@/components/companion/CharWrapper.vue'
 
+import { useDialogsStore } from '@/stores/dialogs'
+
+const dialogStore = useDialogsStore()
+
 const hideWelcome = ref(false)
-const showHelloDialog = ref(false)
-
-const dialogues = ref([
-  {
-    name: 'blacksmith',
-    show: false,
-    type: 'skills',
-  },
-  {
-    name: 'scarecrow',
-    show: false,
-    type: 'experience',
-  },
-  {
-    name: 'mailbox',
-    show: false,
-    type: 'contacts',
-  },
-  {
-    name: 'stand',
-    show: false,
-    type: 'education',
-  },
-  {
-    name: 'statue',
-    show: false,
-    type: 'about',
-  },
-])
-
-const folders = ref({
-  projects: false,
-})
 
 const windows = {
   terminal: 'terminal',
@@ -66,21 +37,21 @@ const windowStates = ref({
   desktop: false,
 })
 
-const openDialog = (index: integer, name: string) => {
+const openDialog = (name: keyof typeof dialogStore.dialogues) => {
   const checkbox = document.getElementById(name + 'Dialog') as HTMLInputElement
   if (checkbox?.checked) {
-    dialogues.value[index].show = true
+    dialogStore.dialogues[name].show = true
   } else {
-    dialogues.value[index].show = false
+    dialogStore.dialogues[name].show = false
   }
 }
-
 const switchWindow = (name: keyof typeof windows) => {
   Object.keys(windowStates.value).forEach(key => {
     windowStates.value[key as keyof typeof windows] = false
   })
 
   windowStates.value[name] = true
+  dialogStore.dialogues.hello.show = false
 }
 
 const openUrl = (url: string) => {
@@ -119,7 +90,7 @@ onMounted(() => {
     setTimeout(() => {
       hideWelcome.value = true
       windowStates.value.desktop = true
-      showHelloDialog.value = true
+      dialogStore.dialogues.hello.show = true
     }, 2000)
   }
 })
@@ -148,45 +119,9 @@ onMounted(() => {
           >
             <DesktopIcons @switchWindow="switchWindow" @openUrl="openUrl" />
 
-            <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
-              <div class="close-dialog" @click="showHelloDialog = false">x</div>
-              <div class="desktop-dialog__content h-[100%]">
-                <h3 class="font-semibold">Hello!</h3>
-                <p>
-                  My name is Slava Trofimov and I am a Full Stack Web engineer.
-                </p>
-                <p>
-                  This website represents information about me in several
-                  different ways:
-                </p>
-                <ul>
-                  <li>
-                    <strong>Terminal Interface:</strong> Navigate by entering
-                    commands to access content and learn more about various
-                    aspects of my journey.
-                  </li>
-                  <li>
-                    <strong>Interactive Experience:</strong> Immerse yourself in
-                    an interactive journey, where you can explore this digital
-                    landscape, interact with NPCs, and uncover hidden details.
-                  </li>
-                  <li>
-                    <strong>Classic Resume:</strong> If you prefer a more
-                    traditional approach, you can download a conventional resume
-                    that offers a snapshot of my experiences in the field of web
-                    development.
-                  </li>
-                </ul>
-                <p>
-                  For those curious about the inner workings, you can find the
-                  source code for this website on my
-                  <a href="https://github.com/pmbstyle">Git Profile</a> page.
-                </p>
-                <p>
-                  Your visit is greatly appreciated, and I wish you a pleasant
-                  day ahead! 🌐🌟
-                </p>
-              </div>
+            <div class="desktop-dialog hide-mobile" v-if="dialogStore.dialogues.hello.show">
+              <div class="close-dialog" @click="dialogStore.dialogues.hello.show = false">x</div>
+              <div class="desktop-dialog__content h-[100%]" v-html="dialogStore.getDialog('hello')"></div>
             </div>
 
             <Companion />
@@ -249,9 +184,9 @@ onMounted(() => {
               </div>
               <Game />
               <GameDialog
-                v-for="(dialog, index) in dialogues"
+                v-for="(dialog, index) in dialogStore.dialogues"
                 :key="index"
-                @close="dialog.show = false"
+                @close="dialogStore.dialogues[dialog.name].show = false"
                 :show="dialog.show"
                 :type="dialog.type"
               />
@@ -260,9 +195,9 @@ onMounted(() => {
               type="checkbox"
               :id="dialog.name + 'Dialog'"
               class="hidden"
-              v-for="(dialog, index) in dialogues"
+              v-for="(dialog, index) in dialogStore.dialogues"
               :key="index"
-              @change="openDialog(index, dialog.name)"
+              @change="openDialog(dialog.name)"
               :checked="dialog.show"
             />
           </Window>
