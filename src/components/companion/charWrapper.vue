@@ -4,15 +4,18 @@
       :state="state"
       :duration="'loop'"
       :direction="direction"
-      class="absolute"
+      class="absolute cursor-pointer"
       :style="charStyle"
+      @click="toggleChat"
     />
   </div>
+  <!-- <Chat/> -->
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
-import Char from "@/components/companion/char.vue";
+import Char from "./Char.vue";
+import Chat from "./Chat.vue";
 
 const state = ref<"Idle" | "Run" | "Jump" | "Sit" | "Sleep">("Idle");
 const direction = ref<"left" | "right">("right");
@@ -25,6 +28,7 @@ const jumpHeight = 10;
 const jumpDuration = 500;
 let actionInterval: number | null = null;
 let movementInterval: number | null = null;
+let timeoutIds = [];
 
 const updateMovement = () => {
   if (state.value === "Run") {
@@ -51,26 +55,26 @@ const charStyle = computed(() => ({
 
 const startAnimation = () => {
   state.value = "Idle";
-  setTimeout(() => {
+  timeoutIds.push(setTimeout(() => {
     state.value = "Run";
     direction.value = "right";
-    setTimeout(() => {
+    timeoutIds.push(setTimeout(() => {
       jump();
-      setTimeout(() => {
+      timeoutIds.push(setTimeout(() => {
         direction.value = "left";
         state.value = "Run";
-        setTimeout(() => {
+        timeoutIds.push(setTimeout(() => {
           direction.value = "left";
           state.value = "Idle";
-        }, 2000);
+        }, 2000));
         direction.value = "right";
         state.value = "Run";
-        setTimeout(() => {
+        timeoutIds.push(setTimeout(() => {
           state.value = "Sleep";
-        }, 2000);
-      }, jumpDuration + 200);
-    }, 4000);
-  }, 3000);
+        }, 2000));
+      }, jumpDuration + 200));
+    }, 4000));
+  }, 3000));
 };
 
 const jump = () => {
@@ -95,6 +99,35 @@ const jump = () => {
   requestAnimationFrame(animateJump);
 };
 
+const stopAnimation = () => {
+  state.value = "Idle";
+  posX.value = 200;
+  posY.value = 0;
+  direction.value = "left";
+
+  timeoutIds.forEach(id => clearTimeout(id));
+  timeoutIds = [];
+  
+  if (movementInterval) {
+    clearInterval(movementInterval);
+    movementInterval = null;
+  }
+  if (actionInterval) {
+    clearInterval(actionInterval);
+    actionInterval = null;
+  }
+};
+
+const toggleChat = () => {
+  if(timeoutIds.length) {
+    stopAnimation()
+  } else {
+    movementInterval = window.setInterval(updateMovement, 16);
+    startAnimation();
+    actionInterval = window.setInterval(startAnimation, 20000);
+  }
+};
+
 onMounted(() => {
   movementInterval = window.setInterval(updateMovement, 16);
   startAnimation();
@@ -102,7 +135,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  if (movementInterval) clearInterval(movementInterval);
-  if (actionInterval) clearInterval(actionInterval);
+  stopAnimation();
 });
 </script>
