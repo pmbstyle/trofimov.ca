@@ -124,7 +124,7 @@ const skills = [
   <article class="resume">
     <h1>
       Slava Trofimov
-      <!-- <span>(<a :href="pdf" target="_blank">download PDF</a>)</span> -->
+      <span>(<a :href="pdf" target="_blank">download PDF</a>)</span>
     </h1>
     <p>
       <strong>Senior Front End Developer</strong><br />
