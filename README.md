@@ -1,6 +1,6 @@
 # Trofimov.ca
 
-Personal website Vue3+Vite / TailwindCss+DaisyUI / Mistral API
+Personal [website](https://trofimov.ca) Vue3+Vite / TailwindCss+DaisyUI / Mistral API
 
 ### Provides information about me in several different ways:
 
