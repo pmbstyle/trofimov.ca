@@ -83,46 +83,6 @@ const switchWindow = (name: keyof typeof windows) => {
   windowStates.value[name] = true
 }
 
-let outsideClickListener: (event: Event, selector: string) => void = () => {}
-
-const openFolder = (name: string) => {
-  switch (name) {
-    case 'projects':
-      if (folders.value.projects) {
-        folders.value.projects = false
-        removeClickListener()
-      } else {
-        folders.value.projects = true
-        outsideClickListener = e => clickOutside(e, '.folder')
-        setTimeout(() => {
-          const monitor = document.getElementsByClassName(
-            'desktop'
-          )[0] as HTMLElement
-          monitor.addEventListener(
-            'click',
-            outsideClickListener as EventListener
-          )
-        }, 0)
-      }
-      break
-  }
-}
-
-const clickOutside = (event: Event, selector: string) => {
-  if (event.target && !(event.target as Element).closest(selector)) {
-    folders.value.projects = false
-    removeClickListener()
-  }
-}
-
-function removeClickListener() {
-  const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement
-  if (outsideClickListener && monitor) {
-    monitor.removeEventListener('click', outsideClickListener as EventListener)
-    outsideClickListener = () => {}
-  }
-}
-
 const openUrl = (url: string) => {
   window.open(url, '_blank')
 }
@@ -136,12 +96,12 @@ const currentWindow = computed(() => {
     contact: 'Send me email',
   }
 
-  const activeWindow = Object.entries(windowStates.value).find(
-    ([_, isOpen]) => isOpen
-  )?.[0]
+  const activeWindow = Object.keys(windowStates.value).find(
+    key => windowStates.value[key as keyof typeof windowStates.value]
+  )
   return activeWindow
     ? windowTitles[activeWindow as keyof typeof windowTitles]
-    : 'Slava Trofimov'
+    : windowTitles.desktop
 })
 
 const reload = () => {
