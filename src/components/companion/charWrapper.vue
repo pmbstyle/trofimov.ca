@@ -9,7 +9,7 @@
       @click="toggleChat"
     />
   </div>
-  <!-- <Chat/> -->
+  <Chat v-if="showChat" />
 </template>
 
 <script setup lang="ts">
@@ -30,6 +30,8 @@ let actionInterval: number | null = null
 let movementInterval: number | null = null
 let timeoutIds = []
 
+const showChat = ref(false)
+
 const updateMovement = () => {
   if (state.value === 'Run') {
     if (direction.value === 'right') {
@@ -48,8 +50,8 @@ const updateMovement = () => {
 
 const charStyle = computed(() => ({
   transform: `translate(${posX.value}px, ${posY.value}px)`,
-  width: '64px', // scaled up
-  height: '64px', // scaled up
+  width: '64px',
+  height: '64px',
   imageRendering: 'pixelated',
 }))
 
@@ -129,6 +131,7 @@ const stopAnimation = () => {
 }
 
 const toggleChat = () => {
+  showChat.value = !showChat.value
   if (timeoutIds.length) {
     stopAnimation()
   } else {
