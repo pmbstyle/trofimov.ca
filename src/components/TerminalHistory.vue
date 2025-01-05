@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useTerminalStore } from "@/stores/terminal";
-import TerminalCommand from "./TerminalCommand.vue";
+import { useTerminalStore } from '@/stores/terminal'
+import TerminalCommand from './TerminalCommand.vue'
 
-const store = useTerminalStore();
+const store = useTerminalStore()
 </script>
 
 <template>

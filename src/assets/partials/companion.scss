@@ -1,22 +1,22 @@
 .chat-container {
-  width:40%;
-  height:80%;
-  position:absolute;
-  bottom:0;
-  right:170px;
-  display:flex;
+  width: 40%;
+  height: 80%;
+  position: absolute;
+  bottom: 0;
+  right: 170px;
+  display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
   .chat-footer {
-    width:100%;
-    display:flex;
+    width: 100%;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 1em;
-    padding:1em;
+    padding: 1em;
     .chat-input {
-      flex:1;
+      flex: 1;
     }
   }
 }

@@ -9,18 +9,18 @@ const projects = [
   {
     name: "Conway's Game of Life",
     url: 'http://gol.trofimov.ca',
-    iconClass: 'item-gol'
+    iconClass: 'item-gol',
   },
   {
     name: 'Color Palette Generator',
     url: 'https://github.com/pmbstyle/acpg',
-    iconClass: 'item-csg'
+    iconClass: 'item-csg',
   },
   {
     name: 'Alice AI assistant',
     url: 'https://github.com/pmbstyle/Alice',
-    iconClass: 'item-alice'
-  }
+    iconClass: 'item-alice',
+  },
 ]
 
 const handleOpenUrl = (url: string) => {
@@ -31,8 +31,8 @@ const handleOpenUrl = (url: string) => {
 <template>
   <Transition>
     <div class="folder" v-show="isOpen">
-      <div 
-        v-for="project in projects" 
+      <div
+        v-for="project in projects"
         :key="project.url"
         class="desktop-item"
         :class="project.iconClass"

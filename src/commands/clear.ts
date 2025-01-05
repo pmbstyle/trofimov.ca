@@ -1,9 +1,9 @@
-import { useTerminalStore } from "@/stores/terminal";
+import { useTerminalStore } from '@/stores/terminal'
 
 const clear = () => {
-  const store = useTerminalStore();
-  store.clearHistory();
-  store.currentCommand = "";
-};
+  const store = useTerminalStore()
+  store.clearHistory()
+  store.currentCommand = ''
+}
 
-export default clear;
+export default clear

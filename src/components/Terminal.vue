@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { useTerminalStore } from "@/stores/terminal";
-import TerminalInput from "./TerminalInput.vue";
-import TerminalHistory from "./TerminalHistory.vue";
-import { ref } from "vue";
-const store = useTerminalStore();
+import { useTerminalStore } from '@/stores/terminal'
+import TerminalInput from './TerminalInput.vue'
+import TerminalHistory from './TerminalHistory.vue'
+import { ref } from 'vue'
+const store = useTerminalStore()
 
-const termScroll = ref(null);
+const termScroll = ref(null)
 const scrollBottom = () => {
-  termScroll.value.$el.scrollTop = termScroll.value.$el.scrollHeight;
-};
+  termScroll.value.$el.scrollTop = termScroll.value.$el.scrollHeight
+}
 </script>
 
 <template>

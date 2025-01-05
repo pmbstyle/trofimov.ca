@@ -4,7 +4,7 @@
     margin: 0px;
 
     &::before {
-      content: "#";
+      content: '#';
       color: $heading-before;
       margin-right: 10px;
     }
@@ -15,7 +15,7 @@
     margin: 0px;
 
     &::before {
-      content: "##";
+      content: '##';
       color: $heading-before;
       margin-right: 10px;
     }
@@ -26,7 +26,7 @@
     margin: 0px;
 
     &::before {
-      content: "-";
+      content: '-';
       color: $purple;
       margin-right: 10px;
     }
@@ -37,7 +37,7 @@
     margin: 0px;
 
     &::before {
-      content: "####";
+      content: '####';
       color: $heading-before;
       margin-right: 10px;
     }
@@ -48,7 +48,7 @@
     margin: 0px;
 
     &::before {
-      content: "#####";
+      content: '#####';
       color: $heading-before;
       margin-right: 10px;
     }
@@ -59,23 +59,23 @@
   }
 
   & code {
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
 
     &::before {
-      content: "`";
+      content: '`';
     }
 
     &::after {
-      content: "`";
+      content: '`';
     }
   }
 
   & pre code {
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
 
     &::before,
     &::after {
-      content: "";
+      content: '';
     }
   }
 
@@ -99,7 +99,7 @@
       list-style-type: none;
 
       &::before {
-        content: "*";
+        content: '*';
         margin-right: 10px;
         display: inline;
       }

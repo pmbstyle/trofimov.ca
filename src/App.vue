@@ -1,66 +1,66 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
-import Terminal from "@/components/Terminal.vue";
-import Game from "@/components/Game.vue";
-import GameDialog from "@/components/GameDialog.vue";
-import Resume from "@/components/Resume.vue";
-import Contact from "@/components/Contact.vue";
-import Tux from "@/assets/img/tux.svg";
-import Cactus from "@/assets/img/cactus.png";
-import Controller from "@/assets/img/controller.png";
-import Keyboard from "@/assets/img/keyboard.png";
-import Window from "@/components/Window.vue";
-import DesktopIcons from '@/components/desktop/DesktopIcons.vue';
+import { ref, onMounted, computed } from 'vue'
+import Terminal from '@/components/Terminal.vue'
+import Game from '@/components/Game.vue'
+import GameDialog from '@/components/GameDialog.vue'
+import Resume from '@/components/Resume.vue'
+import Contact from '@/components/Contact.vue'
+import Tux from '@/assets/img/tux.svg'
+import Cactus from '@/assets/img/cactus.png'
+import Controller from '@/assets/img/controller.png'
+import Keyboard from '@/assets/img/keyboard.png'
+import Window from '@/components/Window.vue'
+import DesktopIcons from '@/components/desktop/DesktopIcons.vue'
 import TopMenu from '@/components/desktop/TopMenu.vue'
 import WelcomeScreen from '@/components/desktop/WelcomeScreen.vue'
-import Companion from "@/components/companion/CharWrapper.vue";
+import Companion from '@/components/companion/CharWrapper.vue'
 
-const hideWelcome = ref(false);
-const showDesktop = ref(false);
-const showTerminal = ref(false);
-const showGame = ref(false);
-const showResume = ref(false);
-const showContact = ref(false);
-const showHelloDialog = ref(false);
+const hideWelcome = ref(false)
+const showDesktop = ref(false)
+const showTerminal = ref(false)
+const showGame = ref(false)
+const showResume = ref(false)
+const showContact = ref(false)
+const showHelloDialog = ref(false)
 
 const dialogues = ref([
   {
-    name: "blacksmith",
+    name: 'blacksmith',
     show: false,
-    type: "skills",
+    type: 'skills',
   },
   {
-    name: "scarecrow",
+    name: 'scarecrow',
     show: false,
-    type: "experience",
+    type: 'experience',
   },
   {
-    name: "mailbox",
+    name: 'mailbox',
     show: false,
-    type: "contacts",
+    type: 'contacts',
   },
   {
-    name: "stand",
+    name: 'stand',
     show: false,
-    type: "education",
+    type: 'education',
   },
   {
-    name: "statue",
+    name: 'statue',
     show: false,
-    type: "about",
+    type: 'about',
   },
-]);
+])
 
 const folders = ref({
   projects: false,
-});
+})
 
 const windows = {
   terminal: 'terminal',
   game: 'game',
   resume: 'resume',
   contact: 'contact',
-  desktop: 'desktop'
+  desktop: 'desktop',
 }
 
 const windowStates = ref({
@@ -68,17 +68,17 @@ const windowStates = ref({
   game: false,
   resume: false,
   contact: false,
-  desktop: false
+  desktop: false,
 })
 
 const openDialog = (index: integer, name: string) => {
-  const checkbox = document.getElementById(name + "Dialog") as HTMLInputElement;
+  const checkbox = document.getElementById(name + 'Dialog') as HTMLInputElement
   if (checkbox?.checked) {
-    dialogues.value[index].show = true;
+    dialogues.value[index].show = true
   } else {
-    dialogues.value[index].show = false;
+    dialogues.value[index].show = false
   }
-};
+}
 
 const switchWindow = (name: keyof typeof windows) => {
   Object.keys(windowStates.value).forEach(key => {
@@ -88,83 +88,86 @@ const switchWindow = (name: keyof typeof windows) => {
   windowStates.value[name] = true
 }
 
-let outsideClickListener: (event: Event, selector: string) => void = () => {};
+let outsideClickListener: (event: Event, selector: string) => void = () => {}
 
 const openFolder = (name: string) => {
   switch (name) {
-    case "projects":
+    case 'projects':
       if (folders.value.projects) {
-        folders.value.projects = false;
-        removeClickListener();
+        folders.value.projects = false
+        removeClickListener()
       } else {
-        folders.value.projects = true;
-        outsideClickListener = (e) => clickOutside(e, ".folder");
+        folders.value.projects = true
+        outsideClickListener = e => clickOutside(e, '.folder')
         setTimeout(() => {
           const monitor = document.getElementsByClassName(
-            "desktop"
-          )[0] as HTMLElement;
+            'desktop'
+          )[0] as HTMLElement
           monitor.addEventListener(
-            "click",
+            'click',
             outsideClickListener as EventListener
-          );
-        }, 0);
+          )
+        }, 0)
       }
-      break;
+      break
   }
-};
+}
 
 const clickOutside = (event: Event, selector: string) => {
   if (event.target && !(event.target as Element).closest(selector)) {
-    folders.value.projects = false;
-    removeClickListener();
+    folders.value.projects = false
+    removeClickListener()
   }
-};
+}
 
 function removeClickListener() {
-  const monitor = document.getElementsByClassName("desktop")[0] as HTMLElement;
+  const monitor = document.getElementsByClassName('desktop')[0] as HTMLElement
   if (outsideClickListener && monitor) {
-    monitor.removeEventListener("click", outsideClickListener as EventListener);
-    outsideClickListener = () => {};
+    monitor.removeEventListener('click', outsideClickListener as EventListener)
+    outsideClickListener = () => {}
   }
 }
 
 const openUrl = (url: string) => {
-  window.open(url, "_blank");
-};
+  window.open(url, '_blank')
+}
 
 const currentWindow = computed(() => {
   const windowTitles = {
-    terminal: "Terminal",
-    game: "Game of resume",
-    resume: "Resume.pdf",
-    desktop: "Slava Trofimov",
-    contact: "Send me email"
+    terminal: 'Terminal',
+    game: 'Game of resume',
+    resume: 'Resume.pdf',
+    desktop: 'Slava Trofimov',
+    contact: 'Send me email',
   }
 
-  const activeWindow = Object.entries(windowStates.value).find(([_, isOpen]) => isOpen)?.[0]
-  return activeWindow ? windowTitles[activeWindow as keyof typeof windowTitles] : "Slava Trofimov"
+  const activeWindow = Object.entries(windowStates.value).find(
+    ([_, isOpen]) => isOpen
+  )?.[0]
+  return activeWindow
+    ? windowTitles[activeWindow as keyof typeof windowTitles]
+    : 'Slava Trofimov'
 })
 
 const reload = () => {
-  window.location.assign(window.location + "?g=true");
-};
+  window.location.assign(window.location + '?g=true')
+}
 
 onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const g = urlParams.get("g");
-  console.log(urlParams.get("g"));
+  const urlParams = new URLSearchParams(window.location.search)
+  const g = urlParams.get('g')
   if (g) {
-    showDesktop.value = true;
-    hideWelcome.value = true;
-    window.history.replaceState({}, document.title, "/");
+    showDesktop.value = true
+    hideWelcome.value = true
+    window.history.replaceState({}, document.title, '/')
   } else {
     setTimeout(() => {
-      hideWelcome.value = true;
-      showDesktop.value = true;
-      showHelloDialog.value = true;
-    }, 2000);
+      hideWelcome.value = true
+      showDesktop.value = true
+      showHelloDialog.value = true
+    }, 2000)
   }
-});
+})
 </script>
 
 <template>
@@ -177,22 +180,18 @@ onMounted(() => {
         <img :src="Controller" class="controller" v-if="showGame" />
         <img :src="Keyboard" class="keyboard" v-if="showTerminal" />
 
-        <div class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
+        <div
+          class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative"
+        >
           <TopMenu :currentWindow="currentWindow" />
-          <WelcomeScreen 
-            v-if="!hideWelcome"
-            :hideWelcome="hideWelcome"
-          />
+          <WelcomeScreen v-if="!hideWelcome" :hideWelcome="hideWelcome" />
 
           <div
             class="desktop absolute z-10 w-full h-full"
             :class="{ show: showDesktop }"
             v-if="showDesktop"
           >
-            <DesktopIcons 
-              @switchWindow="switchWindow"
-              @openUrl="openUrl"
-            />
+            <DesktopIcons @switchWindow="switchWindow" @openUrl="openUrl" />
 
             <div class="desktop-dialog hide-mobile" v-if="showHelloDialog">
               <div class="close-dialog" @click="showHelloDialog = false">x</div>
@@ -235,7 +234,7 @@ onMounted(() => {
               </div>
             </div>
 
-            <Companion/>
+            <Companion />
           </div>
 
           <Window

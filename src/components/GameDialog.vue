@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import scarecrow from "@/assets/game/npc/scarecrow.png";
-import mailbox from "@/assets/game/npc/mailbox.png";
-import stand from "@/assets/game/npc/stand.png";
-import statue from "@/assets/game/npc/statue.png";
-import blacksmith from "@/assets/game/npc/blacksmith-solo.png";
+import scarecrow from '@/assets/game/npc/scarecrow.png'
+import mailbox from '@/assets/game/npc/mailbox.png'
+import stand from '@/assets/game/npc/stand.png'
+import statue from '@/assets/game/npc/statue.png'
+import blacksmith from '@/assets/game/npc/blacksmith-solo.png'
 defineProps({
   show: Boolean,
   type: String,
-});
+})
 const content = {
   about: `<p><strong>Greetings, intrepid explorer!</strong>
 	<p>Within this box, I stumbled upon a letter that unveils a fascinating individual:</p>
@@ -88,21 +88,21 @@ const content = {
 	<p>GitHub: 🐱 <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
 	<p>Facebook: 👤 <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>
 	<p>With these mystical coordinates, you can embark on a quest to connect with Slava, delve deeper into his digital world, and perhaps even forge new alliances in the realms of technology and innovation. May your journey be filled with discovery and camaraderie! 🌐🤝🌟</p>`,
-};
+}
 const icons = {
   about: statue,
   skills: blacksmith,
   experience: scarecrow,
   education: stand,
   contacts: mailbox,
-};
+}
 const names = {
-  about: "Statue",
-  skills: "Blacksmith",
-  experience: "Scarecrow",
-  education: "Bulletin board",
-  contacts: "Mailbox",
-};
+  about: 'Statue',
+  skills: 'Blacksmith',
+  experience: 'Scarecrow',
+  education: 'Bulletin board',
+  contacts: 'Mailbox',
+}
 </script>
 <template>
   <div class="game-dialog" v-if="show">

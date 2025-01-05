@@ -1,59 +1,58 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import emailjs from '@emailjs/browser';
+import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
 
 const error = ref({
   status: false,
-  message: "",
-});
+  message: '',
+})
 
-const sent = ref(false);
+const sent = ref(false)
 
 const message = ref({
-  from: "",
-  subject: "",
-  text: "",
-});
+  from: '',
+  subject: '',
+  text: '',
+})
 
 const validateInput = () => {
   if (!message.value.from.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-    error.value.message = "Please enter a valid email address.";
-    displayToast("error");
-    return;
+    error.value.message = 'Please enter a valid email address.'
+    displayToast('error')
+    return
   }
-  if (message.value.subject === "") {
-    error.value.message = "Please enter a subject.";
-    displayToast("error");
-    return;
+  if (message.value.subject === '') {
+    error.value.message = 'Please enter a subject.'
+    displayToast('error')
+    return
   }
-  if (message.value.text === "") {
-    error.value.message = "Please enter a message.";
-    displayToast("error");
-    return;
+  if (message.value.text === '') {
+    error.value.message = 'Please enter a message.'
+    displayToast('error')
+    return
   }
-  sendEmail();
-};
+  sendEmail()
+}
 
 const displayToast = (type: string) => {
-  if (type === "success") {
-    sent.value = true;
-    setTimeout(() => (sent.value = false), 5000);
+  if (type === 'success') {
+    sent.value = true
+    setTimeout(() => (sent.value = false), 5000)
   } else {
-    error.value.status = true;
+    error.value.status = true
     setTimeout(() => {
-      error.value.status = false;
-      error.value.message = "";
-    }, 5000);
+      error.value.status = false
+      error.value.message = ''
+    }, 5000)
   }
-};
+}
 
 const sendEmail = async () => {
-
   const templateParams = {
     from_name: message.value.from,
     subject: message.value.subject,
     message: message.value.text,
-  };
+  }
 
   try {
     await emailjs.send(
@@ -61,18 +60,18 @@ const sendEmail = async () => {
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       templateParams,
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
-    displayToast("success");
+    )
+    displayToast('success')
     message.value = {
-      from: "",
-      subject: "",
-      text: "",
-    };
+      from: '',
+      subject: '',
+      text: '',
+    }
   } catch (e) {
-    console.error("FAILED...", e.text);
-    displayToast("error");
+    console.error('FAILED...', e.text)
+    displayToast('error')
   }
-};
+}
 </script>
 <template>
   <div id="mailform" class="flex-1 flex flex-col">

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref, onMounted, nextTick } from "vue";
-import * as Phaser from "phaser";
-import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
-import MainScene from "@/game/MainScene";
+import { ref, onMounted, nextTick } from 'vue'
+import * as Phaser from 'phaser'
+import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin'
+import MainScene from '@/game/MainScene'
 
 const config = ref<Phaser.Types.Core.GameConfig>({
   type: Phaser.AUTO,
@@ -13,9 +13,9 @@ const config = ref<Phaser.Types.Core.GameConfig>({
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   scene: [MainScene],
-  parent: "game",
+  parent: 'game',
   physics: {
-    default: "matter",
+    default: 'matter',
     matter: {
       gravity: { y: 0 },
       debug: false,
@@ -27,17 +27,17 @@ const config = ref<Phaser.Types.Core.GameConfig>({
     scene: [
       {
         plugin: PhaserMatterCollisionPlugin,
-        key: "matterCollision",
-        mapping: "matterCollision",
+        key: 'matterCollision',
+        mapping: 'matterCollision',
       },
     ],
   },
-});
+})
 
 onMounted(async () => {
-  await nextTick();
-  new Phaser.Game(config.value);
-});
+  await nextTick()
+  new Phaser.Game(config.value)
+})
 </script>
 
 <template>

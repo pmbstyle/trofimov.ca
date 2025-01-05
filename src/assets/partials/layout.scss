@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .table {
   height: 30vh;
   bottom: 0;
@@ -62,7 +62,7 @@
   }
 }
 .welcome {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   user-select: none;
@@ -292,11 +292,11 @@
     margin-left: 0.5rem !important;
     &.fullscreen {
       width: 100% !important;
-      margin-left:0 !important;
+      margin-left: 0 !important;
     }
   }
   #monitor {
-    margin:2em 0 !important;
+    margin: 2em 0 !important;
   }
   #monitor .monitor-screen {
     border-width: 10px !important;

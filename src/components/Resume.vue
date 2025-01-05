@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import pdf from "@/assets/Slava_Trofimov_Front_End(Full_Stack)_Developer.pdf";
+import pdf from '@/assets/Slava_Trofimov_Front_End(Full_Stack)_Developer.pdf'
 const experience = [
   {
-    title: "Senior Full Stack Engineer",
-    company: "Jobscan - Seattle, WA",
-    date: "February 2024 to Present",
+    title: 'Senior Full Stack Engineer',
+    company: 'Jobscan - Seattle, WA',
+    date: 'February 2024 to Present',
     description: `
         <p>Building industry-leading tools for job seekers.</p>`,
   },
   {
-    title: "Senior Front End Developer",
-    company: "Codepxl - Toronto, ON",
-    date: "January 2019 to February 2024",
+    title: 'Senior Front End Developer',
+    company: 'Codepxl - Toronto, ON',
+    date: 'January 2019 to February 2024',
     description: `
         <p>Front End and Full Stack development using Vue, Nuxt, Laravel,
         WordPress, jQuery, and Vanilla Javascript. Styling based on Figma
@@ -21,17 +21,17 @@ const experience = [
         mentoring.</p>`,
   },
   {
-    title: "Front End Developer",
-    company: "eQuoto, - Toronto, ON",
-    date: "November 2018 to November 2019",
+    title: 'Front End Developer',
+    company: 'eQuoto, - Toronto, ON',
+    date: 'November 2018 to November 2019',
     description: `
         <p>Worked on a wide variety of marketing websites based on Laravel
         and WordPress. Used Vue, React, Bootstrap and Tailwindcss.</p>`,
   },
   {
-    title: "Front End Developer",
-    company: "EvolutionInDesignZ - Toronto, ON",
-    date: "May 2018 to December 2018",
+    title: 'Front End Developer',
+    company: 'EvolutionInDesignZ - Toronto, ON',
+    date: 'May 2018 to December 2018',
     description: `
         <p>Worked on many different custom Laravel, WordPress and
         Opencart-based real-estate, educational, non-profit, large-data,
@@ -40,9 +40,9 @@ const experience = [
         HTML5/SASS, JavaScript, Vue, Laravel blade, jQuery, and Bootstrap.</p>`,
   },
   {
-    title: "Web Developer",
-    company: "Electrolight Ent. - Toronto, ON",
-    date: "August 2017 to May 2018",
+    title: 'Web Developer',
+    company: 'Electrolight Ent. - Toronto, ON',
+    date: 'August 2017 to May 2018',
     description: `
         <p>Developed and maintained custom corporate websites based on
         WordPress and Opencart using HTML5/CSS3, JavaScript, and
@@ -52,9 +52,9 @@ const experience = [
         training.</p>`,
   },
   {
-    title: "Front End Developer",
-    company: "iMoan - Moscow",
-    date: "August 2015 to July 2017",
+    title: 'Front End Developer',
+    company: 'iMoan - Moscow',
+    date: 'August 2015 to July 2017',
     description: `
         <p>
             Worked cooperatively with client services, sales, and design teams
@@ -66,9 +66,9 @@ const experience = [
         </p>`,
   },
   {
-    title: "Front End Developer / Web Designer",
-    company: "Web Solution Ltd. - Moscow",
-    date: "March 2013 to August 2015",
+    title: 'Front End Developer / Web Designer',
+    company: 'Web Solution Ltd. - Moscow',
+    date: 'March 2013 to August 2015',
     description: `
         <p>Designed and built a wide variety of websites from small
         WordPress/Joomla-based corporate sites to big e-commerce
@@ -79,46 +79,46 @@ const experience = [
         Worked closely with end clients to develop modern and productive
         web applications.</p>`,
   },
-];
+]
 const profile = [
-  "JavaScript/TypeScript",
-  "JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)",
-  "HTML5 & CSS3, POSTCSS, SCSS",
-  "Mobile-first, pixel-perfect styling",
-  "SPA, PWA, SSR development",
-  "CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)",
-  "RESTful Service and Third-Party API interaction",
-  "Unit Testing (Jest), Debugging, Application Maintenance",
-  "Desktop App Development (Electron.js)",
-  "Web Accessibility (WCAG) and SEO Best Practices",
-  "Full Stack Development (PHP, Python, Node.js)",
-  "Git/Version Control, Pull Requests, Code Reviews",
-];
+  'JavaScript/TypeScript',
+  'JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)',
+  'HTML5 & CSS3, POSTCSS, SCSS',
+  'Mobile-first, pixel-perfect styling',
+  'SPA, PWA, SSR development',
+  'CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)',
+  'RESTful Service and Third-Party API interaction',
+  'Unit Testing (Jest), Debugging, Application Maintenance',
+  'Desktop App Development (Electron.js)',
+  'Web Accessibility (WCAG) and SEO Best Practices',
+  'Full Stack Development (PHP, Python, Node.js)',
+  'Git/Version Control, Pull Requests, Code Reviews',
+]
 const education = [
   {
-    title: "Master in Computer Science",
-    place: "Moscow State Open University",
-    date: "2003 to 2008",
+    title: 'Master in Computer Science',
+    place: 'Moscow State Open University',
+    date: '2003 to 2008',
   },
-];
+]
 const skills = [
-  "Vue.js / Nuxt.js (5 years)",
-  "React.js / Next.js (1 year)",
-  "HTML5 / SCSS (8 years)",
-  "Bootstrap / Tailwindcss (5 years)",
-  "Javascript (8 years)",
-  "REST (6 years)",
-  "jQuery (7 years)",
-  "Laravel / PHP (3 years)",
-  "MySQL/ MangoDB (6 years)",
-  "Node.js (3 years)",
-  "TypeScript (2 years)",
-  "Responsive styling (8 years)",
-  "Webpack / Vite / Gulp (5 years)",
-  "WordPress / OpenCart (8 years)",
-  "GitHub (6 years)",
-  "Docker (4 years)",
-];
+  'Vue.js / Nuxt.js (5 years)',
+  'React.js / Next.js (1 year)',
+  'HTML5 / SCSS (8 years)',
+  'Bootstrap / Tailwindcss (5 years)',
+  'Javascript (8 years)',
+  'REST (6 years)',
+  'jQuery (7 years)',
+  'Laravel / PHP (3 years)',
+  'MySQL/ MangoDB (6 years)',
+  'Node.js (3 years)',
+  'TypeScript (2 years)',
+  'Responsive styling (8 years)',
+  'Webpack / Vite / Gulp (5 years)',
+  'WordPress / OpenCart (8 years)',
+  'GitHub (6 years)',
+  'Docker (4 years)',
+]
 </script>
 <template>
   <article class="resume">

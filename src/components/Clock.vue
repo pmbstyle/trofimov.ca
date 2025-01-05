@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
-import moment from "moment";
+import { ref, onMounted } from 'vue'
+import moment from 'moment'
 
-const dateTime = ref("");
+const dateTime = ref('')
 
 const setDateTime = () => {
-  dateTime.value = moment().format("h:mm a");
-};
+  dateTime.value = moment().format('h:mm a')
+}
 
 onMounted(() => {
-  setInterval(setDateTime, 1000);
-});
+  setInterval(setDateTime, 1000)
+})
 </script>
 
 <template>
