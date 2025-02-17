@@ -109,6 +109,11 @@ onMounted(() => {
         <div
           class="monitor-screen flex bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative"
         >
+          <div class="monitor-background">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+          </div>
           <TopMenu :currentWindow="currentWindow" />
           <WelcomeScreen v-if="!hideWelcome" :hideWelcome="hideWelcome" />
 
