@@ -42,7 +42,11 @@ export const useDialogsStore = defineStore('dialogs', () => {
     <p>Allow me to unveil the captivating tapestry of Slava's recent professional adventures, a testament to his mastery in the ever-evolving realm of web development:</p>
     <p><strong><u>Senior Full Stack Engineer</u></strong><br/>
     Jobscan (Seattle, WA)<br/><i>Feb 2024 - Present</i></p>
-    <p>Building industry-leading tools for job seekers.</p>
+    <p>Led core product features development with Vue.js, Vite, Pinia,
+        TailwindCSS, and Laravel, improving product quality and user experience. 
+        Developed high-quality solutions to product and engineering needs. Boosted product
+        test coverage using Vitest and Playwright. Demonstrated creativity and innovation
+        in solutions to tasks and resolving problems.</p>
     <p><strong><u>Senior Front End Developer</u></strong><br/>
     Codepxl (Toronto, Canada)<br/><i>Jan 2019 - Feb 2024</i></p>
     <p>In his role as a Senior Front End Developer at Codepxl, Slava has been a guiding light in the creation of digital wonders. His journey in this enchanted realm over the last five years is a testament to his prowess:</p>
@@ -78,7 +82,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
     contacts: `<p><strong>Greetings, intrepid traveler,</strong></p>
     <p>Now that we've set the stage, behold, the keys to unlock the portal to Slava's digital realm:</p>
     <p>Email: 📧 <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
-    <p>LinkedIn: 💼 <strong><a href="https://www.linkedin.com/in/slava-trofimov-a1b919128/">LinkedIn</a></strong>.</p>
+    <p>LinkedIn: 💼 <strong><a href="https://www.linkedin.com/in/slava-trofimov-ca">LinkedIn</a></strong>.</p>
     <p>GitHub: 🐱 <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
     <p>Facebook: 👤 <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>
     <p>With these mystical coordinates, you can embark on a quest to connect with Slava, delve deeper into his digital world, and perhaps even forge new alliances in the realms of technology and innovation. May your journey be filled with discovery and camaraderie! 🌐🤝🌟</p>`,

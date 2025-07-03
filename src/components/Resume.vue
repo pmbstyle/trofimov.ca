@@ -1,12 +1,16 @@
 <script lang="ts" setup>
-import pdf from '@/assets/Slava_Trofimov_Front_End(Full_Stack)_Developer.pdf'
+import pdf from '@/assets/Slava_Trofimov_Full_Stack_Engineer.pdf'
 const experience = [
   {
     title: 'Senior Full Stack Engineer',
     company: 'Jobscan - Seattle, WA',
     date: 'February 2024 to Present',
     description: `
-        <p>Building industry-leading tools for job seekers.</p>`,
+        <p>Led core product features development with Vue.js, Vite, Pinia,
+        TailwindCSS, and Laravel, improving product quality and user experience. 
+        Developed high-quality solutions to product and engineering needs. Boosted product
+        test coverage using Vitest and Playwright. Demonstrated creativity and innovation
+        in solutions to tasks and resolving problems.</p>`,
   },
   {
     title: 'Senior Front End Developer',
@@ -83,12 +87,12 @@ const experience = [
 const profile = [
   'JavaScript/TypeScript',
   'JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)',
-  'HTML5 & CSS3, POSTCSS, SCSS',
+  'HTML5 & CSS3, TailwindCSS, POSTCSS, SCSS',
   'Mobile-first, pixel-perfect styling',
   'SPA, PWA, SSR development',
   'CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)',
   'RESTful Service and Third-Party API interaction',
-  'Unit Testing (Jest), Debugging, Application Maintenance',
+  'Unit Testing (Vitest), Debugging, Application Maintenance',
   'Desktop App Development (Electron.js)',
   'Web Accessibility (WCAG) and SEO Best Practices',
   'Full Stack Development (PHP, Python, Node.js)',
@@ -102,22 +106,22 @@ const education = [
   },
 ]
 const skills = [
-  'Vue.js / Nuxt.js (5 years)',
+  'Vue.js / Nuxt.js (6 years)',
+  'Laravel / PHP (4 years)',
+  'Javascript (8 years)',
+  'TypeScript (4 years)',
+  'Bootstrap / Tailwindcss (5 years)',
   'React.js / Next.js (1 year)',
   'HTML5 / SCSS (8 years)',
-  'Bootstrap / Tailwindcss (5 years)',
-  'Javascript (8 years)',
   'REST (6 years)',
   'jQuery (7 years)',
-  'Laravel / PHP (3 years)',
   'MySQL/ MangoDB (6 years)',
   'Node.js (3 years)',
-  'TypeScript (2 years)',
   'Responsive styling (8 years)',
   'Webpack / Vite / Gulp (5 years)',
   'WordPress / OpenCart (8 years)',
-  'GitHub (6 years)',
-  'Docker (4 years)',
+  'GitHub (8 years)',
+  'Docker (5 years)',
 ]
 </script>
 <template>
@@ -127,21 +131,14 @@ const skills = [
       <span>(<a :href="pdf" target="_blank">download PDF</a>)</span>
     </h1>
     <p>
-      <strong>Senior Front End Developer</strong><br />
-      Richmond Hill, ON<br />
+      <strong>Full Stack Engineer</strong><br />
+      Welland, ON<br />
       <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a><br />
       <a href="tel:2899808683">+1(289)980-8683</a>
     </p>
     <section>
       <p>
-        Front End Developer with strong expertise in JavaScript, Vue.js, REST,
-        and HTML5/SCSS. Bring a Full Stack skill set, having worked extensively
-        with Laravel and PHP, contributing to numerous Laravel+Vue.js/Nuxt.js
-        projects. I'm also proficient in React.js, WordPress, Opencart, and
-        Electron.js. Well-versed in essential development tools like Git and
-        Docker and have experience with collaboration platforms such as Figma,
-        Jira/ClickUp, and Slack. Dedication to ongoing enhancement and a knack
-        for resolving challenges add value to any development environment.
+        Expert Full Stack Developer with a focus on Front End Development and AI, skilled in utilizing diverse technologies for sturdy, user-friendly solutions.
       </p>
     </section>
 

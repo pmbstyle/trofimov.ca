@@ -17,7 +17,7 @@ defineProps<{
     }}</span>
     <div class="flex ml-auto top-menu-right">
       <a
-        href="https://www.linkedin.com/in/slava-trofimov-a1b919128/"
+        href="https://www.linkedin.com/in/slava-trofimov-ca"
         class="linkedin tooltip tooltip-bottom"
         data-tip="LinkedIn"
       >

@@ -2,7 +2,7 @@
 
 <br />
 
-Last 5 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-a1b919128/) profile or Resume section.
+Last 5 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-ca) profile or Resume section.
 
 <br />
 
@@ -14,7 +14,9 @@ _Feb 2024 - Present_
 
 _Seattle, WA_
 
-- Building industry-leading tools for job seekers.
+- Led the development of core product features using Vue.js, Vite, and Laravel, enhancing user experience. 
+- Improved product test coverage by implementing Vitest and Playwright, ensuring robust quality assurance. 
+- Demonstrated innovative problem-solving skills, resulting in high-quality solutions for engineering challenges.
 
 <br/>
 
