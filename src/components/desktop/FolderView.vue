@@ -7,20 +7,10 @@ const emit = defineEmits(['openUrl'])
 
 const projects = [
   {
-    name: "Conway's Game of Life",
-    url: 'http://gol.trofimov.ca',
-    iconClass: 'item-gol',
-  },
-  {
-    name: 'Color Palette Generator',
-    url: 'https://github.com/pmbstyle/acpg',
-    iconClass: 'item-csg',
-  },
-  {
-    name: 'Alice AI assistant',
+    name: 'Alice Smart Desktop AI Assistant',
     url: 'https://github.com/pmbstyle/Alice',
     iconClass: 'item-alice',
-  },
+  }
 ]
 
 const handleOpenUrl = (url: string) => {

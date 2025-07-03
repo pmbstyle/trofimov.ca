@@ -82,7 +82,7 @@ const handleSwitchWindow = (window: string) => {
         @click.stop="openFolder('projects')"
       >
         <div class="icon"></div>
-        <div class="name">Small projects</div>
+        <div class="name">Projects</div>
       </div>
     </div>
 
