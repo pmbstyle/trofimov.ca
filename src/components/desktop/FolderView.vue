@@ -10,7 +10,7 @@ const projects = [
     name: 'Alice Smart Desktop AI Assistant',
     url: 'https://github.com/pmbstyle/Alice',
     iconClass: 'item-alice',
-  }
+  },
 ]
 
 const handleOpenUrl = (url: string) => {

@@ -11,6 +11,12 @@
       content: '`';
     }
   }
+  &.blog code {
+    &:before,
+    &:after {
+      content: '';
+    }
+  }
   ul {
     padding-left: 15px;
     margin: 10px 0;

@@ -65,6 +65,11 @@ const handleSwitchWindow = (window: string) => {
     <div class="name">Game</div>
   </div>
 
+  <div class="desktop-item item-blog" @click="handleSwitchWindow('blog')">
+    <div class="icon"></div>
+    <div class="name">Blog</div>
+  </div>
+
   <div class="desktop-item item-resume" @click="handleSwitchWindow('resume')">
     <div class="icon"></div>
     <div class="name">Resume.pdf</div>

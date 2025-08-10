@@ -58,7 +58,7 @@ defineProps<{
           />
         </svg>
       </a>
-      <a
+      <!-- <a
         href="https://www.facebook.com/vyacheslav.pmb"
         class="facebook tooltip tooltip-bottom"
         data-tip="Facebook"
@@ -78,7 +78,7 @@ defineProps<{
             d="M1667 0c920 0 1667 746 1667 1667 0 920-746 1667-1667 1667C747 3334 0 2588 0 1667 0 747 746 0 1667 0zm186 1117h311V744h-311c-240 0-435 195-435 435v186h-249v373h249v994h373v-994h311l62-373h-373v-186c0-34 28-62 62-62z"
           />
         </svg>
-      </a>
+      </a> -->
       <a
         href="mailto:slava@trofimov.ca"
         class="email tooltip tooltip-bottom"

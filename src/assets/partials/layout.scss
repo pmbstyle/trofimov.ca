@@ -118,6 +118,11 @@
         background-image: url(../assets/img/thunderbird.png);
       }
     }
+    &.item-blog {
+      .icon {
+        background-image: url(../assets/img/blog.png);
+      }
+    }
     &.item-projects-folder {
       justify-self: flex-end;
       .icon {

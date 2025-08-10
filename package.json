@@ -13,12 +13,13 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@types/highlight.js": "^9.12.4",
     "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.7.9",
     "cypress-real-events": "^1.12.0",
     "daisyui": "^2.19.1",
     "emailjs-com": "^3.2.0",
-    "highlight.js": "^11.5.1",
+    "highlight.js": "^11.11.1",
     "markdown-it": "^13.0.1",
     "markdown-it-highlightjs": "^4.0.1",
     "markdown-it-link-attributes": "^4.0.0",
@@ -28,6 +29,7 @@
     "pinia": "^2.0.16",
     "sass": "^1.53.0",
     "vue": "^3.2.37",
+    "vue-router": "^4.5.1",
     "vue3-perfect-scrollbar": "^1.6.0"
   },
   "devDependencies": {

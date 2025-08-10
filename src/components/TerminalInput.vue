@@ -64,7 +64,7 @@ const onDown = (event: KeyboardEvent) => {
 const onTab = (event: KeyboardEvent) => {
   event.preventDefault()
 
-  let options = []
+  const options = []
   filesystem.forEach(item => {
     if (item.name.startsWith(store.currentCommand.split(' ')[1])) {
       options.push(item.name)

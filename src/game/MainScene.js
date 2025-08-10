@@ -90,7 +90,7 @@ export default class MainScene extends Phaser.Scene {
     })
   }
   initNPC() {
-    var npcs = [
+    const npcs = [
       { x: 720, y: 260, texture: 'blacksmith', frame: 'blacksmith_idle' },
       { x: 750, y: 470, texture: 'scarecrow', frame: null },
       { x: 830, y: 320, texture: 'stand', frame: null },
@@ -112,9 +112,9 @@ export default class MainScene extends Phaser.Scene {
           .setSensor(true)
       }
 
-      let colliderName = npc.texture + 'Collider'
-      let sensorName = npc.texture + 'Sensor'
-      var compoundBody = Body.create({
+      const colliderName = npc.texture + 'Collider'
+      const sensorName = npc.texture + 'Sensor'
+      const compoundBody = Body.create({
         parts: [
           Bodies.circle(this[npc.texture].x, this[npc.texture].y, 12, {
             isSensor: false,

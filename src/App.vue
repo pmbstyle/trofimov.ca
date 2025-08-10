@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import Terminal from '@/components/Terminal.vue'
 import Game from '@/components/Game.vue'
 import GameDialog from '@/components/GameDialog.vue'
 import Resume from '@/components/Resume.vue'
 import Contact from '@/components/Contact.vue'
+import Blog from '@/components/Blog.vue'
 import Tux from '@/assets/img/tux.svg'
 import Cactus from '@/assets/img/cactus.png'
 import Controller from '@/assets/img/controller.png'
@@ -17,7 +19,12 @@ import Companion from '@/components/companion/CharWrapper.vue'
 
 import { useDialogsStore } from '@/stores/dialogs'
 
+const route = useRoute()
+const router = useRouter()
 const dialogStore = useDialogsStore()
+
+const shouldOpenBlog = computed(() => route.path.startsWith('/blog'))
+const blogSlug = computed(() => route.params.slug as string | undefined)
 
 const hideWelcome = ref(false)
 
@@ -26,6 +33,7 @@ const windows = {
   game: 'game',
   resume: 'resume',
   contact: 'contact',
+  blog: 'blog',
   desktop: 'desktop',
 }
 
@@ -34,6 +42,7 @@ const windowStates = ref({
   game: false,
   resume: false,
   contact: false,
+  blog: false,
   desktop: false,
 })
 
@@ -52,6 +61,12 @@ const switchWindow = (name: keyof typeof windows) => {
 
   windowStates.value[name] = true
   dialogStore.dialogues.hello.show = false
+  
+  if (name === 'blog' && !route.path.startsWith('/blog')) {
+    router.push('/blog')
+  } else if (route.path.startsWith('/blog') && name !== 'blog') {
+    router.push('/')
+  }
 }
 
 const openUrl = (url: string) => {
@@ -65,6 +80,7 @@ const currentWindow = computed(() => {
     resume: 'Resume.pdf',
     desktop: 'Slava Trofimov',
     contact: 'Send me email',
+    blog: 'Blog',
   }
 
   const activeWindow = Object.keys(windowStates.value).find(
@@ -82,16 +98,28 @@ const reload = () => {
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search)
   const g = urlParams.get('g')
+  
   if (g) {
     windowStates.value.desktop = true
     hideWelcome.value = true
-    window.history.replaceState({}, document.title, '/')
+    router.replace('/')
   } else {
+    const delay = shouldOpenBlog.value ? 500 : 2000
+    
     setTimeout(() => {
       hideWelcome.value = true
       windowStates.value.desktop = true
-      dialogStore.dialogues.hello.show = true
-    }, 2000)
+      
+      if (!shouldOpenBlog.value) {
+        dialogStore.dialogues.hello.show = true
+      }
+      
+      if (shouldOpenBlog.value) {
+        setTimeout(() => {
+          switchWindow('blog')
+        }, 100)
+      }
+    }, delay)
   }
 })
 </script>
@@ -168,6 +196,19 @@ onMounted(() => {
               <perfect-scrollbar ref="resumeScroll">
                 <Resume />
               </perfect-scrollbar>
+            </div>
+          </Window>
+
+          <Window
+            v-if="windowStates.blog"
+            :class="{ show: windowStates.blog }"
+            :component="Blog"
+            @close="switchWindow('desktop')"
+          >
+            <div
+              class="flex justify-left px-4 py-6 bg-base-200 terminal-wrapper blog relative"
+            >
+              <Blog :initialSlug="blogSlug" />
             </div>
           </Window>
 

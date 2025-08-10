@@ -138,7 +138,9 @@ const skills = [
     </p>
     <section>
       <p>
-        Expert Full Stack Developer with a focus on Front End Development and AI, skilled in utilizing diverse technologies for sturdy, user-friendly solutions.
+        Expert Full Stack Developer with a focus on Front End Development and
+        AI, skilled in utilizing diverse technologies for sturdy, user-friendly
+        solutions.
       </p>
     </section>
 
