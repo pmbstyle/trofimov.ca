@@ -7,7 +7,7 @@
           <span>({{ sortedPosts.length }} posts)</span>
         </h1>
         <p>
-          <strong>Thoughts, tutorials, and insights on web development</strong>
+          Thoughts, tutorials, and insights on web development
         </p>
 
         <section v-if="loading">
