@@ -1,8 +1,8 @@
 ---
-title: A Journey with Alice (Part 2)
+title: A Journey with Alice (Part 2) - Making Alice faster and smarter
 date: 2025-08-10
 author: Slava Trofimov
-excerpt: Making Alice smart
+excerpt: By late 2024, I had an AI assistant that could listen, speak, and even recognize screenshots. But Alice was still slow, and not that smart...
 ---
 
 # A Journey with Alice (Part 2)

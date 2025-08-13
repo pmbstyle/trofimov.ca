@@ -1,8 +1,8 @@
 ---
-title: A Journey with Alice (Part 1)
+title: A Journey with Alice (Part 1) - I want my own personal AI assistant
 date: 2025-08-09
 author: Slava Trofimov
-excerpt: Developing a Personal Desktop AI Assistant.
+excerpt: AI entered our daily lives very abruptly. What seemed impossible just a few years ago is now ordinary. OpenAI popularized the idea of interacting with AI via chat, and it instantly became incredibly cool. Say what you will, but ChatGPT changed the world and changed us. Like many others, I’ve been closely following every twist and turn in AI’s development, and I always wanted to experiment with it myself...
 ---
 
 # A Journey with Alice (Part 1)
