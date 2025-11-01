@@ -232,13 +232,6 @@ onMounted(() => {
             @close="reload()"
           >
             <div class="flex justify-left bg-base-200 game-wrapper relative">
-              <div class="game-controls absolute mt-5 ml-5 text-left">
-                <p>
-                  Movement: <kbd class="kbd">W</kbd> <kbd class="kbd">A</kbd>
-                  <kbd class="kbd">S</kbd> <kbd class="kbd">D</kbd>
-                </p>
-                <p>Action: <kbd class="kbd">SPACE</kbd></p>
-              </div>
               <Game />
               <GameDialog
                 v-for="(dialog, index) in dialogStore.dialogues"
@@ -248,15 +241,6 @@ onMounted(() => {
                 :type="dialog.type"
               />
             </div>
-            <input
-              type="checkbox"
-              :id="dialog.name + 'Dialog'"
-              class="hidden"
-              v-for="(dialog, index) in dialogStore.dialogues"
-              :key="index"
-              @change="openDialog(dialog.name)"
-              :checked="dialog.show"
-            />
           </Window>
         </div>
         <div
