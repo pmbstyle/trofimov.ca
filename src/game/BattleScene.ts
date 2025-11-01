@@ -2,6 +2,7 @@ import * as Phaser from 'phaser'
 import Player from './Player'
 import Projectile from './Projectile'
 import type { NPCConfig, NPCType, BattleData } from '@/types/game'
+import { usePlayerStatsStore } from '@/stores/playerStats'
 import baseChipPipo from '@/assets/game/map/[Base]BaseChip_pipo.png'
 import waterPipo from '@/assets/game/map/[A]Water_pipo.png'
 import dirtPipo from '@/assets/game/map/[A]Dirt_pipo.png'
@@ -59,7 +60,10 @@ export default class BattleScene extends Phaser.Scene {
   init(data: BattleData): void {
     this.battleData = data
     this.npcType = data.npcType
-    this.playerHealth = 100
+    const playerStatsStore = usePlayerStatsStore()
+    const baseHealth = 100
+    const healthMultiplier = playerStatsStore.healthMultiplier
+    this.playerHealth = Math.floor(baseHealth * healthMultiplier)
     this.npcHealth = 100
     this.totalNPCAttacks = 0
     this.dodgedAttacks = 0
@@ -106,39 +110,27 @@ export default class BattleScene extends Phaser.Scene {
     
     if (layer1) {
       layer1.setPosition(0, 0)
-      layer1.setDepth(0) // Bottom layer
-      // Don't convert to collision - projectiles should pass through tiles
+      layer1.setDepth(0)
     }
     if (layer2) {
       layer2.setPosition(0, 0)
       layer2.setDepth(1)
-      // Don't convert to collision - projectiles should pass through tiles
     }
     if (layer3) {
       layer3.setPosition(0, 0)
       layer3.setDepth(2)
-      // Don't convert to collision - projectiles should pass through tiles
     }
     
-    // Ship decoration - make it a sensor so projectiles pass through
     const shipSprite = this.matter.add.sprite(300, 350, 'ship')
     shipSprite.setStatic(true)
-    shipSprite.setSensor(true) // Make sensor so projectiles pass through
+    shipSprite.setSensor(true)
     shipSprite.setDepth(3)
 
-    // Position player and NPC on opposite sides of road
-    // Road is at player's X position, so player stays at their X, NPC goes to opposite side
+    const playerX = 470
+    const playerY = 370
+    const npcX = playerX + 150
+    
     const npcConfig = NPC_CONFIGS.find(config => config.texture === this.npcType)
-    const npcOriginalX = npcConfig?.x || 720
-    const npcOriginalY = npcConfig?.y || 260
-    
-    // Player on left side (slightly left of their position), NPC on right side
-    const playerX = this.battleData.playerX - 100
-    const playerY = this.battleData.playerY
-    const npcX = this.battleData.playerX + 200
-    const npcY = playerY // Same Y as player for battle alignment
-    
-    // Initialize player
     this.player = new Player({
       scene: this,
       x: playerX,
@@ -161,15 +153,14 @@ export default class BattleScene extends Phaser.Scene {
       space: Phaser.Input.Keyboard.Key
     }
     
-    // Disable player movement in battle
     this.player.setFixedRotation()
-    this.player.setDepth(10) // Player on top of decorations
+    this.player.setDepth(10)
     
-    // Initialize NPC (only the one we're battling)
-    this.npcSprite = this.matter.add.sprite(npcX, npcY, this.npcType)
-    this.npcSprite.setDepth(10) // NPC on top of decorations
+    this.npcSprite = this.matter.add.sprite(npcX, playerY, this.npcType)
+    this.npcSprite.setDepth(10)
+    this.npcSprite.setFlipX(true)
     const { Body, Bodies } = Phaser.Physics.Matter.Matter
-    const npcBody = Bodies.circle(npcX, npcY, 12, {
+    const npcBody = Bodies.circle(npcX, playerY, 12, {
       isSensor: false,
       label: 'npcCollider',
     })
@@ -183,25 +174,21 @@ export default class BattleScene extends Phaser.Scene {
       this.npcSprite.play(npcConfig.frame)
     }
 
-    // Setup collision detection with a small delay to avoid immediate collisions
     this.time.delayedCall(100, () => {
       this.matter.world.on('collisionstart', (event: any) => {
         event.pairs.forEach((pair: any) => {
           const { bodyA, bodyB } = pair
           
-          // Player projectile hits NPC
           if (bodyA.label === 'playerProjectile' && bodyB.label === 'npcCollider') {
             this.handlePlayerProjectileHit(bodyA)
           } else if (bodyA.label === 'npcCollider' && bodyB.label === 'playerProjectile') {
             this.handlePlayerProjectileHit(bodyB)
           }
           
-          // NPC projectile hits player (only if not invulnerable from jumping)
           if (bodyA.label === 'npcProjectile' && bodyB.label === 'playerCollider') {
             if (!this.jumpInvulnerable) {
               this.handleNPCProjectileHit(bodyA)
             } else {
-              // Player is jumping/invulnerable - count as a successful dodge
               const projectile = this.npcProjectiles.find(p => p.body === bodyA || (p.body as any).parts?.some((part: any) => part === bodyA || part.id === bodyA.id))
               if (projectile && projectile.active) {
                 this.dodgedAttacks++
@@ -213,7 +200,6 @@ export default class BattleScene extends Phaser.Scene {
             if (!this.jumpInvulnerable) {
               this.handleNPCProjectileHit(bodyB)
             } else {
-              // Player is jumping/invulnerable - count as a successful dodge
               const projectile = this.npcProjectiles.find(p => p.body === bodyB || (p.body as any).parts?.some((part: any) => part === bodyB || part.id === bodyB.id))
               if (projectile && projectile.active) {
                 this.dodgedAttacks++
@@ -226,23 +212,17 @@ export default class BattleScene extends Phaser.Scene {
       })
     })
 
-    // Setup camera first
     this.cameras.main.setSize(this.game.scale.width, this.game.scale.height)
     this.cameras.main.roundPixels = true
     this.cameras.main.setZoom(2)
     this.cameras.main.centerOn((playerX + npcX) / 2, playerY)
     
-    // Dispatch battle start event for Vue UI
     const battleStartEvent = new CustomEvent('battleStart')
     window.dispatchEvent(battleStartEvent)
 
-    // Start attack timers
     this.startAttackTimers()
-    
-    // Setup event listeners
     this.setupEventListeners()
     
-    // Fire first projectile immediately for testing
     this.time.delayedCall(500, () => {
       this.firePlayerProjectile()
     })
@@ -250,7 +230,6 @@ export default class BattleScene extends Phaser.Scene {
 
 
   private updatePlayerHealthBar(): void {
-    // Dispatch health update event to Vue
     const healthEvent = new CustomEvent('battleHealth', {
       detail: { playerHealth: this.playerHealth, npcHealth: this.npcHealth }
     })
@@ -258,7 +237,6 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   private updateNPCHealthBar(): void {
-    // Dispatch health update event to Vue
     const healthEvent = new CustomEvent('battleHealth', {
       detail: { playerHealth: this.playerHealth, npcHealth: this.npcHealth }
     })
@@ -266,15 +244,17 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   private startAttackTimers(): void {
-    // Player auto-attack every 1.5 seconds
+    const playerStatsStore = usePlayerStatsStore()
+    const attackSpeed = playerStatsStore.stats.baseAttackSpeed
+    const attackDelay = attackSpeed * 1000
+    
     this.playerAttackTimer = this.time.addEvent({
-      delay: 1500,
+      delay: attackDelay,
       callback: this.firePlayerProjectile,
       callbackScope: this,
       loop: true,
     })
     
-    // NPC attacks every 2.5 seconds
     this.npcAttackTimer = this.time.addEvent({
       delay: 2500,
       callback: this.fireNPCProjectile,
@@ -290,17 +270,15 @@ export default class BattleScene extends Phaser.Scene {
       scene: this,
       x: this.player.x,
       y: this.player.y,
-      velocityX: 8, // Speed towards NPC (positive = right) - faster
+      velocityX: 8,
       damage: 10,
       isPlayerProjectile: true,
     })
     
-    // Make projectile more visible
-    projectile.setTint(0x00ff00) // Green tint for player projectiles
-    projectile.setDepth(50) // Projectiles above player/NPC
+    projectile.setTint(0x00ff00)
+    projectile.setDepth(50)
     projectile.setVisible(true)
     projectile.setActive(true)
-    
     
     this.playerProjectiles.push(projectile)
   }
@@ -314,23 +292,20 @@ export default class BattleScene extends Phaser.Scene {
       scene: this,
       x: this.npcSprite.x,
       y: this.npcSprite.y,
-      velocityX: -8, // Speed towards player (negative = left) - faster
+      velocityX: -8,
       damage: 15,
       isPlayerProjectile: false,
     })
     
-    // Make projectile more visible
-    projectile.setTint(0xff0000) // Red tint for NPC projectiles
-    projectile.setDepth(50) // Projectiles above player/NPC
+    projectile.setTint(0xff0000)
+    projectile.setDepth(50)
     projectile.setVisible(true)
     projectile.setActive(true)
-    
     
     this.npcProjectiles.push(projectile)
   }
 
   private handlePlayerProjectileHit(body: any): void {
-    // Find the projectile by matching body or body parts
     const projectile = this.playerProjectiles.find(p => {
       if (!p.body || !p.active) return false
       if (p.body === body) return true
@@ -341,28 +316,23 @@ export default class BattleScene extends Phaser.Scene {
     })
     if (!projectile || !projectile.active) return
     
-    // Only hit if projectile has moved away from spawn point (avoid immediate collision)
     const startX = (projectile as any).startX
     if (startX && Math.abs(projectile.x - startX) < 30) {
       return
     }
     
-    // Deal damage to NPC
     this.npcHealth = Math.max(0, this.npcHealth - projectile.damage)
     this.updateNPCHealthBar()
     
-    // Destroy projectile
     projectile.destroy()
     this.playerProjectiles = this.playerProjectiles.filter(p => p !== projectile && p.active)
     
-    // Check win condition
     if (this.npcHealth <= 0) {
       this.checkWinCondition()
     }
   }
 
   private handleNPCProjectileHit(body: any): void {
-    // Find the projectile by matching body or body parts
     const projectile = this.npcProjectiles.find(p => {
       if (!p.body || !p.active) return false
       if (p.body === body) return true
@@ -373,22 +343,34 @@ export default class BattleScene extends Phaser.Scene {
     })
     if (!projectile || !projectile.active) return
     
-    // Only hit if projectile has moved away from spawn point (avoid immediate collision)
     const startX = (projectile as any).startX
     if (startX && Math.abs(projectile.x - startX) < 30) {
       return
     }
     
-    // Deal damage to player
-    this.playerHealth = Math.max(0, this.playerHealth - projectile.damage)
+    const playerStatsStore = usePlayerStatsStore()
+    const evasionChance = playerStatsStore.evasionChance
+    const evasionRoll = Math.random() * 100
+    
+    if (evasionRoll < evasionChance) {
+      this.dodgedAttacks++
+      projectile.destroy()
+      this.npcProjectiles = this.npcProjectiles.filter(p => p !== projectile && p.active)
+      return
+    }
+    
+    const armor = playerStatsStore.armorValue
+    const baseDamage = projectile.damage
+    const armorReduction = armor / (armor + 100)
+    const finalDamage = Math.max(1, Math.floor(baseDamage * (1 - armorReduction)))
+    
+    this.playerHealth = Math.max(0, this.playerHealth - finalDamage)
     this.updatePlayerHealthBar()
     this.hitsTaken++
     
-    // Destroy projectile
     projectile.destroy()
     this.npcProjectiles = this.npcProjectiles.filter(p => p !== projectile && p.active)
     
-    // Check loss condition
     if (this.playerHealth <= 0) {
       this.endBattle('loss')
     }
@@ -397,27 +379,21 @@ export default class BattleScene extends Phaser.Scene {
   update(): void {
     if (!this.player) return
 
-    // Disable player movement (WASD) - override player update behavior
     this.player.setVelocity(0, 0)
     this.player.anims.play('idle', true)
 
-    // Handle jump (SPACE key)
     if (Phaser.Input.Keyboard.JustDown(this.player.inputKeys.space)) {
       if (!this.isJumping) {
         this.jump()
       }
     }
 
-    // Update jump animation
     if (this.isJumping) {
-      // Check if player is back on ground
       if (Math.abs(this.player.y - this.playerStartY) < 5) {
         this.isJumping = false
         this.jumpInvulnerable = false
       }
     }
-
-    // Ensure projectiles maintain velocity
     this.playerProjectiles.forEach(p => {
       if (p.active && p.body) {
         const Matter = Phaser.Physics.Matter.Matter
@@ -448,11 +424,9 @@ export default class BattleScene extends Phaser.Scene {
       }
     })
     
-    // Clean up destroyed projectiles
     this.playerProjectiles = this.playerProjectiles.filter(p => p.active)
     this.npcProjectiles = this.npcProjectiles.filter(p => p.active)
     
-    // Dispatch health update event to Vue
     const healthEvent = new CustomEvent('battleHealth', {
       detail: { playerHealth: this.playerHealth, npcHealth: this.npcHealth }
     })
@@ -481,23 +455,17 @@ export default class BattleScene extends Phaser.Scene {
       },
     })
     
-    // Invulnerability duration
     this.time.delayedCall(600, () => {
       this.jumpInvulnerable = false
     })
-    
-    // Check if player avoided an attack (dodge)
-    // Look for projectiles that would have hit the player if they didn't jump
     const nearbyProjectiles = this.npcProjectiles.filter(p => {
       if (!p.active) return false
       const distance = Math.abs(p.x - this.player.x)
       const yDistance = Math.abs(p.y - this.player.y)
-      // Projectile is close horizontally and would have hit if player didn't jump
       return distance < 30 && yDistance < 30
     })
     
     if (nearbyProjectiles.length > 0) {
-      // Player successfully dodged - destroy projectiles and count as dodge
       nearbyProjectiles.forEach(p => {
         this.dodgedAttacks++
         p.destroy()
@@ -507,14 +475,12 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   private checkWinCondition(): void {
-    // Win if NPC is defeated
     if (this.npcHealth <= 0) {
       this.endBattle('win')
     }
   }
 
   private endBattle(result: 'win' | 'loss'): void {
-    // Stop attack timers
     if (this.playerAttackTimer) {
       this.playerAttackTimer.remove()
     }
@@ -522,29 +488,47 @@ export default class BattleScene extends Phaser.Scene {
       this.npcAttackTimer.remove()
     }
     
-    // Clean up projectiles
     this.playerProjectiles.forEach(p => p.destroy())
     this.npcProjectiles.forEach(p => p.destroy())
     
-    // Dispatch event with result
-    const event = new CustomEvent('battleEnd', { 
-      detail: { result, npcType: this.npcType } 
-    })
-    window.dispatchEvent(event)
+    if (result === 'win') {
+      const playerStatsStore = usePlayerStatsStore()
+      const artifact = playerStatsStore.getArtifactByNPC(this.npcType)
+      
+      if (artifact) {
+        const wasAdded = playerStatsStore.addArtifact(artifact)
+        
+        const event = new CustomEvent('battleEnd', { 
+          detail: { 
+            result, 
+            npcType: this.npcType,
+            artifact: wasAdded ? artifact : null,
+            alreadyOwned: !wasAdded
+          } 
+        })
+        window.dispatchEvent(event)
+      } else {
+        const event = new CustomEvent('battleEnd', { 
+          detail: { result, npcType: this.npcType } 
+        })
+        window.dispatchEvent(event)
+      }
+    } else {
+      const event = new CustomEvent('battleEnd', { 
+        detail: { result, npcType: this.npcType } 
+      })
+      window.dispatchEvent(event)
+    }
     
-    // Return to main scene
     this.scene.start('MainScene')
   }
 
   private setupEventListeners(): void {
-    // Listen for battle end events from outside
     this.events.on('shutdown', () => {
-      // Cleanup
     })
   }
 
   destroy(): void {
-    // Stop timers
     if (this.playerAttackTimer) {
       this.playerAttackTimer.remove()
     }
@@ -552,7 +536,6 @@ export default class BattleScene extends Phaser.Scene {
       this.npcAttackTimer.remove()
     }
     
-    // Clean up projectiles
     this.playerProjectiles.forEach(p => {
       if (p.active) p.destroy()
     })
@@ -560,7 +543,6 @@ export default class BattleScene extends Phaser.Scene {
       if (p.active) p.destroy()
     })
     
-    // Cleanup
     if (this.player) {
       this.player.destroy()
     }
@@ -580,7 +562,6 @@ export default class BattleScene extends Phaser.Scene {
       this.npcHealthBarBg.destroy()
     }
     
-    // Remove event listeners
     this.events.removeAllListeners()
     this.matter.world.off('collisionstart')
     

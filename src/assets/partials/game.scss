@@ -304,6 +304,142 @@
   }
 }
 
+// Artifact Reward Overlay
+.game-artifact-reward-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease-in;
+  
+  .game-artifact-reward-content {
+    background: rgba(20, 20, 20, 0.95);
+    border: 3px solid #FFD700;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 500px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 30px rgba(255, 215, 0, 0.4);
+    
+    .game-artifact-reward-icon {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      
+      .game-artifact-box {
+        width: 120px;
+        height: 120px;
+        border: 3px solid #fff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+    
+    h2 {
+      margin: 0 0 15px 0;
+      color: #FFD700;
+      font-size: 32px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      font-weight: bold;
+    }
+    
+    .game-artifact-name {
+      margin: 10px 0;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+    
+    .game-artifact-description {
+      margin: 20px 0;
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    
+    .game-artifact-dismiss {
+      margin: 20px 0 0 0;
+      font-size: 14px;
+      color: #888;
+      font-style: italic;
+    }
+  }
+}
+
+// Artifact Inventory UI
+.game-artifact-inventory {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 101;
+  pointer-events: none;
+  
+  .game-artifact-inventory-slots {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .game-artifact-slot {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+    
+    .game-artifact-box {
+      width: 100%;
+      height: 100%;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    
+    &.game-artifact-slot--empty {
+      .game-artifact-box-empty {
+        width: 100%;
+        height: 100%;
+        border: 2px dashed #666;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

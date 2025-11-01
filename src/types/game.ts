@@ -2,6 +2,8 @@ import * as Phaser from 'phaser'
 
 export type NPCType = 'blacksmith' | 'scarecrow' | 'mailbox' | 'stand' | 'statue'
 
+export type StatType = 'health' | 'attackSpeed' | 'armor' | 'evasion'
+
 export interface NPCConfig {
   x: number
   y: number
@@ -16,7 +18,6 @@ export interface PlayerData {
   texture: string
   frame: string
 }
-
 
 export interface NPCEntity {
   sprite: Phaser.Physics.Matter.Sprite
@@ -40,5 +41,28 @@ export interface ProjectileData {
   velocityX: number
   damage: number
   isPlayerProjectile: boolean
+}
+
+export interface PlayerStats {
+  baseHealth: number
+  baseAttackSpeed: number
+  baseArmor: number
+  baseEvasion: number
+}
+
+export interface Artifact {
+  id: string
+  name: string
+  description: string
+  statType: StatType
+  bonus: number
+  npcSource: NPCType
+  color: string
+  image?: string
+}
+
+export interface ArtifactReward {
+  artifact: Artifact
+  show: boolean
 }
 

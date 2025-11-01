@@ -5,9 +5,11 @@ import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin'
 import MainScene from '@/game/MainScene'
 import BattleScene from '@/game/BattleScene'
 import { useDialogsStore } from '@/stores/dialogs'
-import type { NPCType } from '@/types/game'
+import { usePlayerStatsStore } from '@/stores/playerStats'
+import type { NPCType, Artifact } from '@/types/game'
 
 const dialogStore = useDialogsStore()
+const playerStatsStore = usePlayerStatsStore()
 const gameInstance = ref<Phaser.Game | null>(null)
 const showInstructions = ref(true)
 const gameContainerRef = ref<HTMLElement | null>(null)
@@ -16,6 +18,9 @@ const showLossScreen = ref(false)
 const showBattleUI = ref(false)
 const playerHealth = ref(100)
 const npcHealth = ref(100)
+const showArtifactReward = ref(false)
+const rewardedArtifact = ref<Artifact | null>(null)
+const artifactRewardTimeout = ref<number | null>(null)
 let countdownInterval: number | null = null
 
 const getOptimalSize = () => {
@@ -140,36 +145,66 @@ const handleBattleHealth = (evt: Event) => {
   npcHealth.value = customEvent.detail.npcHealth
 }
 
+const winNPCType = ref<NPCType | null>(null)
+
 const handleBattleEnd = (evt: Event) => {
   showBattleUI.value = false
-  const customEvent = evt as CustomEvent<{ result: 'win' | 'loss', npcType: NPCType }>
-  const { result, npcType } = customEvent.detail
+  const customEvent = evt as CustomEvent<{ 
+    result: 'win' | 'loss', 
+    npcType: NPCType,
+    artifact?: Artifact | null,
+    alreadyOwned?: boolean
+  }>
+  const { result, npcType, artifact, alreadyOwned } = customEvent.detail
   
   if (result === 'win') {
-    // Show dialog on win
-    const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
-      blacksmith: 'skills',
-      scarecrow: 'experience',
-      mailbox: 'contacts',
-      stand: 'education',
-      statue: 'about',
+    winNPCType.value = npcType
+    
+    if (artifact && !alreadyOwned) {
+      rewardedArtifact.value = artifact
+      showArtifactReward.value = true
+    } else {
+      openWinDialog(npcType)
     }
-    
-    const dialogName = npcType
-    // Close all other dialogs first
-    Object.keys(dialogStore.dialogues).forEach(key => {
-      dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
-    })
-    
-    // Open the dialog
-    dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
   } else {
-    // Show loss screen
     showLossScreen.value = true
-    // Auto-dismiss after 3 seconds
     setTimeout(() => {
       showLossScreen.value = false
     }, 3000)
+  }
+}
+
+const openWinDialog = (npcType: NPCType) => {
+  const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
+    blacksmith: 'skills',
+    scarecrow: 'experience',
+    mailbox: 'contacts',
+    stand: 'education',
+    statue: 'about',
+  }
+  
+  const dialogName = npcType
+  Object.keys(dialogStore.dialogues).forEach(key => {
+    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
+  })
+  
+  dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
+}
+
+const closeArtifactReward = () => {
+  showArtifactReward.value = false
+  rewardedArtifact.value = null
+  
+  if (winNPCType.value) {
+    openWinDialog(winNPCType.value)
+    winNPCType.value = null
+  }
+}
+
+const handleKeyPress = (event: KeyboardEvent) => {
+  if (showArtifactReward.value && event.code === 'Space') {
+    event.preventDefault()
+    closeArtifactReward()
   }
 }
 
@@ -215,6 +250,9 @@ onMounted(async () => {
   // Listen for window resize
   window.addEventListener('resize', handleResize)
   
+  // Listen for keyboard events to close artifact popup
+  window.addEventListener('keydown', handleKeyPress)
+  
   // Start countdown timer for instructions
   countdownInterval = window.setInterval(() => {
     dismissCountdown.value--
@@ -243,6 +281,12 @@ onBeforeUnmount(() => {
     countdownInterval = null
   }
   
+  // Clear artifact reward timeout
+  if (artifactRewardTimeout.value) {
+    clearTimeout(artifactRewardTimeout.value)
+    artifactRewardTimeout.value = null
+  }
+  
   // Remove event listeners
   window.removeEventListener('gameNPCInteract', handleNPCInteraction as EventListener)
   window.removeEventListener('gameCloseDialog', handleCloseDialog)
@@ -250,6 +294,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('battleHealth', handleBattleHealth as EventListener)
   window.removeEventListener('battleEnd', handleBattleEnd as EventListener)
   window.removeEventListener('resize', handleResize)
+  window.removeEventListener('keydown', handleKeyPress)
   
   // Destroy game instance to prevent memory leaks
   if (gameInstance.value) {
@@ -326,6 +371,60 @@ onBeforeUnmount(() => {
       <div class="game-loss-content">
         <h2>You have lost</h2>
         <p>Click to continue</p>
+      </div>
+    </div>
+    <!-- Artifact Reward UI -->
+    <div 
+      v-if="showArtifactReward && rewardedArtifact"
+      class="game-artifact-reward-overlay"
+      @click="closeArtifactReward"
+    >
+      <div class="game-artifact-reward-content">
+        <div class="game-artifact-reward-icon">
+          <div 
+            class="game-artifact-box"
+            :style="{ backgroundColor: rewardedArtifact.color }"
+          >
+            <img 
+              v-if="rewardedArtifact.image" 
+              :src="rewardedArtifact.image" 
+              :alt="rewardedArtifact.name"
+            />
+          </div>
+        </div>
+        <h2>Artifact Obtained!</h2>
+        <h3 class="game-artifact-name">{{ rewardedArtifact.name }}</h3>
+        <p class="game-artifact-description">{{ rewardedArtifact.description }}</p>
+        <p class="game-artifact-dismiss">Click or press SPACE to continue</p>
+      </div>
+    </div>
+    <!-- Artifact Inventory UI -->
+    <div class="game-artifact-inventory">
+      <div class="game-artifact-inventory-slots">
+        <div 
+          v-for="(artifact, index) in playerStatsStore.inventory" 
+          :key="artifact.id"
+          class="game-artifact-slot"
+          :title="`${artifact.name}: ${artifact.description}`"
+        >
+          <div 
+            class="game-artifact-box"
+            :style="{ backgroundColor: artifact.color }"
+          >
+            <img 
+              v-if="artifact.image" 
+              :src="artifact.image" 
+              :alt="artifact.name"
+            />
+          </div>
+        </div>
+        <div 
+          v-for="n in playerStatsStore.MAX_INVENTORY_SIZE - playerStatsStore.inventory.length"
+          :key="`empty-${n}`"
+          class="game-artifact-slot game-artifact-slot--empty"
+        >
+          <div class="game-artifact-box-empty"></div>
+        </div>
       </div>
     </div>
   </div>
