@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import * as Phaser from 'phaser'
 import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin'
 import MainScene from '@/game/MainScene'
+import BattleScene from '@/game/BattleScene'
 import { useDialogsStore } from '@/stores/dialogs'
 import type { NPCType } from '@/types/game'
 
@@ -11,6 +12,10 @@ const gameInstance = ref<Phaser.Game | null>(null)
 const showInstructions = ref(true)
 const gameContainerRef = ref<HTMLElement | null>(null)
 const dismissCountdown = ref(5)
+const showLossScreen = ref(false)
+const showBattleUI = ref(false)
+const playerHealth = ref(100)
+const npcHealth = ref(100)
 let countdownInterval: number | null = null
 
 const getOptimalSize = () => {
@@ -49,7 +54,7 @@ const config = ref<Phaser.Types.Core.GameConfig>({
     width: 768,
     height: 500,
   },
-  scene: [MainScene],
+  scene: [MainScene, BattleScene],
   parent: 'game',
   physics: {
     default: 'matter',
@@ -123,6 +128,51 @@ const handleCloseDialog = () => {
   })
 }
 
+const handleBattleStart = () => {
+  showBattleUI.value = true
+  playerHealth.value = 100
+  npcHealth.value = 100
+}
+
+const handleBattleHealth = (evt: Event) => {
+  const customEvent = evt as CustomEvent<{ playerHealth: number, npcHealth: number }>
+  playerHealth.value = customEvent.detail.playerHealth
+  npcHealth.value = customEvent.detail.npcHealth
+}
+
+const handleBattleEnd = (evt: Event) => {
+  showBattleUI.value = false
+  const customEvent = evt as CustomEvent<{ result: 'win' | 'loss', npcType: NPCType }>
+  const { result, npcType } = customEvent.detail
+  
+  if (result === 'win') {
+    // Show dialog on win
+    const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
+      blacksmith: 'skills',
+      scarecrow: 'experience',
+      mailbox: 'contacts',
+      stand: 'education',
+      statue: 'about',
+    }
+    
+    const dialogName = npcType
+    // Close all other dialogs first
+    Object.keys(dialogStore.dialogues).forEach(key => {
+      dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
+    })
+    
+    // Open the dialog
+    dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
+  } else {
+    // Show loss screen
+    showLossScreen.value = true
+    // Auto-dismiss after 3 seconds
+    setTimeout(() => {
+      showLossScreen.value = false
+    }, 3000)
+  }
+}
+
 onMounted(async () => {
   await nextTick()
   
@@ -156,6 +206,11 @@ onMounted(async () => {
   
   // Listen for close dialog events
   window.addEventListener('gameCloseDialog', handleCloseDialog)
+  
+  // Listen for battle events
+  window.addEventListener('battleStart', handleBattleStart)
+  window.addEventListener('battleHealth', handleBattleHealth as EventListener)
+  window.addEventListener('battleEnd', handleBattleEnd as EventListener)
   
   // Listen for window resize
   window.addEventListener('resize', handleResize)
@@ -191,6 +246,9 @@ onBeforeUnmount(() => {
   // Remove event listeners
   window.removeEventListener('gameNPCInteract', handleNPCInteraction as EventListener)
   window.removeEventListener('gameCloseDialog', handleCloseDialog)
+  window.removeEventListener('battleStart', handleBattleStart)
+  window.removeEventListener('battleHealth', handleBattleHealth as EventListener)
+  window.removeEventListener('battleEnd', handleBattleEnd as EventListener)
   window.removeEventListener('resize', handleResize)
   
   // Destroy game instance to prevent memory leaks
@@ -233,6 +291,41 @@ onBeforeUnmount(() => {
         <p class="game-instructions-dismiss">
           Click anywhere to dismiss ({{ dismissCountdown }} sec)
         </p>
+      </div>
+    </div>
+    <div 
+      v-if="showBattleUI" 
+      class="game-battle-ui"
+    >
+      <div class="game-health-bars">
+        <div class="game-health-bar-container">
+          <div class="game-health-bar-label">Player</div>
+          <div class="game-health-bar-bg">
+            <div 
+              class="game-health-bar-fill game-health-bar-player" 
+              :style="{ width: `${playerHealth}%` }"
+            ></div>
+          </div>
+        </div>
+        <div class="game-health-bar-container">
+          <div class="game-health-bar-label">NPC</div>
+          <div class="game-health-bar-bg">
+            <div 
+              class="game-health-bar-fill game-health-bar-npc" 
+              :style="{ width: `${npcHealth}%` }"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div 
+      v-if="showLossScreen" 
+      class="game-loss-overlay"
+      @click="showLossScreen = false"
+    >
+      <div class="game-loss-content">
+        <h2>You have lost</h2>
+        <p>Click to continue</p>
       </div>
     </div>
   </div>

@@ -140,13 +140,16 @@ export default class MainScene extends Phaser.Scene {
   }
 
   private handleNPCInteraction(npcType: NPCType): void {
-    // Hide bubble when opening dialog
+    // Hide bubble when starting battle
     this.hideBubble(npcType)
-    this.currentDialogNPC = npcType
     
-    // Dispatch custom event to Vue component
-    const event = new CustomEvent('gameNPCInteract', { detail: { npcType } })
-    window.dispatchEvent(event)
+    // Start battle scene instead of opening dialog
+    const battleData = {
+      npcType,
+      playerX: this.player.x,
+      playerY: this.player.y,
+    }
+    this.scene.start('BattleScene', battleData)
   }
 
   private handleDialogOpen(npcType: NPCType): void {

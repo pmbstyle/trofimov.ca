@@ -25,3 +25,20 @@ export interface NPCEntity {
   type: NPCType
 }
 
+export interface BattleData {
+  npcType: NPCType
+  playerX: number
+  playerY: number
+}
+
+export type BattleResult = 'win' | 'loss'
+
+export interface ProjectileData {
+  scene: Phaser.Scene
+  x: number
+  y: number
+  velocityX: number
+  damage: number
+  isPlayerProjectile: boolean
+}
+

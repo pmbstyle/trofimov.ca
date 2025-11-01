@@ -116,7 +116,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
   }
 
   destroy(): void {
-    if (this.inputKeys) {
+    if (this.inputKeys && this.input && this.input.keys) {
       this.input.keys.removeAllKeys()
     }
     super.destroy()
