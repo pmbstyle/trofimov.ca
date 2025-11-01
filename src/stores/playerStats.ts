@@ -7,45 +7,45 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   blacksmith: {
     id: 'art_blacksmith',
     name: 'Anvil of Fortitude',
-    description: 'Forged in the fires of determination, this artifact increases your health by 50%, making you more resilient to attacks.',
+    description: 'Forged in the fires of determination, this artifact increases your health by 25%, making you more resilient to attacks.',
     statType: 'health',
-    bonus: 1.5,
+    bonus: 1.25,
     npcSource: 'blacksmith',
     color: '#8B4513', // Brown/SaddleBrown
   },
   scarecrow: {
     id: 'art_scarecrow',
     name: 'Scythe of Swiftness',
-    description: 'Harvested from fields of experience, this artifact increases your attack speed by 30%, allowing you to strike faster.',
+    description: 'Harvested from fields of experience, this artifact increases your attack speed by 20%, allowing you to strike faster.',
     statType: 'attackSpeed',
-    bonus: 1.5,
+    bonus: 1.2,
     npcSource: 'scarecrow',
     color: '#228B22', // ForestGreen
   },
   mailbox: {
     id: 'art_mailbox',
     name: 'Mail of Protection',
-    description: 'Delivered from distant contacts, this artifact increases your armor by 30%, reducing incoming damage.',
+    description: 'Delivered from distant contacts, this artifact increases your armor by 15, reducing incoming damage.',
     statType: 'armor',
-    bonus: 1.5,
+    bonus: 15,
     npcSource: 'mailbox',
     color: '#4169E1', // RoyalBlue
   },
   stand: {
     id: 'art_stand',
     name: 'Scroll of Agility',
-    description: 'Learned from ancient knowledge, this artifact increases your evasion chance by 30%, helping you dodge attacks.',
+    description: 'Learned from ancient knowledge, this artifact increases your evasion chance by 15%, helping you dodge attacks.',
     statType: 'evasion',
-    bonus: 1.5,
+    bonus: 15,
     npcSource: 'stand',
     color: '#FFD700', // Gold
   },
   statue: {
     id: 'art_statue',
     name: 'Amulet of Vitality',
-    description: 'Carved from stone of wisdom, this artifact increases your health by 50%, enhancing your endurance.',
+    description: 'Carved from stone of wisdom, this artifact increases your health by 25%, enhancing your endurance.',
     statType: 'health',
-    bonus: 1.5,
+    bonus: 1.25,
     npcSource: 'statue',
     color: '#9370DB', // MediumPurple
   },
@@ -73,13 +73,13 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
           stats.baseHealth = Math.floor(stats.baseHealth * artifact.bonus)
           break
         case 'attackSpeed':
-          stats.baseAttackSpeed = stats.baseAttackSpeed / 1.3
+          stats.baseAttackSpeed = stats.baseAttackSpeed / artifact.bonus
           break
         case 'armor':
-          stats.baseArmor = stats.baseArmor + 30
+          stats.baseArmor = stats.baseArmor + artifact.bonus
           break
         case 'evasion':
-          stats.baseEvasion = stats.baseEvasion + 30
+          stats.baseEvasion = stats.baseEvasion + artifact.bonus
           break
       }
     })
@@ -90,8 +90,8 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
   const healthMultiplier = computed(() => {
     const healthArtifacts = inventory.value.filter(a => a.statType === 'health')
     let multiplier = 1
-    healthArtifacts.forEach(() => {
-      multiplier *= 1.5
+    healthArtifacts.forEach(artifact => {
+      multiplier *= artifact.bonus
     })
     return multiplier
   })
@@ -99,20 +99,22 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
   const attackSpeedMultiplier = computed(() => {
     const speedArtifacts = inventory.value.filter(a => a.statType === 'attackSpeed')
     let multiplier = 1
-    speedArtifacts.forEach(() => {
-      multiplier /= 1.3
+    speedArtifacts.forEach(artifact => {
+      multiplier /= artifact.bonus
     })
     return multiplier
   })
 
   const armorValue = computed(() => {
     const armorArtifacts = inventory.value.filter(a => a.statType === 'armor')
-    return armorArtifacts.length * 30
+    return armorArtifacts.reduce((sum, artifact) => sum + artifact.bonus, 0)
   })
 
   const evasionChance = computed(() => {
     const evasionArtifacts = inventory.value.filter(a => a.statType === 'evasion')
-    return Math.min(100, evasionArtifacts.length * 30)
+    const totalEvasion = evasionArtifacts.reduce((sum, artifact) => sum + artifact.bonus, 0)
+    // Cap evasion at 60% to prevent invincibility
+    return Math.min(60, totalEvasion)
   })
 
   const hasArtifact = (artifactId: string) => {

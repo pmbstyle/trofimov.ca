@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser'
 import Player from './Player'
 import type { NPCConfig, NPCType, NPCEntity } from '@/types/game'
+import { usePlayerStatsStore } from '@/stores/playerStats'
 import baseChipPipo from '@/assets/game/map/[Base]BaseChip_pipo.png'
 import waterPipo from '@/assets/game/map/[A]Water_pipo.png'
 import dirtPipo from '@/assets/game/map/[A]Dirt_pipo.png'
@@ -137,9 +138,45 @@ export default class MainScene extends Phaser.Scene {
     
     window.addEventListener('gameDialogOpen', this.dialogOpenHandler)
     window.addEventListener('gameCloseDialog', this.dialogCloseHandler)
+    
+    // Listen for battle end events to hide bubbles permanently after wins
+    window.addEventListener('battleEnd', this.handleBattleEnd as EventListener)
+  }
+
+  private handleBattleEnd = (event: Event): void => {
+    const customEvent = event as CustomEvent<{ 
+      result: 'win' | 'loss', 
+      npcType: NPCType,
+      artifact?: any,
+      alreadyOwned?: boolean
+    }>
+    
+    // If player won and got the artifact, permanently hide the bubble
+    if (customEvent.detail.result === 'win' && customEvent.detail.artifact && !customEvent.detail.alreadyOwned) {
+      this.hideBubblePermanently(customEvent.detail.npcType)
+    }
+  }
+
+  private hideBubblePermanently(npcType: NPCType): void {
+    const entity = this.npcs.get(npcType)
+    if (entity && entity.bubble) {
+      this.stopBubblePulse(npcType)
+      entity.bubble.setVisible(false)
+      entity.bubble.setActive(false)
+    }
   }
 
   private handleNPCInteraction(npcType: NPCType): void {
+    const playerStatsStore = usePlayerStatsStore()
+    const artifact = playerStatsStore.getArtifactByNPC(npcType)
+    // Check if player already has this NPC's artifact
+    if (artifact && playerStatsStore.hasArtifact(artifact.id)) {
+      // Player already has artifact - just open dialog
+      const event = new CustomEvent('gameNPCInteract', { detail: { npcType } })
+      window.dispatchEvent(event)
+      return
+    }
+    
     // Hide bubble when starting battle
     this.hideBubble(npcType)
     
@@ -210,10 +247,13 @@ export default class MainScene extends Phaser.Scene {
         const prompt = this.interactionPrompts.get(npcType)
         if (isNear && !wasNear) {
           // Just entered proximity - show prompt and start bubble pulse
-          // Only show bubble if no dialog is currently open for this NPC
-          if (this.currentDialogNPC !== npcType) {
+          // Only show bubble if no dialog is currently open for this NPC and bubble is visible
+          if (this.currentDialogNPC !== npcType && entity.bubble?.visible) {
             this.showInteractionPrompt(npcType)
             this.startBubblePulse(npcType)
+          } else if (this.currentDialogNPC !== npcType) {
+            // Still show prompt even if bubble is hidden (player already has artifact)
+            this.showInteractionPrompt(npcType)
           }
           if (entity.sprite) {
             // Add subtle glow effect
@@ -380,9 +420,14 @@ export default class MainScene extends Phaser.Scene {
 
   initNPC(): void {
     const { Body, Bodies } = Phaser.Physics.Matter.Matter
+    const playerStatsStore = usePlayerStatsStore()
     
     NPC_CONFIGS.forEach(config => {
       const sprite = this.matter.add.sprite(config.x, config.y, config.texture)
+      
+      // Check if player already has this NPC's artifact - if so, don't show bubble
+      const artifact = playerStatsStore.getArtifactByNPC(config.texture)
+      const hasArtifact = artifact ? playerStatsStore.hasArtifact(artifact.id) : false
       
       // Create bubble sprite
       const bubbleY = config.texture !== 'stand' && config.texture !== 'statue' 
@@ -392,6 +437,8 @@ export default class MainScene extends Phaser.Scene {
         .sprite(config.x, bubbleY, 'bubble')
         .setStatic(true)
         .setSensor(config.texture === 'stand' || config.texture === 'statue')
+        .setVisible(!hasArtifact) // Hide bubble if player already has artifact
+        .setActive(!hasArtifact)
 
       const colliderName = config.texture + 'Collider'
       const sensorName = config.texture + 'Sensor'
@@ -467,6 +514,8 @@ export default class MainScene extends Phaser.Scene {
       window.removeEventListener('gameCloseDialog', this.dialogCloseHandler)
       this.dialogCloseHandler = null
     }
+    
+    window.removeEventListener('battleEnd', this.handleBattleEnd as EventListener)
     
     super.destroy()
   }

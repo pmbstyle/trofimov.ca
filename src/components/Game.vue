@@ -95,35 +95,13 @@ const handleNPCInteraction = (evt: Event) => {
   const customEvent = evt as CustomEvent<{ npcType: NPCType }>
   const npcType = customEvent.detail.npcType
   
-  // Map NPC types to dialog types
-  const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
-    blacksmith: 'skills',
-    scarecrow: 'experience',
-    mailbox: 'contacts',
-    stand: 'education',
-    statue: 'about',
-  }
-  
-  const dialogType = dialogTypeMap[npcType]
-  const dialogName = npcType
-  
   // Check if this dialog is already open - if so, close it
-  if (dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show) {
-    dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = false
+  if (dialogStore.dialogues[npcType as keyof typeof dialogStore.dialogues].show) {
+    dialogStore.dialogues[npcType as keyof typeof dialogStore.dialogues].show = false
     return
   }
   
-  // Close all other dialogs first
-  Object.keys(dialogStore.dialogues).forEach(key => {
-    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
-  })
-  
-  // Open the dialog
-  dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
-  
-  // Notify game scene that dialog is opening
-  const event = new CustomEvent('gameDialogOpen', { detail: { npcType } })
-  window.dispatchEvent(event)
+  openWinDialog(npcType as NPCType)
 }
 
 const handleCloseDialog = () => {
@@ -164,7 +142,7 @@ const handleBattleEnd = (evt: Event) => {
       rewardedArtifact.value = artifact
       showArtifactReward.value = true
     } else {
-      openWinDialog(npcType)
+      openWinDialog(npcType as NPCType)
     }
   } else {
     showLossScreen.value = true

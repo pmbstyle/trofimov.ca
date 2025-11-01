@@ -126,9 +126,9 @@ export default class BattleScene extends Phaser.Scene {
     shipSprite.setSensor(true)
     shipSprite.setDepth(3)
 
-    const playerX = 470
+    const playerX = 600
     const playerY = 370
-    const npcX = playerX + 150
+    const npcX = playerX + 250
     
     const npcConfig = NPC_CONFIGS.find(config => config.texture === this.npcType)
     this.player = new Player({
@@ -248,6 +248,10 @@ export default class BattleScene extends Phaser.Scene {
     const attackSpeed = playerStatsStore.stats.baseAttackSpeed
     const attackDelay = attackSpeed * 1000
     
+    // Scale NPC attack speed based on player artifacts - faster attacks when player is stronger
+    const artifactCount = playerStatsStore.inventory.length
+    const npcAttackDelay = Math.max(1800, 2500 - artifactCount * 150) // Faster as player gets more artifacts
+    
     this.playerAttackTimer = this.time.addEvent({
       delay: attackDelay,
       callback: this.firePlayerProjectile,
@@ -256,7 +260,7 @@ export default class BattleScene extends Phaser.Scene {
     })
     
     this.npcAttackTimer = this.time.addEvent({
-      delay: 2500,
+      delay: npcAttackDelay,
       callback: this.fireNPCProjectile,
       callbackScope: this,
       loop: true,
@@ -288,12 +292,19 @@ export default class BattleScene extends Phaser.Scene {
     
     this.totalNPCAttacks++
     
+    // Scale NPC damage based on player's artifact count to keep battles challenging
+    const playerStatsStore = usePlayerStatsStore()
+    const artifactCount = playerStatsStore.inventory.length
+    // Base damage 15, increases by 2 per artifact (15 -> 17 -> 19 -> 21 -> 23 -> 25)
+    const baseDamage = 15
+    const scaledDamage = baseDamage + (artifactCount * 2)
+    
     const projectile = new Projectile({
       scene: this,
       x: this.npcSprite.x,
       y: this.npcSprite.y,
       velocityX: -8,
-      damage: 15,
+      damage: scaledDamage,
       isPlayerProjectile: false,
     })
     
@@ -361,7 +372,14 @@ export default class BattleScene extends Phaser.Scene {
     
     const armor = playerStatsStore.armorValue
     const baseDamage = projectile.damage
-    const armorReduction = armor / (armor + 100)
+    // Improved armor formula with better diminishing returns
+    // At 0 armor: 0% reduction
+    // At 15 armor: ~13% reduction
+    // At 30 armor: ~23% reduction
+    // At 45 armor: ~31% reduction
+    // At 60 armor: ~38% reduction
+    // At 75 armor: ~43% reduction (max with 5 artifacts)
+    const armorReduction = armor / (armor + 120)
     const finalDamage = Math.max(1, Math.floor(baseDamage * (1 - armorReduction)))
     
     this.playerHealth = Math.max(0, this.playerHealth - finalDamage)
