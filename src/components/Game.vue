@@ -376,8 +376,8 @@ onBeforeUnmount(() => {
         <p class="game-artifact-dismiss">Click or press SPACE to continue</p>
       </div>
     </div>
-    <!-- Artifact Inventory UI -->
-    <div class="game-artifact-inventory">
+  </div>
+  <div class="game-artifact-inventory">
       <div class="game-artifact-inventory-slots">
         <div 
           v-for="(artifact, index) in playerStatsStore.inventory" 
@@ -403,7 +403,6 @@ onBeforeUnmount(() => {
         >
           <div class="game-artifact-box-empty"></div>
         </div>
-      </div>
     </div>
   </div>
 </template>

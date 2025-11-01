@@ -169,6 +169,8 @@ export default class MainScene extends Phaser.Scene {
   private handleNPCInteraction(npcType: NPCType): void {
     const playerStatsStore = usePlayerStatsStore()
     const artifact = playerStatsStore.getArtifactByNPC(npcType)
+    console.log('artifact', artifact)
+    console.log('playerStatsStore.hasArtifact(artifact.id)', playerStatsStore.hasArtifact(artifact.id))
     // Check if player already has this NPC's artifact
     if (artifact && playerStatsStore.hasArtifact(artifact.id)) {
       // Player already has artifact - just open dialog
