@@ -33,9 +33,19 @@ export default class MainScene extends Phaser.Scene {
   private currentDialogNPC: NPCType | null = null
   private dialogOpenHandler: EventListener | null = null
   private dialogCloseHandler: EventListener | null = null
+  private savedPlayerPosition: { x: number; y: number } | null = null
 
   constructor() {
     super('MainScene')
+  }
+
+  init(data?: { playerX?: number; playerY?: number }): void {
+    // Save player position if provided (e.g., when returning from battle)
+    if (data?.playerX !== undefined && data?.playerY !== undefined) {
+      this.savedPlayerPosition = { x: data.playerX, y: data.playerY }
+    } else {
+      this.savedPlayerPosition = null
+    }
   }
 
   preload(): void {
@@ -372,10 +382,14 @@ export default class MainScene extends Phaser.Scene {
   }
 
   initPlayer(): void {
+    // Use saved position if available (from battle), otherwise use default position
+    const playerX = this.savedPlayerPosition?.x ?? 470
+    const playerY = this.savedPlayerPosition?.y ?? 370
+    
     this.player = new Player({
       scene: this,
-      x: 470,
-      y: 370,
+      x: playerX,
+      y: playerY,
       texture: 'player',
       frame: 'townsfolk_m_idle_1',
     })

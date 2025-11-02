@@ -18,6 +18,7 @@ const showLossScreen = ref(false)
 const showBattleUI = ref(false)
 const playerHealth = ref(100)
 const npcHealth = ref(100)
+const currentBattleNPC = ref<NPCType | null>(null)
 const showArtifactReward = ref(false)
 const rewardedArtifact = ref<Artifact | null>(null)
 const artifactRewardTimeout = ref<number | null>(null)
@@ -142,7 +143,9 @@ const handleCloseDialog = () => {
   })
 }
 
-const handleBattleStart = () => {
+const handleBattleStart = (evt: Event) => {
+  const customEvent = evt as CustomEvent<{ npcType: NPCType }>
+  currentBattleNPC.value = customEvent.detail.npcType
   showBattleUI.value = true
   playerHealth.value = 100
   npcHealth.value = 100
@@ -156,8 +159,23 @@ const handleBattleHealth = (evt: Event) => {
 
 const winNPCType = ref<NPCType | null>(null)
 
+const getNPCDisplayName = (npcType: NPCType | null): string => {
+  if (!npcType) return 'NPC'
+  
+  const npcNames: Record<NPCType, string> = {
+    blacksmith: 'Blacksmith',
+    scarecrow: 'Scarecrow',
+    mailbox: 'Mailbox',
+    stand: 'Bulletin Board',
+    statue: 'Statue',
+  }
+  
+  return npcNames[npcType] || 'NPC'
+}
+
 const handleBattleEnd = (evt: Event) => {
   showBattleUI.value = false
+  currentBattleNPC.value = null
   const customEvent = evt as CustomEvent<{ 
     result: 'win' | 'loss', 
     npcType: NPCType,
@@ -255,7 +273,7 @@ onMounted(async () => {
   window.addEventListener('gameCloseDialog', handleCloseDialog)
   
   // Listen for battle events
-  window.addEventListener('battleStart', handleBattleStart)
+  window.addEventListener('battleStart', handleBattleStart as EventListener)
   window.addEventListener('battleHealth', handleBattleHealth as EventListener)
   window.addEventListener('battleEnd', handleBattleEnd as EventListener)
   
@@ -302,7 +320,7 @@ onBeforeUnmount(() => {
   // Remove event listeners
   window.removeEventListener('gameNPCInteract', handleNPCInteraction as EventListener)
   window.removeEventListener('gameCloseDialog', handleCloseDialog)
-  window.removeEventListener('battleStart', handleBattleStart)
+  window.removeEventListener('battleStart', handleBattleStart as EventListener)
   window.removeEventListener('battleHealth', handleBattleHealth as EventListener)
   window.removeEventListener('battleEnd', handleBattleEnd as EventListener)
   window.removeEventListener('resize', handleResize)
@@ -365,7 +383,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div class="game-health-bar-container">
-          <div class="game-health-bar-label">NPC</div>
+          <div class="game-health-bar-label">{{ getNPCDisplayName(currentBattleNPC) }}</div>
           <div class="game-health-bar-bg">
             <div 
               class="game-health-bar-fill game-health-bar-npc" 

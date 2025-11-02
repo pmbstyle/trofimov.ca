@@ -222,7 +222,9 @@ export default class BattleScene extends Phaser.Scene {
     this.cameras.main.setZoom(2)
     this.cameras.main.centerOn((playerX + npcX) / 2, playerY)
     
-    const battleStartEvent = new CustomEvent('battleStart')
+    const battleStartEvent = new CustomEvent('battleStart', {
+      detail: { npcType: this.npcType }
+    })
     window.dispatchEvent(battleStartEvent)
 
     this.startAttackTimers()
@@ -536,7 +538,11 @@ export default class BattleScene extends Phaser.Scene {
       window.dispatchEvent(event)
     }
     
-    this.scene.start('MainScene')
+    // Pass saved player position back to MainScene
+    this.scene.start('MainScene', {
+      playerX: this.battleData.playerX,
+      playerY: this.battleData.playerY,
+    })
   }
 
   private setupEventListeners(): void {
