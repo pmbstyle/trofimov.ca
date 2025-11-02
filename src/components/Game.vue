@@ -91,13 +91,44 @@ const handleResize = () => {
   }
 }
 
-const handleNPCInteraction = (evt: Event) => {
+let lastInteractionTime = 0
+let lastInteractionNPC: NPCType | null = null
+let dialogJustOpened: { npcType: NPCType, time: number } | null = null
+const INTERACTION_DEBOUNCE_MS = 300 // Prevent rapid duplicate interactions
+const DIALOG_OPENED_PROTECTION_MS = 500 // Prevent closing dialog that was just opened programmatically
+
+const handleNPCInteraction = async (evt: Event) => {
   const customEvent = evt as CustomEvent<{ npcType: NPCType }>
   const npcType = customEvent.detail.npcType
   
+  // Debounce rapid duplicate interactions for the same NPC
+  const now = Date.now()
+  const isDuplicate = npcType === lastInteractionNPC && 
+                      now - lastInteractionTime < INTERACTION_DEBOUNCE_MS
+  
+  if (isDuplicate) {
+    return
+  }
+  
+  // Check if this dialog was just opened programmatically (e.g., after artifact reward)
+  if (dialogJustOpened && 
+      dialogJustOpened.npcType === npcType && 
+      now - dialogJustOpened.time < DIALOG_OPENED_PROTECTION_MS) {
+    return
+  }
+  
+  lastInteractionTime = now
+  lastInteractionNPC = npcType
+  
+  // Wait for Vue reactivity to update before checking state
+  await nextTick()
+  
+  const dialogKey = npcType as keyof typeof dialogStore.dialogues
+  const isOpen = dialogStore.dialogues[dialogKey].show
+  
   // Check if this dialog is already open - if so, close it
-  if (dialogStore.dialogues[npcType as keyof typeof dialogStore.dialogues].show) {
-    dialogStore.dialogues[npcType as keyof typeof dialogStore.dialogues].show = false
+  if (isOpen) {
+    handleCloseDialog()
     return
   }
   
@@ -141,8 +172,6 @@ const handleBattleEnd = (evt: Event) => {
     if (artifact && !alreadyOwned) {
       rewardedArtifact.value = artifact
       showArtifactReward.value = true
-    } else {
-      openWinDialog(npcType as NPCType)
     }
   } else {
     showLossScreen.value = true
@@ -152,7 +181,7 @@ const handleBattleEnd = (evt: Event) => {
   }
 }
 
-const openWinDialog = (npcType: NPCType) => {
+const openWinDialog = (npcType: NPCType, isProgrammatic = false) => {
   const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
     blacksmith: 'skills',
     scarecrow: 'experience',
@@ -167,6 +196,11 @@ const openWinDialog = (npcType: NPCType) => {
   })
   
   dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
+  
+  // Track if dialog was opened programmatically to prevent immediate closing
+  if (isProgrammatic) {
+    dialogJustOpened = { npcType, time: Date.now() }
+  }
 }
 
 const closeArtifactReward = () => {
@@ -174,7 +208,7 @@ const closeArtifactReward = () => {
   rewardedArtifact.value = null
   
   if (winNPCType.value) {
-    openWinDialog(winNPCType.value)
+    openWinDialog(winNPCType.value, true)
     winNPCType.value = null
   }
 }
@@ -372,7 +406,7 @@ onBeforeUnmount(() => {
         </div>
         <h2>Artifact Obtained!</h2>
         <h3 class="game-artifact-name">{{ rewardedArtifact.name }}</h3>
-        <p class="game-artifact-description">{{ rewardedArtifact.description }}</p>
+        <p class="game-artifact-description" v-html="rewardedArtifact.description"></p>
         <p class="game-artifact-dismiss">Click or press SPACE to continue</p>
       </div>
     </div>

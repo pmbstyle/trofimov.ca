@@ -1,17 +1,23 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Artifact, StatType, NPCType, PlayerStats } from '@/types/game'
+import AnvilOfFortitude from '@/assets/game/artifacts/anvil.png'
+import ScytheOfSwiftness from '@/assets/game/artifacts/scythe.png'
+import MailOfProtection from '@/assets/game/artifacts/mail.png'
+import ScrollOfAgility from '@/assets/game/artifacts/book.png'
+import AmuletOfVitality from '@/assets/game/artifacts/amulet.png'
 
 // Artifact definitions - unique per NPC
 export const ARTIFACTS: Record<NPCType, Artifact> = {
   blacksmith: {
     id: 'art_blacksmith',
     name: 'Anvil of Fortitude',
-    description: 'Forged in the fires of determination, this artifact increases your health by 25%, making you more resilient to attacks.',
+    description: 'Forged in the fires of determination, this artifact increases your <strong>health by 25%</strong>, making you more resilient to attacks.',
     statType: 'health',
     bonus: 1.25,
     npcSource: 'blacksmith',
     color: '#8B4513', // Brown/SaddleBrown
+    image: AnvilOfFortitude,
   },
   scarecrow: {
     id: 'art_scarecrow',
@@ -21,6 +27,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
     bonus: 1.2,
     npcSource: 'scarecrow',
     color: '#228B22', // ForestGreen
+    image: ScytheOfSwiftness,
   },
   mailbox: {
     id: 'art_mailbox',
@@ -30,15 +37,17 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
     bonus: 15,
     npcSource: 'mailbox',
     color: '#4169E1', // RoyalBlue
+    image: MailOfProtection,
   },
   stand: {
     id: 'art_stand',
-    name: 'Scroll of Agility',
+    name: 'Book of Agility',
     description: 'Learned from ancient knowledge, this artifact increases your evasion chance by 15%, helping you dodge attacks.',
     statType: 'evasion',
     bonus: 15,
     npcSource: 'stand',
     color: '#FFD700', // Gold
+    image: ScrollOfAgility,
   },
   statue: {
     id: 'art_statue',
@@ -48,6 +57,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
     bonus: 1.25,
     npcSource: 'statue',
     color: '#9370DB', // MediumPurple
+    image: AmuletOfVitality,
   },
 }
 

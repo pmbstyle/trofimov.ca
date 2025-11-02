@@ -26,7 +26,19 @@ const icons = {
   contacts: mailbox,
 }
 
+const emit = defineEmits<{
+  close: []
+}>()
+
 const dialogRef = ref<HTMLElement | null>(null)
+
+const handleClose = () => {
+  // Dispatch window event to notify MainScene
+  const event = new CustomEvent('gameCloseDialog')
+  window.dispatchEvent(event)
+  // Emit close event for parent component
+  emit('close')
+}
 
 watch(() => props.show, async (newValue, oldValue) => {
   await nextTick()
@@ -49,7 +61,7 @@ watch(() => props.show, async (newValue, oldValue) => {
     ref="dialogRef"
     class="game-dialog game-dialog--hidden"
   >
-    <div class="close-dialog" @click="$emit('close')">x</div>
+    <div class="close-dialog" @click="handleClose">x</div>
     <div class="game-dialog__icon">
       <img :src="icons[type as keyof typeof icons]" alt="icon" />
     </div>

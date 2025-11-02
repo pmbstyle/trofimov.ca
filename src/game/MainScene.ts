@@ -124,7 +124,7 @@ export default class MainScene extends Phaser.Scene {
     this.events.on('closeDialog', () => {
       const event = new CustomEvent('gameCloseDialog')
       window.dispatchEvent(event)
-      this.handleDialogClose()
+      // Note: handleDialogClose() will be called by the window event listener below
     })
     
     // Listen for dialog open/close events from Vue
@@ -169,20 +169,14 @@ export default class MainScene extends Phaser.Scene {
   private handleNPCInteraction(npcType: NPCType): void {
     const playerStatsStore = usePlayerStatsStore()
     const artifact = playerStatsStore.getArtifactByNPC(npcType)
-    console.log('artifact', artifact)
-    console.log('playerStatsStore.hasArtifact(artifact.id)', playerStatsStore.hasArtifact(artifact.id))
-    // Check if player already has this NPC's artifact
     if (artifact && playerStatsStore.hasArtifact(artifact.id)) {
-      // Player already has artifact - just open dialog
       const event = new CustomEvent('gameNPCInteract', { detail: { npcType } })
       window.dispatchEvent(event)
       return
     }
     
-    // Hide bubble when starting battle
     this.hideBubble(npcType)
     
-    // Start battle scene instead of opening dialog
     const battleData = {
       npcType,
       playerX: this.player.x,
@@ -192,16 +186,13 @@ export default class MainScene extends Phaser.Scene {
   }
 
   private handleDialogOpen(npcType: NPCType): void {
-    // Hide bubble when dialog opens
     this.hideBubble(npcType)
     this.currentDialogNPC = npcType
   }
 
   private handleDialogClose(): void {
-    // Show bubble again when dialog closes
     if (this.currentDialogNPC) {
       const entity = this.npcs.get(this.currentDialogNPC)
-      // Only show bubble if player is still near NPC
       if (entity && entity.isNearPlayer) {
         this.showBubble(this.currentDialogNPC)
         this.startBubblePulse(this.currentDialogNPC)
@@ -213,9 +204,7 @@ export default class MainScene extends Phaser.Scene {
   private hideBubble(npcType: NPCType): void {
     const entity = this.npcs.get(npcType)
     if (entity && entity.bubble) {
-      // Stop pulsing animation
       this.stopBubblePulse(npcType)
-      // Hide the bubble
       entity.bubble.setVisible(false)
     }
   }
@@ -223,18 +212,15 @@ export default class MainScene extends Phaser.Scene {
   private showBubble(npcType: NPCType): void {
     const entity = this.npcs.get(npcType)
     if (entity && entity.bubble) {
-      // Show the bubble
       entity.bubble.setVisible(true)
     }
   }
 
   private updateNPCProximity(): void {
-    // Update proximity state and visual feedback
     this.npcs.forEach((entity, npcType) => {
       if (this.player && entity.sprite.body) {
         const playerBody = this.player.body as any
         const playerSensor = playerBody.parts?.find((part: any) => part.label === 'playerSensor')
-        // Find the NPC sensor by label (more reliable than array index)
         const npcBody = entity.sprite.body as any
         const sensorLabel = npcType + 'Sensor'
         const npcSensor = npcBody.parts?.find((part: any) => part.label === sensorLabel)
@@ -372,29 +358,17 @@ export default class MainScene extends Phaser.Scene {
 
   initCamera(): void {
     this.cameras.main.setSize(this.game.scale.width, this.game.scale.height)
-    
-    // Enable pixel-perfect rendering for camera
+
     this.cameras.main.roundPixels = true
-    
-    // Use whole number zoom (2 instead of 1.5) to prevent sub-pixel rendering gaps
-    // Non-integer zooms cause vertical/horizontal lines between tiles
     this.cameras.main.setZoom(2)
-    
-    // Smoother camera following with lerp (0.1 = smoother without sub-pixel issues)
+
     this.cameras.main.startFollow(this.player, true, 0.1, 0.1)
-    
-    // Set camera deadzone to prevent jitter when player is still
+
     this.cameras.main.setDeadzone(20, 20)
-    
-    // Set camera bounds to prevent following outside map
+
     const mapWidth = 48 * 32 // tiles * tile size
     const mapHeight = 24 * 32
     this.cameras.main.setBounds(0, 0, mapWidth, mapHeight)
-  }
-  
-  private zoomOnInteraction(npcType: NPCType): void {
-    // Removed zoom effect - just open dialog without camera zoom
-    // This prevents the unwanted zoom behavior
   }
 
   initPlayer(): void {

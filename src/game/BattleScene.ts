@@ -16,6 +16,8 @@ import statue from '@/assets/game/npc/statue.png'
 import blacksmithPng from '@/assets/game/npc/blacksmith.png'
 import blacksmithAtlas from '@/assets/game/npc/blacksmith_atlas.json'
 import blacksmithAnimation from '@/assets/game/npc/blacksmith_anim.json'
+import projectileNpc from '@/assets/game/projectiles/projectile-left.png'
+import projectilePlayer from '@/assets/game/projectiles/projectile-right.png'
 
 // NPC configuration - same as MainScene but we'll filter for battle
 const NPC_CONFIGS: NPCConfig[] = [
@@ -85,6 +87,8 @@ export default class BattleScene extends Phaser.Scene {
     this.load.image('stand', stand)
     this.load.image('statue', statue)
     this.load.image('ship', ship)
+    this.load.image('projectilePlayer', projectilePlayer)
+    this.load.image('projectileNpc', projectileNpc)
 
     this.load.atlas('blacksmith', blacksmithPng, blacksmithAtlas)
     this.load.animation('blacksmith_anim', blacksmithAnimation)
@@ -128,6 +132,7 @@ export default class BattleScene extends Phaser.Scene {
 
     const playerX = 600
     const playerY = 370
+    const npcY = playerY - 10
     const npcX = playerX + 250
     
     const npcConfig = NPC_CONFIGS.find(config => config.texture === this.npcType)
@@ -156,11 +161,11 @@ export default class BattleScene extends Phaser.Scene {
     this.player.setFixedRotation()
     this.player.setDepth(10)
     
-    this.npcSprite = this.matter.add.sprite(npcX, playerY, this.npcType)
+    this.npcSprite = this.matter.add.sprite(npcX, npcY, this.npcType)
     this.npcSprite.setDepth(10)
     this.npcSprite.setFlipX(true)
     const { Body, Bodies } = Phaser.Physics.Matter.Matter
-    const npcBody = Bodies.circle(npcX, playerY, 12, {
+    const npcBody = Bodies.circle(npcX, npcY, 12, {
       isSensor: false,
       label: 'npcCollider',
     })
@@ -278,8 +283,8 @@ export default class BattleScene extends Phaser.Scene {
       damage: 10,
       isPlayerProjectile: true,
     })
-    
-    projectile.setTint(0x00ff00)
+
+    projectile.setTexture('projectilePlayer')
     projectile.setDepth(50)
     projectile.setVisible(true)
     projectile.setActive(true)
@@ -307,8 +312,7 @@ export default class BattleScene extends Phaser.Scene {
       damage: scaledDamage,
       isPlayerProjectile: false,
     })
-    
-    projectile.setTint(0xff0000)
+    projectile.setTexture('projectileNpc')
     projectile.setDepth(50)
     projectile.setVisible(true)
     projectile.setActive(true)
@@ -372,13 +376,7 @@ export default class BattleScene extends Phaser.Scene {
     
     const armor = playerStatsStore.armorValue
     const baseDamage = projectile.damage
-    // Improved armor formula with better diminishing returns
-    // At 0 armor: 0% reduction
-    // At 15 armor: ~13% reduction
-    // At 30 armor: ~23% reduction
-    // At 45 armor: ~31% reduction
-    // At 60 armor: ~38% reduction
-    // At 75 armor: ~43% reduction (max with 5 artifacts)
+
     const armorReduction = armor / (armor + 120)
     const finalDamage = Math.max(1, Math.floor(baseDamage * (1 - armorReduction)))
     
