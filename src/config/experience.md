@@ -10,13 +10,23 @@ Last 5 years of experience, for more information please check out my [LinkedIn](
 
 _Jobscan_
 
-_Feb 2024 - Present_
+_Feb 2024 - Jul 2025_
 
 _Seattle, WA_
 
-- Led the development of core product features using Vue.js, Vite, and Laravel, enhancing user experience. 
-- Improved product test coverage by implementing Vitest and Playwright, ensuring robust quality assurance. 
-- Demonstrated innovative problem-solving skills, resulting in high-quality solutions for engineering challenges.
+- Shipped core product features end-to-end with Vue.js, Laravel, and AI agentic flows; owned a
+flagship feature as the sole engineer from design through launch
+- Integrated AI into critical workflows using the OpenAI API and in-house models; built
+agentic/tool-calling pipelines that automated key processes and enriched user experience
+- Tracked down and fixed hard-to-reproduce frontend/backend/agentic bugs, improving
+stability and reducing latency (TTFT)
+- Raised quality by introducing Vitest unit tests and Playwright E2E suites, increasing coverage,
+and adding CI gates
+- Streamlined performance across key flows with query tuning, caching, and UI optimizations
+- Partnered with PM/Design/ML/Support and consistently exceeded individual and team KPIs
+for delivery, quality, and reliability
+
+**Skills:** VueJS · Laravel · TypesScript · PHP · Python · Git · Docker
 
 <br/>
 
@@ -28,12 +38,20 @@ _Jan 2019 - Feb 2024_
 
 _Toronto, Canada_
 
-- Teamed on user-centric design strategy in translation of UX and business requirements into coded solutions.
-- Formed a team for a particular project needs, estimated and planned development process close with Product Manager.
-- Coded using Vue.js/React.js to develop features for both mobile and desktop platforms.
-- Transformed native applications designs into desktop and mobile-friendly SPA/SSR products.
-- Produced websites based on Laravel or WordPress compatible with multiple browsers and platforms.
-- Improved tools to boost user interaction and deliver design versatility.
+- Led the frontend team and owned projects end-to-end, from architecture and estimation to
+implementation, QA, and deployment
+- Built responsive, high-performance apps with Vue.js, Nuxt.js (SSR), and Laravel; turned Figma
+designs into reusable component libraries and design systems
+- Served as the primary technical contact for clients; ran discovery, wrote
+requirements/acceptance criteria, and aligned delivery with business goals
+- Drove Agile delivery: Scrum, managed backlog/sprints, and coordinated with design and
+backend to unblock execution
+- Improved delivery speed by ~30% via component reuse, tighter release planning, and CI
+discipline
+- Shipped a range of builds—from small WordPress sites to large-scale social/community
+platforms—meeting accessibility, SEO, and cross-browser standards
+- Raised code quality through reviews, mentoring, and standards for performance,
+accessibility, and testing (component/unit and E2E)
 
 **Skills:** VueJS · Nuxt.js · JavaScript · Tailwind CSS · SCSS · SPA · Laravel · NodeJS · PHP · HTML · HTML5 · Git · WordPress · Linux
 
@@ -47,11 +65,15 @@ _May 2018 - Dec 2018_
 
 _Toronto, Canada_
 
-- Coded using HTML, CSS/SCSS and JavaScript(Vue.js) to develop features for both mobile and desktop platforms.
-- Contributed to projects within Scrum project management environments.
-- Collaborated with stakeholders during development processes to confirm creative proposals and design best practices.
-- Worked cooperatively with client services, sales and design team in deadline-driven environment.
-- Designed and updated layouts to meet usability and performance requirements.
-- Produced websites compatible with multiple browsers.
+- Delivered custom sites/apps across Laravel, WordPress, and OpenCart for clients in diverse
+industries
+- Translated Figma/Sketch designs into responsive, SEO-friendly, WCAG-aware UIs using
+semantic HTML5, SASS, and JavaScript
+- Built a scalable SPA with Vue.js, Nuxt.js, and Electron
+- Collaborated with design/backend on requirements, cross-browser QA, and pixel-accurate
+implementation
+- Strengthened core FE fundamentals and built discipline, contributing to smoother releases
+and fewer regressions
+
 
 **Skills:** VueJS · JavaScript · Tailwind CSS · SCSS · SPA · Laravel · NodeJS · HTML · HTML5 · Git · WordPress · Linux

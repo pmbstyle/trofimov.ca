@@ -2,7 +2,7 @@
 
 <br/>
 
-My primary stack is **Laravel + Vue / React**.
+My primary stack is **Laravel/NodeJs + Vue**.
 
 Using **SCSS, LESS, TailwindCSS, Bootstrap**, etc.
 
@@ -16,11 +16,11 @@ Have a wide experience with many frameworks, libraries and platforms, such as:
 
 Experienced in **Figma, Photoshop, and Gimp**.
 
-Working with **PHP, JavaScript, TypeScript** daily, also familiar with **Python** and **C#**.
+Working with **PHP, JavaScript, TypeScript** daily, also familiar with **Python** and **Go**.
 
-Connecting all of it to **MySQL, MongoDB, SQLite**, etc.
+Connecting all of it to **MySQL, MongoDB, PostgreSQL, SQLite**, etc.
 
-Version control with **Github** and **BitBucket**.
+Version control, CI/CD with **Github** and **BitBucket**.
 
 <br/>
 

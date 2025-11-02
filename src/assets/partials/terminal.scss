@@ -5,6 +5,14 @@
   font-family: 'Fira Code', monospace;
   line-height: 1.5;
   text-align: left;
+  .markdown-content ul {
+    margin-left:0;
+    padding-left:0;
+    li {
+      list-style: none;
+      margin-bottom: 5px;
+    }
+  }
   code {
     &:before,
     &:after {

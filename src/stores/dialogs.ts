@@ -84,7 +84,6 @@ export const useDialogsStore = defineStore('dialogs', () => {
     <p>Email: 📧 <strong> <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></strong>.</p>
     <p>LinkedIn: 💼 <strong><a href="https://www.linkedin.com/in/slava-trofimov-ca">LinkedIn</a></strong>.</p>
     <p>GitHub: 🐱 <strong><a href="https://github.com/pmbstyle">pmbstyle</a></strong>.</p>
-    <p>Facebook: 👤 <strong><a href="https://www.facebook.com/vyacheslav.pmb">Slava Trofimov</a></strong>.</p>
     <p>With these mystical coordinates, you can embark on a quest to connect with Slava, delve deeper into his digital world, and perhaps even forge new alliances in the realms of technology and innovation. May your journey be filled with discovery and camaraderie! 🌐🤝🌟</p>`,
     hello: `<h3 class="font-semibold">Hello!</h3>
     <p>My name is Slava Trofimov and I am a Full Stack Web engineer.</p>

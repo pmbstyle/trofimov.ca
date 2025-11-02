@@ -147,6 +147,24 @@
         background-image: url(../assets/img/alice.png);
       }
     }
+    &.item-gemini {
+      justify-self: flex-end;
+      .icon {
+        background-image: url(../assets/img/gemini.png);
+      }
+    }
+    &.item-openrouter {
+      justify-self: flex-end;
+      .icon {
+        background-image: url(../assets/img/openrouter.png);
+      }
+    }
+    &.item-github {
+      justify-self: flex-end;
+      .icon {
+        background-image: url(../assets/img/github.png);
+      }
+    }
   }
   .side-grid {
     margin-left: auto;
@@ -168,9 +186,11 @@
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      justify-content: center;
-      .desktop-item:last-child {
-        margin-right: 0;
+      width: 265px;
+      flex-wrap: wrap;
+      gap: 20px;
+      .desktop-item {
+        margin: 0;
       }
     }
   }

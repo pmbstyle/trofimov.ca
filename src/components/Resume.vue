@@ -4,99 +4,118 @@ const experience = [
   {
     title: 'Senior Full Stack Engineer',
     company: 'Jobscan - Seattle, WA',
-    date: 'February 2024 to Present',
+    date: 'February 2024 to Jul 2025',
     description: `
-        <p>Led core product features development with Vue.js, Vite, Pinia,
-        TailwindCSS, and Laravel, improving product quality and user experience. 
-        Developed high-quality solutions to product and engineering needs. Boosted product
-        test coverage using Vitest and Playwright. Demonstrated creativity and innovation
-        in solutions to tasks and resolving problems.</p>`,
+    <ul>
+    <li>Shipped core product features end-to-end with Vue.js, Laravel, and AI agentic flows; owned a
+    flagship feature as the sole engineer from design through launch
+    </li>
+    <li>Integrated AI into critical workflows using the OpenAI API and in-house models; built
+    agentic/tool-calling pipelines that automated key processes and enriched user experience
+    </li>
+    <li>Tracked down and fixed hard-to-reproduce frontend/backend/agentic bugs, improving
+    stability and reducing latency (TTFT)
+    </li>
+    <li>Raised quality by introducing Vitest unit tests and Playwright E2E suites, increasing coverage,
+    and adding CI gates
+    </li>
+    <li>Partnered with PM/Design/ML/Support and consistently exceeded individual and team KPIs
+    for delivery, quality, and reliability
+    </li>
+    </ul>`,
   },
   {
     title: 'Senior Front End Developer',
     company: 'Codepxl - Toronto, ON',
     date: 'January 2019 to February 2024',
     description: `
-        <p>Front End and Full Stack development using Vue, Nuxt, Laravel,
-        WordPress, jQuery, and Vanilla Javascript. Styling based on Figma
-        designs with HTML5, CSS3 (SASS), and TailwindCSS/Bootstrap.</p>
-        <p>Single page and Progressive Web Applications development,
-        project planning, structuring, maintaining legacy code, and
-        mentoring.</p>`,
-  },
-  {
-    title: 'Front End Developer',
-    company: 'eQuoto, - Toronto, ON',
-    date: 'November 2018 to November 2019',
-    description: `
-        <p>Worked on a wide variety of marketing websites based on Laravel
-        and WordPress. Used Vue, React, Bootstrap and Tailwindcss.</p>`,
+    <ul>
+    <li>Led the frontend team and owned projects end-to-end, from architecture and estimation to
+    implementation, QA, and deployment</li>
+    <li>Built responsive, high-performance apps with Vue.js, Nuxt.js (SSR), and Laravel; turned Figma
+    designs into reusable component libraries and design systems</li>
+    <li>Served as the primary technical contact for clients; ran discovery, wrote
+    requirements/acceptance criteria, and aligned delivery with business goals</li>
+    <li>Drove Agile delivery: Scrum, managed backlog/sprints, and coordinated with design and
+    backend to unblock execution</li>
+    <li>Improved delivery speed by ~30% via component reuse, tighter release planning, and CI
+    discipline</li>
+    <li>Shipped a range of builds—from small WordPress sites to large-scale social/community
+    platforms—meeting accessibility, SEO, and cross-browser standards</li>
+    <li>Raised code quality through reviews, mentoring, and standards for performance,
+    accessibility, and testing (component/unit and E2E)</li>
+    </ul>`,
   },
   {
     title: 'Front End Developer',
     company: 'EvolutionInDesignZ - Toronto, ON',
     date: 'May 2018 to December 2018',
     description: `
-        <p>Worked on many different custom Laravel, WordPress and
-        Opencart-based real-estate, educational, non-profit, large-data,
-        and thin-client projects. Implemented Figma/Sketch designs into
-        cross- platform accessible and SEO-friendly front-end code using
-        HTML5/SASS, JavaScript, Vue, Laravel blade, jQuery, and Bootstrap.</p>`,
+    <ul>
+    <li>Delivered custom sites/apps across Laravel, WordPress, and OpenCart for clients in diverse
+    industries</li>
+    <li>Translated Figma/Sketch designs into responsive, SEO-friendly, WCAG-aware UIs using
+    semantic HTML5, SASS, and JavaScript</li>
+    <li>Built a scalable SPA with Vue.js, Nuxt.js, and Electron</li>
+    <li>Collaborated with design/backend on requirements, cross-browser QA, and pixel-accurate
+    implementation</li>
+    <li>Strengthened core FE fundamentals and built discipline, contributing to smoother releases
+    and fewer regressions</li>
+    </ul>`,
   },
   {
     title: 'Web Developer',
     company: 'Electrolight Ent. - Toronto, ON',
     date: 'August 2017 to May 2018',
     description: `
-        <p>Developed and maintained custom corporate websites based on
-        WordPress and Opencart using HTML5/CSS3, JavaScript, and
-        jQuery. Integrated third-party APIs, converted mockups into UI, and
-        improved SEO and web accessibility. Implemented content
-        management and security resource tutorials to assist end-user
-        training.</p>`,
+    <ul>
+    <li>Led the development and maintenance of custom corporate websites using WordPress and
+    Opencart</li>
+    <li>Integrated third-party APIs to streamline operations and enhance user experience</li>
+    <li>Developed content management systems and security tutorials, empowering teams with web
+    resource utilization</li>
+    <li>Improved SEO and web accessibility, resulting in increased site traffic and user engagement
+    </li>
+    </ul>`,
   },
   {
     title: 'Front End Developer',
     company: 'iMoan - Moscow',
     date: 'August 2015 to July 2017',
     description: `
-        <p>
-            Worked cooperatively with client services, sales, and design teams
-            in a deadline-driven environment. Developed e-commerce
-            websites based on Opencart and Django framework using
-            HTML5/LESS, jQuery, PHP, and Python.<br/>
-            Designed and built landing pages and corporate resources.<br/>
-            Improved SEO and UI/UX in general.
-        </p>`,
+    <ul>
+    <li>Collaborated with cross-functional teams to ensure project success in a fast-paced
+    environment</li>
+    <li>Developed and launched e-commerce websites using WordPress/Opencart and Django,
+    leveraging HTML5, LESS, jQuery, PHP, and Python</li>
+    <li>Enhanced online presence through impactful landing pages and corporate resources</li>
+    <li>Achieved significant SEO improvements, elevating user experience and engagement</li>
+    </ul>`,
   },
   {
     title: 'Front End Developer / Web Designer',
     company: 'Web Solution Ltd. - Moscow',
     date: 'March 2013 to August 2015',
     description: `
-        <p>Designed and built a wide variety of websites from small
-        WordPress/Joomla-based corporate sites to big e-commerce
-        solutions as Front End and Full Stack developer.<br/>
-        Implemented front-end interfaces using HTML/CSS, jQuery,
-        Bootstrap, and PHP.<br/>
-        Made market research and implemented SEO best practices.
-        Worked closely with end clients to develop modern and productive
-        web applications.</p>`,
+    <ul>
+    <li>Spearheaded the design and development of various websites, enhancing user experience
+    across platforms</li>
+    <li>Implemented front-end interfaces using HTML/CSS, jQuery, Bootstrap, and PHP for seamless
+    functionality</li>
+    <li>Conducted market research and integrated SEO best practices, boosting online visibility and
+    search rankings</li>
+    <li>Fostered strong client relationships, resulting in the successful delivery of modern web
+    applications</li>
+    </ul>`,
   },
 ]
 const profile = [
-  'JavaScript/TypeScript',
-  'JavaScript Frameworks (Vue.js, Nuxt.js), Libraries (React.js, jQuery)',
-  'HTML5 & CSS3, TailwindCSS, POSTCSS, SCSS',
-  'Mobile-first, pixel-perfect styling',
-  'SPA, PWA, SSR development',
-  'CSS Preprocessors (SASS, LESS) and Template Engines (Laravel Blade, PUG)',
-  'RESTful Service and Third-Party API interaction',
-  'Unit Testing (Vitest), Debugging, Application Maintenance',
-  'Desktop App Development (Electron.js)',
-  'Web Accessibility (WCAG) and SEO Best Practices',
-  'Full Stack Development (PHP, Python, Node.js)',
-  'Git/Version Control, Pull Requests, Code Reviews',
+  '<strong>Front-end:</strong> JavaScript (ES6+), TypeScript, Vue 3, Nuxt 3 (SSR/SSG), Pinia, Vite, Vue Router, TailwindCSS, shadcn/ui, SASS/SCSS, React, Electron, SPA/PWA, accessibility (WCAG 2.1)',
+  '<strong>Backend:</strong> PHP (Laravel), Node.js, Python',
+  '<strong>Testing & QA:</strong> Vitest, Playwright, Cypress, CI gates',
+  '<strong>APIs & Data:</strong> REST, GraphQL, MySQL/PostgreSQL, SQLite',
+  '<strong>DevOps:</strong> Docker & Docker Compose, Git/GitHub, GitHub Actions (CI/CD), Nginx',
+  '<strong>AI & Agentic:</strong> OpenAI/Anthropic API, OpenRouter, agent/tool-calling flows, RAG, vector DBs (Pinecone/Chroma/HNSWlib), MCP, LangGraph, CrewAI',
 ]
 const education = [
   {
@@ -138,19 +157,13 @@ const skills = [
     </p>
     <section>
       <p>
-        Expert Full Stack Developer with a focus on Front End Development and
-        AI, skilled in utilizing diverse technologies for sturdy, user-friendly
-        solutions.
+        Full-Stack Engineer focused on front-end (Vue/Nuxt) and AI, with strong back-end in Laravel/PHP,
+        Node.js, and Python. Leads features end-to-end, from architecture to launch, integrating AI (OpenAI
+        API, custom models, and agentic flows), resolving hard production bugs, and enhancing quality with
+        Vitest/Playwright and CI/CD. Proven track record improving performance and exceeding team KPIs
+        for delivery, quality, and reliability
       </p>
-    </section>
-
-    <section>
-      <p class="dashed"><strong>Work Profile</strong></p>
-      <ul class="my-4 py-2">
-        <li v-for="(p, index) in profile" :key="index">
-          {{ p }}
-        </li>
-      </ul>
+      <p v-for="(p, index) in profile" :key="index" v-html="p"></p>
     </section>
 
     <section>
@@ -176,15 +189,6 @@ const skills = [
         <small>{{ e.date }}</small
         ><br />
       </p>
-    </section>
-
-    <section>
-      <p class="dashed"><strong>Technical Profile</strong></p>
-      <ul>
-        <li v-for="(s, index) in skills" :key="index">
-          {{ s }}
-        </li>
-      </ul>
     </section>
 
     <section>

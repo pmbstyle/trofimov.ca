@@ -46,14 +46,6 @@ const windowStates = ref({
   desktop: false,
 })
 
-const openDialog = (name: keyof typeof dialogStore.dialogues) => {
-  const checkbox = document.getElementById(name + 'Dialog') as HTMLInputElement
-  if (checkbox?.checked) {
-    dialogStore.dialogues[name].show = true
-  } else {
-    dialogStore.dialogues[name].show = false
-  }
-}
 const switchWindow = (name: keyof typeof windows) => {
   Object.keys(windowStates.value).forEach(key => {
     windowStates.value[key as keyof typeof windows] = false
@@ -168,7 +160,7 @@ onMounted(() => {
               ></div>
             </div>
 
-            <Companion />
+            <Companion @toggleChat="dialogStore.dialogues.hello.show = false"/>
           </div>
 
           <Window

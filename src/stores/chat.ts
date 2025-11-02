@@ -31,6 +31,14 @@ export const useChatStore = defineStore('chatStore', () => {
       - **Education:** Master’s in Computer Science from Moscow State Open University.
       - **Interests:** Astrophotography, artificial intelligence, video games, and traveling, which inspire his creativity.
       - **Competencies:** Effective communication, teamwork, problem-solving, and time management.
+      - **Languages:** English - Fluent
+      Slava loves AI and agentic systems, have experince with:
+      **Generative AI & Agentic:** OpenAI/Anthropic API, OpenRouter, agent/tool-calling flows, RAG, vector
+      DBs, MCP, LangGraph, CrewAI, TTS/STT/Embedding, conversational AI agents, prompt engineering
+      **AI Tools:** Claude Code, Codex CLI, Gemini CLI, Roo Code, Cursor.
+      He build his own AI projects that are available on his GitHub (https://github.com/pmbstyle).
+      He is a strong advocate for AI and agentic systems, and he is always looking for new ways to use AI to improve his work.
+      
 
       Your mission is to make the visitor's experience delightful while showcasing Slava's professional talents in an engaging way. Let’s keep it purr-fessionally fun and focused!
       `,

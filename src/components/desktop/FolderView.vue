@@ -11,6 +11,31 @@ const projects = [
     url: 'https://github.com/pmbstyle/Alice',
     iconClass: 'item-alice',
   },
+  {
+    name: 'Gemini Browser Agent',
+    url: 'https://github.com/pmbstyle/gemini-browser-agent',
+    iconClass: 'item-gemini',
+  },
+  {
+    name: 'OpenRouter LLM Proxy Service',
+    url: 'https://github.com/pmbstyle/openrouter-proxy',
+    iconClass: 'item-openrouter',
+  },
+  {
+    name: 'BootVue',
+    url: 'https://github.com/pmbstyle/BootVue',
+    iconClass: 'item-github',
+  },
+  {
+    name: 'Temporal Awareness MCP Server',
+    url: 'https://github.com/pmbstyle/temporal-awareness-mcp',
+    iconClass: 'item-github',
+  },
+  {
+    name: 'OntarioDoctor (PoC)',
+    url: 'https://github.com/pmbstyle/OntarioDoctor',
+    iconClass: 'item-github',
+  },
 ]
 
 const handleOpenUrl = (url: string) => {

@@ -13,9 +13,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, defineEmits } from 'vue'
 import Char from './Char.vue'
 import Chat from './Chat.vue'
+
+const emit = defineEmits(['toggleChat'])
 
 const state = ref<'Idle' | 'Run' | 'Jump' | 'Sit' | 'Sleep'>('Idle')
 const direction = ref<'left' | 'right'>('right')
@@ -131,6 +133,7 @@ const stopAnimation = () => {
 }
 
 const toggleChat = () => {
+  emit('toggleChat')
   showChat.value = !showChat.value
   if (timeoutIds.length) {
     stopAnimation()
