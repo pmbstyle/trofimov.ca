@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Clock from '@/components/Clock.vue'
-import Slava from '@/assets/img/slava.png'
+import Slava from '@/assets/img/avatar.jpg'
 
 defineProps<{
   currentWindow: string
@@ -11,7 +11,7 @@ defineProps<{
   <div
     class="top-menu glass absolute h-8 w-full bg-slate-100/50 pl-5 pr-5 flex z-30"
   >
-    <img :src="Slava" class="tux" />
+    <img :src="Slava" class="tux rounded-full" />
     <span class="text-black ml-3 text-sm window-title">{{
       currentWindow
     }}</span>

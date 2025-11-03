@@ -22,7 +22,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   scarecrow: {
     id: 'art_scarecrow',
     name: 'Scythe of Swiftness',
-    description: 'Harvested from fields of experience, this artifact increases your attack speed by 20%, allowing you to strike faster.',
+    description: 'Harvested from fields of experience, this artifact increases your <strong>attack speed by 20%</strong>, allowing you to strike faster.',
     statType: 'attackSpeed',
     bonus: 1.2,
     npcSource: 'scarecrow',
@@ -32,7 +32,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   mailbox: {
     id: 'art_mailbox',
     name: 'Mail of Protection',
-    description: 'Delivered from distant contacts, this artifact increases your armor by 15, reducing incoming damage.',
+    description: 'Delivered from distant contacts, this artifact increases your <strong>armor by 15</strong>, reducing incoming damage.',
     statType: 'armor',
     bonus: 15,
     npcSource: 'mailbox',
@@ -42,7 +42,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   stand: {
     id: 'art_stand',
     name: 'Book of Agility',
-    description: 'Learned from ancient knowledge, this artifact increases your evasion chance by 15%, helping you dodge attacks.',
+    description: 'Learned from ancient knowledge, this artifact increases your <strong>evasion chance by 15%</strong>, helping you dodge attacks.',
     statType: 'evasion',
     bonus: 15,
     npcSource: 'stand',
@@ -52,7 +52,7 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   statue: {
     id: 'art_statue',
     name: 'Amulet of Vitality',
-    description: 'Carved from stone of wisdom, this artifact increases your health by 25%, enhancing your endurance.',
+    description: 'Carved from stone of wisdom, this artifact increases your <strong>health by 25%</strong>, enhancing your endurance.',
     statType: 'health',
     bonus: 1.25,
     npcSource: 'statue',
