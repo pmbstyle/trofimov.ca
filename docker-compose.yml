@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nginx:
+    container_name: trofimovca
+    image: nginx:1.13
+    ports:
+      - 8084:80
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+networks:
+  default:
+    external:
+      name: nginxproxymanager_default

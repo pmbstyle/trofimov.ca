@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
@@ -99,6 +99,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const router = useRouter()
+const route = useRoute()
 
 interface BlogPost {
   slug: string
@@ -234,15 +235,31 @@ const loadBlogPosts = async () => {
   }
 }
 
-onMounted(async () => {
-  await loadBlogPosts()
+const loadPostFromRoute = async () => {
+  if (posts.value.length === 0) return
   
-  if (props.initialSlug && posts.value.length > 0) {
-    const post = posts.value.find(p => p.slug === props.initialSlug)
+  const slug = (route.params.slug as string) || props.initialSlug
+  if (slug) {
+    const post = posts.value.find(p => p.slug === slug)
     if (post) {
       await selectPost(post)
+    } else {
+      // If post not found, navigate to blog list
+      selectedPost.value = null
+      router.replace('/blog')
     }
+  } else {
+    selectedPost.value = null
   }
+}
+
+watch(() => route.params.slug, async () => {
+  await loadPostFromRoute()
+}, { immediate: false })
+
+onMounted(async () => {
+  await loadBlogPosts()
+  await loadPostFromRoute()
 })
 </script>
 

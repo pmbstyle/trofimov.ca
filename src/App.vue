@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Terminal from '@/components/Terminal.vue'
 import Game from '@/components/Game.vue'
@@ -86,6 +86,16 @@ const currentWindow = computed(() => {
 const reload = () => {
   window.location.assign(window.location + '?g=true')
 }
+
+watch(() => route.path, (newPath) => {
+  if (newPath.startsWith('/blog') && !windowStates.value.blog) {
+    if (hideWelcome.value) {
+      switchWindow('blog')
+    }
+  } else if (!newPath.startsWith('/blog') && windowStates.value.blog) {
+    switchWindow('desktop')
+  }
+})
 
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search)
