@@ -34,6 +34,8 @@ export default class MainScene extends Phaser.Scene {
   private dialogOpenHandler: EventListener | null = null
   private dialogCloseHandler: EventListener | null = null
   private savedPlayerPosition: { x: number; y: number } | null = null
+  private championCelebrationShown = false
+  private pendingChampionCelebration = false
 
   constructor() {
     super('MainScene')
@@ -77,17 +79,17 @@ export default class MainScene extends Phaser.Scene {
     )
     const water = map.addTilesetImage('[A]Water_pipo', 'water', 32, 32, 0, 0)
     const dirt = map.addTilesetImage('[A]Dirt_pipo', 'dirt', 32, 32, 0, 0)
-    
+
     // Create layers with pixel-perfect rendering
     const layer1 = map.createLayer('Tile Layer 1', tileset, 0, 0)
     const layer2 = map.createLayer('Tile Layer 2', [water, tileset, dirt], 0, 0)
     const layer3 = map.createLayer('Tile Layer 3', [dirt, tileset], 0, 0)
-    
+
     // Ensure layers render at integer positions
     if (layer1) layer1.setPosition(0, 0)
     if (layer2) layer2.setPosition(0, 0)
     if (layer3) layer3.setPosition(0, 0)
-    
+
     if (layer1) {
       layer1.setCollisionByProperty({ collides: true })
       this.matter.world.convertTilemapLayer(layer1)
@@ -100,20 +102,22 @@ export default class MainScene extends Phaser.Scene {
       layer3.setCollisionByProperty({ collides: true })
       this.matter.world.convertTilemapLayer(layer3)
     }
-    
+
     this.matter.add.sprite(300, 350, 'ship').setStatic(true).setSensor(false)
 
     this.initNPC()
     this.initPlayer()
     this.initCamera()
     this.setupEventListeners()
+    const playerStatsStore = usePlayerStatsStore()
+    this.championCelebrationShown = playerStatsStore.championCelebrated
   }
 
   update(): void {
     if (this.player) {
       this.player.update()
       this.updateNPCProximity()
-      
+
       // Update prompt positions to follow NPCs (if camera moves)
       this.npcs.forEach((entity, npcType) => {
         const prompt = this.interactionPrompts.get(npcType)
@@ -129,14 +133,14 @@ export default class MainScene extends Phaser.Scene {
     this.events.on('interactWithNPC', (npcType: NPCType) => {
       this.handleNPCInteraction(npcType)
     })
-    
+
     // Listen for close dialog events
     this.events.on('closeDialog', () => {
       const event = new CustomEvent('gameCloseDialog')
       window.dispatchEvent(event)
       // Note: handleDialogClose() will be called by the window event listener below
     })
-    
+
     // Listen for dialog open/close events from Vue
     this.dialogOpenHandler = ((event: Event) => {
       const customEvent = event as CustomEvent<{ npcType: NPCType }>
@@ -145,25 +149,35 @@ export default class MainScene extends Phaser.Scene {
     this.dialogCloseHandler = (() => {
       this.handleDialogClose()
     }) as EventListener
-    
+
     window.addEventListener('gameDialogOpen', this.dialogOpenHandler)
     window.addEventListener('gameCloseDialog', this.dialogCloseHandler)
-    
+
     // Listen for battle end events to hide bubbles permanently after wins
     window.addEventListener('battleEnd', this.handleBattleEnd as EventListener)
   }
 
   private handleBattleEnd = (event: Event): void => {
-    const customEvent = event as CustomEvent<{ 
-      result: 'win' | 'loss', 
-      npcType: NPCType,
-      artifact?: any,
+    const customEvent = event as CustomEvent<{
+      result: 'win' | 'loss'
+      npcType: NPCType
+      artifact?: any
       alreadyOwned?: boolean
     }>
-    
+
     // If player won and got the artifact, permanently hide the bubble
-    if (customEvent.detail.result === 'win' && customEvent.detail.artifact && !customEvent.detail.alreadyOwned) {
+    if (
+      customEvent.detail.result === 'win' &&
+      customEvent.detail.artifact &&
+      !customEvent.detail.alreadyOwned
+    ) {
       this.hideBubblePermanently(customEvent.detail.npcType)
+      const playerStatsStore = usePlayerStatsStore()
+      const hasAllArtifacts =
+        playerStatsStore.inventory.length >= playerStatsStore.MAX_INVENTORY_SIZE
+      if (hasAllArtifacts && !this.championCelebrationShown) {
+        this.pendingChampionCelebration = true
+      }
     }
   }
 
@@ -184,9 +198,9 @@ export default class MainScene extends Phaser.Scene {
       window.dispatchEvent(event)
       return
     }
-    
+
     this.hideBubble(npcType)
-    
+
     const battleData = {
       npcType,
       playerX: this.player.x,
@@ -209,6 +223,15 @@ export default class MainScene extends Phaser.Scene {
       }
       this.currentDialogNPC = null
     }
+    const playerStatsStore = usePlayerStatsStore()
+    const hasAllArtifacts =
+      playerStatsStore.inventory.length >= playerStatsStore.MAX_INVENTORY_SIZE
+    const shouldCelebrate =
+      (hasAllArtifacts || this.pendingChampionCelebration) &&
+      !this.championCelebrationShown
+    if (shouldCelebrate) {
+      this.triggerChampionCelebration()
+    }
   }
 
   private hideBubble(npcType: NPCType): void {
@@ -226,16 +249,94 @@ export default class MainScene extends Phaser.Scene {
     }
   }
 
+  private triggerChampionCelebration(): void {
+    if (this.championCelebrationShown) return
+    this.pendingChampionCelebration = false
+    this.championCelebrationShown = true
+    const playerStatsStore = usePlayerStatsStore()
+    playerStatsStore.markChampionCelebrated()
+    if (!this.player) return
+
+    this.spawnConfettiBurst(this.player.x - 30, this.player.y - 15, -1)
+    this.spawnConfettiBurst(this.player.x + 30, this.player.y - 15, 1)
+    this.time.addEvent({
+      delay: 450,
+      repeat: 4,
+      callback: () => {
+        this.spawnConfettiBurst(this.player!.x - 30, this.player!.y - 15, -1)
+        this.spawnConfettiBurst(this.player!.x + 30, this.player!.y - 15, 1)
+      },
+    })
+
+    const banner = this.add
+      .text(this.player.x, this.player.y - 110, 'Champion of the Realm!', {
+        fontSize: '14px',
+        fontFamily: 'monospace',
+        color: '#ffe066',
+        stroke: '#512da8',
+        strokeThickness: 4,
+        align: 'center',
+      })
+      .setOrigin(0.5)
+      .setDepth(2100)
+
+    this.tweens.add({
+      targets: banner,
+      scale: { from: 0.8, to: 1.2 },
+      alpha: { from: 1, to: 0 },
+      duration: 3600,
+      ease: 'Sine.easeOut',
+      onComplete: () => banner.destroy(),
+    })
+
+    this.cameras.main.flash(500, 255, 255, 255, false)
+  }
+
+  private spawnConfettiBurst(originX: number, originY: number, direction: 1 | -1) {
+    const colors = [0xffc107, 0xff4081, 0x4dd0e1, 0x8bc34a, 0xffffff]
+    for (let i = 0; i < 18; i++) {
+      const rect = this.add
+        .rectangle(
+          originX,
+          originY,
+          Phaser.Math.Between(4, 8),
+          Phaser.Math.Between(10, 14),
+          Phaser.Utils.Array.GetRandom(colors)
+        )
+        .setDepth(2000)
+      rect.setAngle(Phaser.Math.Between(-20, 20))
+      const offsetX =
+        direction *
+        Phaser.Math.Between(40, 110) *
+        (Math.random() < 0.5 ? -1 : 1)
+      const offsetY = Phaser.Math.Between(-80, -140)
+      this.tweens.add({
+        targets: rect,
+        x: originX + offsetX,
+        y: originY + offsetY,
+        angle: rect.angle + Phaser.Math.Between(-160, 160),
+        alpha: { from: 1, to: 0 },
+        duration: Phaser.Math.Between(1400, 2000),
+        ease: 'Cubic.easeOut',
+        onComplete: () => rect.destroy(),
+      })
+    }
+  }
+
   private updateNPCProximity(): void {
     this.npcs.forEach((entity, npcType) => {
       if (this.player && entity.sprite.body) {
         const playerBody = this.player.body as any
-        const playerSensor = playerBody.parts?.find((part: any) => part.label === 'playerSensor')
+        const playerSensor = playerBody.parts?.find(
+          (part: any) => part.label === 'playerSensor'
+        )
         const npcBody = entity.sprite.body as any
         const sensorLabel = npcType + 'Sensor'
-        const npcSensor = npcBody.parts?.find((part: any) => part.label === sensorLabel)
+        const npcSensor = npcBody.parts?.find(
+          (part: any) => part.label === sensorLabel
+        )
         if (!playerSensor || !npcSensor) return
-        
+
         // Use the same collision check as Player interaction
         const isNear = this.matter.overlap(playerSensor, npcSensor)
         const wasNear = entity.isNearPlayer
@@ -294,9 +395,9 @@ export default class MainScene extends Phaser.Scene {
         .setOrigin(0.5, 0.5)
         .setDepth(1000)
         .setScale(0)
-      
+
       this.interactionPrompts.set(npcType, prompt)
-      
+
       // Animate prompt appearance
       this.tweens.add({
         targets: prompt,
@@ -357,7 +458,7 @@ export default class MainScene extends Phaser.Scene {
     if (tween) {
       tween.stop()
       this.bubbleTweens.delete(npcType)
-      
+
       const entity = this.npcs.get(npcType)
       if (entity && entity.bubble) {
         entity.bubble.setScale(1)
@@ -385,7 +486,7 @@ export default class MainScene extends Phaser.Scene {
     // Use saved position if available (from battle), otherwise use default position
     const playerX = this.savedPlayerPosition?.x ?? 470
     const playerY = this.savedPlayerPosition?.y ?? 370
-    
+
     this.player = new Player({
       scene: this,
       x: playerX,
@@ -411,18 +512,21 @@ export default class MainScene extends Phaser.Scene {
   initNPC(): void {
     const { Body, Bodies } = Phaser.Physics.Matter.Matter
     const playerStatsStore = usePlayerStatsStore()
-    
+
     NPC_CONFIGS.forEach(config => {
       const sprite = this.matter.add.sprite(config.x, config.y, config.texture)
-      
+
       // Check if player already has this NPC's artifact - if so, don't show bubble
       const artifact = playerStatsStore.getArtifactByNPC(config.texture)
-      const hasArtifact = artifact ? playerStatsStore.hasArtifact(artifact.id) : false
-      
+      const hasArtifact = artifact
+        ? playerStatsStore.hasArtifact(artifact.id)
+        : false
+
       // Create bubble sprite
-      const bubbleY = config.texture !== 'stand' && config.texture !== 'statue' 
-        ? config.y - 20 
-        : config.y - 40
+      const bubbleY =
+        config.texture !== 'stand' && config.texture !== 'statue'
+          ? config.y - 20
+          : config.y - 40
       const bubbleSprite = this.matter.add
         .sprite(config.x, bubbleY, 'bubble')
         .setStatic(true)
@@ -448,7 +552,7 @@ export default class MainScene extends Phaser.Scene {
       sprite.setExistingBody(compoundBody)
       sprite.setFixedRotation()
       sprite.body.isStatic = true
-      
+
       if (config.frame) {
         sprite.play(config.frame)
       }
@@ -461,7 +565,7 @@ export default class MainScene extends Phaser.Scene {
         type: config.texture,
       }
       this.npcs.set(config.texture, entity)
-      
+
       // Keep old property access for compatibility during transition
       ;(this as any)[config.texture] = sprite
     })
@@ -475,26 +579,26 @@ export default class MainScene extends Phaser.Scene {
     // Stop all tweens
     this.bubbleTweens.forEach(tween => tween.stop())
     this.bubbleTweens.clear()
-    
+
     // Cleanup interaction prompts
     this.interactionPrompts.forEach(prompt => prompt.destroy())
     this.interactionPrompts.clear()
-    
+
     // Cleanup NPCs
     this.npcs.forEach(entity => {
       entity.sprite.destroy()
       entity.bubble?.destroy()
     })
     this.npcs.clear()
-    
+
     // Cleanup player
     if (this.player) {
       this.player.destroy()
     }
-    
+
     // Remove event listeners
     this.events.removeAllListeners()
-    
+
     // Remove window event listeners
     if (this.dialogOpenHandler) {
       window.removeEventListener('gameDialogOpen', this.dialogOpenHandler)
@@ -504,10 +608,12 @@ export default class MainScene extends Phaser.Scene {
       window.removeEventListener('gameCloseDialog', this.dialogCloseHandler)
       this.dialogCloseHandler = null
     }
-    
-    window.removeEventListener('battleEnd', this.handleBattleEnd as EventListener)
-    
+
+    window.removeEventListener(
+      'battleEnd',
+      this.handleBattleEnd as EventListener
+    )
+
     super.destroy()
   }
 }
-

@@ -53,7 +53,7 @@ const switchWindow = (name: keyof typeof windows) => {
 
   windowStates.value[name] = true
   dialogStore.dialogues.hello.show = false
-  
+
   if (name === 'blog' && !route.path.startsWith('/blog')) {
     router.push('/blog')
   } else if (route.path.startsWith('/blog') && name !== 'blog') {
@@ -87,35 +87,38 @@ const reload = () => {
   window.location.assign(window.location + '?g=true')
 }
 
-watch(() => route.path, (newPath) => {
-  if (newPath.startsWith('/blog') && !windowStates.value.blog) {
-    if (hideWelcome.value) {
-      switchWindow('blog')
+watch(
+  () => route.path,
+  newPath => {
+    if (newPath.startsWith('/blog') && !windowStates.value.blog) {
+      if (hideWelcome.value) {
+        switchWindow('blog')
+      }
+    } else if (!newPath.startsWith('/blog') && windowStates.value.blog) {
+      switchWindow('desktop')
     }
-  } else if (!newPath.startsWith('/blog') && windowStates.value.blog) {
-    switchWindow('desktop')
   }
-})
+)
 
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search)
   const g = urlParams.get('g')
-  
+
   if (g) {
     windowStates.value.desktop = true
     hideWelcome.value = true
     router.replace('/')
   } else {
     const delay = shouldOpenBlog.value ? 500 : 2000
-    
+
     setTimeout(() => {
       hideWelcome.value = true
       windowStates.value.desktop = true
-      
+
       if (!shouldOpenBlog.value) {
         dialogStore.dialogues.hello.show = true
       }
-      
+
       if (shouldOpenBlog.value) {
         setTimeout(() => {
           switchWindow('blog')
@@ -170,7 +173,7 @@ onMounted(() => {
               ></div>
             </div>
 
-            <Companion @toggleChat="dialogStore.dialogues.hello.show = false"/>
+            <Companion @toggleChat="dialogStore.dialogues.hello.show = false" />
           </div>
 
           <Window

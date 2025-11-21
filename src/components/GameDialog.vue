@@ -40,23 +40,27 @@ const handleClose = () => {
   emit('close')
 }
 
-watch(() => props.show, async (newValue, oldValue) => {
-  await nextTick()
-  if (!dialogRef.value) return
-  
-  if (newValue) {
-    // Show with fade-in
-    dialogRef.value.classList.remove('game-dialog--hidden')
-    dialogRef.value.classList.add('game-dialog--visible')
-  } else {
-    // Hide with fade-out
-    dialogRef.value.classList.remove('game-dialog--visible')
-    dialogRef.value.classList.add('game-dialog--hidden')
-  }
-}, { immediate: true })
+watch(
+  () => props.show,
+  async (newValue, oldValue) => {
+    await nextTick()
+    if (!dialogRef.value) return
+
+    if (newValue) {
+      // Show with fade-in
+      dialogRef.value.classList.remove('game-dialog--hidden')
+      dialogRef.value.classList.add('game-dialog--visible')
+    } else {
+      // Hide with fade-out
+      dialogRef.value.classList.remove('game-dialog--visible')
+      dialogRef.value.classList.add('game-dialog--hidden')
+    }
+  },
+  { immediate: true }
+)
 </script>
 <template>
-  <div 
+  <div
     v-if="props.show"
     ref="dialogRef"
     class="game-dialog game-dialog--hidden"

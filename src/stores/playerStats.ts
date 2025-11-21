@@ -12,9 +12,10 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   blacksmith: {
     id: 'art_blacksmith',
     name: 'Anvil of Fortitude',
-    description: 'Forged in the fires of determination, this artifact increases your <strong>health by 25%</strong>, making you more resilient to attacks.',
+    description:
+      'Forged in determination, this artifact increases your <strong>health by 12%</strong>, making you more resilient to attacks without breaking the balance.',
     statType: 'health',
-    bonus: 1.25,
+    bonus: 1.12,
     npcSource: 'blacksmith',
     color: '#8B4513', // Brown/SaddleBrown
     image: AnvilOfFortitude,
@@ -22,9 +23,10 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   scarecrow: {
     id: 'art_scarecrow',
     name: 'Scythe of Swiftness',
-    description: 'Harvested from fields of experience, this artifact increases your <strong>attack speed by 20%</strong>, allowing you to strike faster.',
+    description:
+      'Harvested from fields of experience, this artifact increases your <strong>attack speed by 15%</strong>, allowing you to strike faster without trivializing combat.',
     statType: 'attackSpeed',
-    bonus: 1.2,
+    bonus: 1.15,
     npcSource: 'scarecrow',
     color: '#228B22', // ForestGreen
     image: ScytheOfSwiftness,
@@ -32,9 +34,10 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   mailbox: {
     id: 'art_mailbox',
     name: 'Mail of Protection',
-    description: 'Delivered from distant contacts, this artifact increases your <strong>armor by 15</strong>, reducing incoming damage.',
+    description:
+      'Delivered from distant contacts, this artifact increases your <strong>armor by 8</strong>, softening blows while keeping battles engaging.',
     statType: 'armor',
-    bonus: 15,
+    bonus: 8,
     npcSource: 'mailbox',
     color: '#4169E1', // RoyalBlue
     image: MailOfProtection,
@@ -42,9 +45,10 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   stand: {
     id: 'art_stand',
     name: 'Book of Agility',
-    description: 'Learned from ancient knowledge, this artifact increases your <strong>evasion chance by 15%</strong>, helping you dodge attacks.',
+    description:
+      'Learned from ancient knowledge, this artifact increases your <strong>evasion chance by 10%</strong>, helping you dodge attacks without guaranteeing perfection.',
     statType: 'evasion',
-    bonus: 15,
+    bonus: 10,
     npcSource: 'stand',
     color: '#FFD700', // Gold
     image: ScrollOfAgility,
@@ -52,9 +56,10 @@ export const ARTIFACTS: Record<NPCType, Artifact> = {
   statue: {
     id: 'art_statue',
     name: 'Amulet of Vitality',
-    description: 'Carved from stone of wisdom, this artifact increases your <strong>health by 25%</strong>, enhancing your endurance.',
+    description:
+      'Carved from stone of wisdom, this artifact increases your <strong>health by 12%</strong>, enhancing your endurance while keeping encounters exciting.',
     statType: 'health',
-    bonus: 1.25,
+    bonus: 1.12,
     npcSource: 'statue',
     color: '#9370DB', // MediumPurple
     image: AmuletOfVitality,
@@ -65,7 +70,7 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
   // Base stats
   const baseStats = ref<PlayerStats>({
     baseHealth: 100,
-    baseAttackSpeed: 1.5, // seconds between attacks
+    baseAttackSpeed: 2, // seconds between auto attacks
     baseArmor: 0,
     baseEvasion: 0,
   })
@@ -73,10 +78,11 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
   // Inventory (max 5 artifacts)
   const inventory = ref<Artifact[]>([])
   const MAX_INVENTORY_SIZE = 5
+  const championCelebrated = ref(false)
 
   const stats = computed(() => {
     const stats = { ...baseStats.value }
-    
+
     inventory.value.forEach(artifact => {
       switch (artifact.statType) {
         case 'health':
@@ -93,7 +99,7 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
           break
       }
     })
-    
+
     return stats
   })
 
@@ -103,11 +109,14 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
     healthArtifacts.forEach(artifact => {
       multiplier *= artifact.bonus
     })
-    return multiplier
+    // Cap total health boost to avoid invincibility
+    return Math.min(1.8, multiplier)
   })
 
   const attackSpeedMultiplier = computed(() => {
-    const speedArtifacts = inventory.value.filter(a => a.statType === 'attackSpeed')
+    const speedArtifacts = inventory.value.filter(
+      a => a.statType === 'attackSpeed'
+    )
     let multiplier = 1
     speedArtifacts.forEach(artifact => {
       multiplier /= artifact.bonus
@@ -117,14 +126,23 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
 
   const armorValue = computed(() => {
     const armorArtifacts = inventory.value.filter(a => a.statType === 'armor')
-    return armorArtifacts.reduce((sum, artifact) => sum + artifact.bonus, 0)
+    const totalArmor = armorArtifacts.reduce(
+      (sum, artifact) => sum + artifact.bonus,
+      0
+    )
+    return Math.min(30, totalArmor)
   })
 
   const evasionChance = computed(() => {
-    const evasionArtifacts = inventory.value.filter(a => a.statType === 'evasion')
-    const totalEvasion = evasionArtifacts.reduce((sum, artifact) => sum + artifact.bonus, 0)
-    // Cap evasion at 60% to prevent invincibility
-    return Math.min(60, totalEvasion)
+    const evasionArtifacts = inventory.value.filter(
+      a => a.statType === 'evasion'
+    )
+    const totalEvasion = evasionArtifacts.reduce(
+      (sum, artifact) => sum + artifact.bonus,
+      0
+    )
+    // Cap evasion at 40% to prevent invincibility
+    return Math.min(40, totalEvasion)
   })
 
   const hasArtifact = (artifactId: string) => {
@@ -158,11 +176,16 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
   const resetStats = () => {
     baseStats.value = {
       baseHealth: 100,
-      baseAttackSpeed: 1.5,
+      baseAttackSpeed: 2,
       baseArmor: 0,
       baseEvasion: 0,
     }
     inventory.value = []
+    championCelebrated.value = false
+  }
+
+  const markChampionCelebrated = (value = true) => {
+    championCelebrated.value = value
   }
 
   return {
@@ -179,6 +202,6 @@ export const usePlayerStatsStore = defineStore('playerStats', () => {
     getArtifactByNPC,
     resetStats,
     MAX_INVENTORY_SIZE,
+    markChampionCelebrated,
   }
 })
-

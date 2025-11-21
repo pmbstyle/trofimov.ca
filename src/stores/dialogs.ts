@@ -9,7 +9,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
     <p>In recent quests, he has bound together <strong>OpenAI</strong>, <strong>Anthropic</strong>, and local spellbooks through agentic rituals — LangGraph, CrewAI, RAG, and MCP — breathing cognition into lifeless code.</p>
     <p>Between adventures, Slava roams the wilderness of ideas: gaming realms, distant galaxies, the rhythm of music, and the mysterious frontier of human-machine harmony.</p>
     <p>⚔️ Traveler, should you seek inspiration or wish to trade code-secrets, speak with the NPCs — they guard fragments of his saga.</p>`,
-  
+
     skills: `<p><strong>🎒 Inventory of Skills</strong></p>
     <ul>
       <li><strong>Front-end Arts:</strong> JavaScript/TypeScript, Vue 3, Nuxt 3 (SSR/SSG), React, Pinia, Vite, TailwindCSS, shadcn/ui, SCSS, Electron, browser extensions, accessibility (WCAG 2.1)</li>
@@ -27,7 +27,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
       <li>Local summoning via Ollama + Groq + LM Studio integrations</li>
     </ul>
     <p><em>All these artifacts are maintained, polished, and occasionally enchanted under moonlight.</em></p>`,
-  
+
     experience: `<p><strong>📖 Chronicle of Adventures</strong></p>
     <p><strong>Senior Full Stack Engineer</strong><br/>
     Jobscan — Seattle, United States (Remote)<br/><i>Feb 2024 – Jul 2025</i></p>
@@ -58,19 +58,19 @@ export const useDialogsStore = defineStore('dialogs', () => {
   
     <p><em>Earlier Expeditions:</em> Electrolight Ent., iMoan, and Web-Solution LTD, lands where he mastered commerce spells, SEO enchantments, and UI rituals.</p>
     <p><strong>Side Quests:</strong> <a href="https://github.com/pmbstyle/Alice" target="_blank">Alice AI Companion</a>, <a href="https://github.com/pmbstyle/gemini-browser-agent" target="_blank">Gemini Browser Agent</a>, <a href="https://github.com/pmbstyle/openrouter-proxy" target="_blank">OpenRouter Proxy</a>, <a href="https://github.com/pmbstyle/BootVue" target="_blank">BootVue CLI</a>, <a href="https://github.com/pmbstyle/temporal-awareness-mcp" target="_blank">Temporal Awareness MCP</a>.</p>`,
-  
+
     education: `<p><strong>🏛 Academy of Knowledge</strong></p>
     <p><strong>Master’s Degree in Computer Science</strong><br/>
     Moscow State Open University (MSOU)<br/><i>2003 – 2008</i></p>
     <p>Where young Slava studied the ancient runes of algorithms and the art of logic before venturing into the professional wilderness.</p>`,
-  
+
     contacts: `<p><strong>📫 Means of Summoning</strong></p>
     <p>Email: <a href="mailto:slava@trofimov.ca">slava@trofimov.ca</a></p>
     <p>LinkedIn: <a href="https://www.linkedin.com/in/slava-trofimov-ca" target="_blank">linkedin.com/in/slava-trofimov-ca</a></p>
     <p>GitHub: <a href="https://github.com/pmbstyle" target="_blank">github.com/pmbstyle</a></p>
     <p>Website: <a href="https://trofimov.ca" target="_blank">trofimov.ca</a></p>
     <p>Should you choose to contact him, send a raven (or, more reliably, an email).</p>`,
-  
+
     hello: `<h3 class="font-semibold">👋 Hello, traveler!</h3>
     <p>I’m <strong>Slava Trofimov</strong> — Full-Stack Web & AI Engineer, explorer of code and consciousness.</p>
     <div style="padding: 10px 0;">
@@ -81,9 +81,8 @@ export const useDialogsStore = defineStore('dialogs', () => {
     <p style="padding-left:10px;"><strong>🐾 Whiskers the Catbot:</strong> Try to catch him for AI-powered tales and answers.</p>
     </div>
     <p>For those curious about the inner workings, you can find the source code for this website on my <a href="https://github.com/pmbstyle" target="_blank">GitHub Profile page.</a></p>
-    <p>May your journey here be bug-free and full of XP. 🌟</p>`
-  };
-  
+    <p>May your journey here be bug-free and full of XP. 🌟</p>`,
+  }
 
   const dialogues = ref({
     blacksmith: {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue'
 import * as Phaser from 'phaser'
 import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin'
 import MainScene from '@/game/MainScene'
@@ -18,32 +18,44 @@ const showLossScreen = ref(false)
 const showBattleUI = ref(false)
 const playerHealth = ref(100)
 const npcHealth = ref(100)
+const playerHealthMax = ref(100)
+const npcHealthMax = ref(100)
 const currentBattleNPC = ref<NPCType | null>(null)
 const showArtifactReward = ref(false)
 const rewardedArtifact = ref<Artifact | null>(null)
 const artifactRewardTimeout = ref<number | null>(null)
 let countdownInterval: number | null = null
 
+const playerHealthPercent = computed(() => {
+  const max = playerHealthMax.value || 1
+  return Math.max(0, Math.min(100, (playerHealth.value / max) * 100))
+})
+
+const npcHealthPercent = computed(() => {
+  const max = npcHealthMax.value || 1
+  return Math.max(0, Math.min(100, (npcHealth.value / max) * 100))
+})
+
 const getOptimalSize = () => {
   if (!gameContainerRef.value) {
     return { width: 768, height: 500 }
   }
-  
+
   const rect = gameContainerRef.value.getBoundingClientRect()
   const containerWidth = rect.width || 768
   const containerHeight = rect.height || 500
-  
+
   // Maintain 16:10 aspect ratio (768:480, but use 768:500 for better fit)
   const aspectRatio = 768 / 500
   let width = containerWidth
   let height = width / aspectRatio
-  
+
   // If height is too large, constrain by height instead
   if (height > containerHeight) {
     height = containerHeight
     width = height * aspectRatio
   }
-  
+
   return {
     width: Math.floor(width),
     height: Math.floor(height),
@@ -94,65 +106,86 @@ const handleResize = () => {
 
 let lastInteractionTime = 0
 let lastInteractionNPC: NPCType | null = null
-let dialogJustOpened: { npcType: NPCType, time: number } | null = null
+let dialogJustOpened: { npcType: NPCType; time: number } | null = null
 const INTERACTION_DEBOUNCE_MS = 300 // Prevent rapid duplicate interactions
 const DIALOG_OPENED_PROTECTION_MS = 500 // Prevent closing dialog that was just opened programmatically
 
 const handleNPCInteraction = async (evt: Event) => {
   const customEvent = evt as CustomEvent<{ npcType: NPCType }>
   const npcType = customEvent.detail.npcType
-  
+
   // Debounce rapid duplicate interactions for the same NPC
   const now = Date.now()
-  const isDuplicate = npcType === lastInteractionNPC && 
-                      now - lastInteractionTime < INTERACTION_DEBOUNCE_MS
-  
+  const isDuplicate =
+    npcType === lastInteractionNPC &&
+    now - lastInteractionTime < INTERACTION_DEBOUNCE_MS
+
   if (isDuplicate) {
     return
   }
-  
+
   // Check if this dialog was just opened programmatically (e.g., after artifact reward)
-  if (dialogJustOpened && 
-      dialogJustOpened.npcType === npcType && 
-      now - dialogJustOpened.time < DIALOG_OPENED_PROTECTION_MS) {
+  if (
+    dialogJustOpened &&
+    dialogJustOpened.npcType === npcType &&
+    now - dialogJustOpened.time < DIALOG_OPENED_PROTECTION_MS
+  ) {
     return
   }
-  
+
   lastInteractionTime = now
   lastInteractionNPC = npcType
-  
+
   // Wait for Vue reactivity to update before checking state
   await nextTick()
-  
+
   const dialogKey = npcType as keyof typeof dialogStore.dialogues
   const isOpen = dialogStore.dialogues[dialogKey].show
-  
+
   // Check if this dialog is already open - if so, close it
   if (isOpen) {
     handleCloseDialog()
     return
   }
-  
+
   openWinDialog(npcType as NPCType)
 }
 
 const handleCloseDialog = () => {
   // Close all dialogs
   Object.keys(dialogStore.dialogues).forEach(key => {
-    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
+    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show =
+      false
   })
 }
 
 const handleBattleStart = (evt: Event) => {
-  const customEvent = evt as CustomEvent<{ npcType: NPCType }>
+  const customEvent = evt as CustomEvent<{
+    npcType: NPCType
+    playerMaxHealth?: number
+    npcMaxHealth?: number
+  }>
   currentBattleNPC.value = customEvent.detail.npcType
   showBattleUI.value = true
-  playerHealth.value = 100
-  npcHealth.value = 100
+  playerHealthMax.value = customEvent.detail.playerMaxHealth ?? 100
+  npcHealthMax.value = customEvent.detail.npcMaxHealth ?? 100
+  playerHealth.value = playerHealthMax.value
+  npcHealth.value = npcHealthMax.value
 }
 
 const handleBattleHealth = (evt: Event) => {
-  const customEvent = evt as CustomEvent<{ playerHealth: number, npcHealth: number }>
+  const customEvent = evt as CustomEvent<{
+    playerHealth: number
+    npcHealth: number
+    playerMaxHealth?: number
+    npcMaxHealth?: number
+  }>
+  if (typeof customEvent.detail.playerMaxHealth === 'number') {
+    playerHealthMax.value = customEvent.detail.playerMaxHealth
+  }
+  if (typeof customEvent.detail.npcMaxHealth === 'number') {
+    npcHealthMax.value = customEvent.detail.npcMaxHealth
+  }
   playerHealth.value = customEvent.detail.playerHealth
   npcHealth.value = customEvent.detail.npcHealth
 }
@@ -161,7 +194,7 @@ const winNPCType = ref<NPCType | null>(null)
 
 const getNPCDisplayName = (npcType: NPCType | null): string => {
   if (!npcType) return 'NPC'
-  
+
   const npcNames: Record<NPCType, string> = {
     blacksmith: 'Blacksmith',
     scarecrow: 'Scarecrow',
@@ -169,24 +202,24 @@ const getNPCDisplayName = (npcType: NPCType | null): string => {
     stand: 'Bulletin Board',
     statue: 'Statue',
   }
-  
+
   return npcNames[npcType] || 'NPC'
 }
 
 const handleBattleEnd = (evt: Event) => {
   showBattleUI.value = false
   currentBattleNPC.value = null
-  const customEvent = evt as CustomEvent<{ 
-    result: 'win' | 'loss', 
-    npcType: NPCType,
-    artifact?: Artifact | null,
+  const customEvent = evt as CustomEvent<{
+    result: 'win' | 'loss'
+    npcType: NPCType
+    artifact?: Artifact | null
     alreadyOwned?: boolean
   }>
   const { result, npcType, artifact, alreadyOwned } = customEvent.detail
-  
+
   if (result === 'win') {
     winNPCType.value = npcType
-    
+
     if (artifact && !alreadyOwned) {
       rewardedArtifact.value = artifact
       showArtifactReward.value = true
@@ -200,21 +233,26 @@ const handleBattleEnd = (evt: Event) => {
 }
 
 const openWinDialog = (npcType: NPCType, isProgrammatic = false) => {
-  const dialogTypeMap: Record<NPCType, 'skills' | 'experience' | 'contacts' | 'education' | 'about'> = {
+  const dialogTypeMap: Record<
+    NPCType,
+    'skills' | 'experience' | 'contacts' | 'education' | 'about'
+  > = {
     blacksmith: 'skills',
     scarecrow: 'experience',
     mailbox: 'contacts',
     stand: 'education',
     statue: 'about',
   }
-  
+
   const dialogName = npcType
   Object.keys(dialogStore.dialogues).forEach(key => {
-    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show = false
+    dialogStore.dialogues[key as keyof typeof dialogStore.dialogues].show =
+      false
   })
-  
-  dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show = true
-  
+
+  dialogStore.dialogues[dialogName as keyof typeof dialogStore.dialogues].show =
+    true
+
   // Track if dialog was opened programmatically to prevent immediate closing
   if (isProgrammatic) {
     dialogJustOpened = { npcType, time: Date.now() }
@@ -224,7 +262,7 @@ const openWinDialog = (npcType: NPCType, isProgrammatic = false) => {
 const closeArtifactReward = () => {
   showArtifactReward.value = false
   rewardedArtifact.value = null
-  
+
   if (winNPCType.value) {
     openWinDialog(winNPCType.value, true)
     winNPCType.value = null
@@ -240,13 +278,13 @@ const handleKeyPress = (event: KeyboardEvent) => {
 
 onMounted(async () => {
   await nextTick()
-  
+
   // Wait for DOM element to be available
   if (!gameContainerRef.value) {
     console.error('Game container element not found')
     return
   }
-  
+
   // Update config based on container size
   const size = getOptimalSize()
   config.value.width = size.width
@@ -255,34 +293,39 @@ onMounted(async () => {
     config.value.scale.width = size.width
     config.value.scale.height = size.height
   }
-  
+
   // Set parent to the actual DOM element
   config.value.parent = gameContainerRef.value
-  
+
   // Create game instance
   try {
-    gameInstance.value = new Phaser.Game(config.value as Phaser.Types.Core.GameConfig)
+    gameInstance.value = new Phaser.Game(
+      config.value as Phaser.Types.Core.GameConfig
+    )
   } catch (error) {
     console.error('Failed to initialize Phaser game:', error)
   }
-  
+
   // Listen for NPC interaction events
-  window.addEventListener('gameNPCInteract', handleNPCInteraction as EventListener)
-  
+  window.addEventListener(
+    'gameNPCInteract',
+    handleNPCInteraction as EventListener
+  )
+
   // Listen for close dialog events
   window.addEventListener('gameCloseDialog', handleCloseDialog)
-  
+
   // Listen for battle events
   window.addEventListener('battleStart', handleBattleStart as EventListener)
   window.addEventListener('battleHealth', handleBattleHealth as EventListener)
   window.addEventListener('battleEnd', handleBattleEnd as EventListener)
-  
+
   // Listen for window resize
   window.addEventListener('resize', handleResize)
-  
+
   // Listen for keyboard events to close artifact popup
   window.addEventListener('keydown', handleKeyPress)
-  
+
   // Start countdown timer for instructions
   countdownInterval = window.setInterval(() => {
     dismissCountdown.value--
@@ -310,22 +353,28 @@ onBeforeUnmount(() => {
     clearInterval(countdownInterval)
     countdownInterval = null
   }
-  
+
   // Clear artifact reward timeout
   if (artifactRewardTimeout.value) {
     clearTimeout(artifactRewardTimeout.value)
     artifactRewardTimeout.value = null
   }
-  
+
   // Remove event listeners
-  window.removeEventListener('gameNPCInteract', handleNPCInteraction as EventListener)
+  window.removeEventListener(
+    'gameNPCInteract',
+    handleNPCInteraction as EventListener
+  )
   window.removeEventListener('gameCloseDialog', handleCloseDialog)
   window.removeEventListener('battleStart', handleBattleStart as EventListener)
-  window.removeEventListener('battleHealth', handleBattleHealth as EventListener)
+  window.removeEventListener(
+    'battleHealth',
+    handleBattleHealth as EventListener
+  )
   window.removeEventListener('battleEnd', handleBattleEnd as EventListener)
   window.removeEventListener('resize', handleResize)
   window.removeEventListener('keydown', handleKeyPress)
-  
+
   // Destroy game instance to prevent memory leaks
   if (gameInstance.value) {
     gameInstance.value.destroy(true)
@@ -335,9 +384,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="game" ref="gameContainerRef" class="game w-full overflow-hidden relative">
-    <div 
-      v-if="showInstructions" 
+  <div
+    id="game"
+    ref="gameContainerRef"
+    class="game w-full overflow-hidden relative"
+  >
+    <div
+      v-if="showInstructions"
       class="game-instructions-overlay"
       @click="closeInstructions"
     >
@@ -368,33 +421,32 @@ onBeforeUnmount(() => {
         </p>
       </div>
     </div>
-    <div 
-      v-if="showBattleUI" 
-      class="game-battle-ui"
-    >
+    <div v-if="showBattleUI" class="game-battle-ui">
       <div class="game-health-bars">
         <div class="game-health-bar-container">
           <div class="game-health-bar-label">Player</div>
           <div class="game-health-bar-bg">
-            <div 
-              class="game-health-bar-fill game-health-bar-player" 
-              :style="{ width: `${playerHealth}%` }"
+            <div
+              class="game-health-bar-fill game-health-bar-player"
+              :style="{ width: `${playerHealthPercent}%` }"
             ></div>
           </div>
         </div>
         <div class="game-health-bar-container">
-          <div class="game-health-bar-label">{{ getNPCDisplayName(currentBattleNPC) }}</div>
+          <div class="game-health-bar-label">
+            {{ getNPCDisplayName(currentBattleNPC) }}
+          </div>
           <div class="game-health-bar-bg">
-            <div 
-              class="game-health-bar-fill game-health-bar-npc" 
-              :style="{ width: `${npcHealth}%` }"
+            <div
+              class="game-health-bar-fill game-health-bar-npc"
+              :style="{ width: `${npcHealthPercent}%` }"
             ></div>
           </div>
         </div>
       </div>
     </div>
-    <div 
-      v-if="showLossScreen" 
+    <div
+      v-if="showLossScreen"
       class="game-loss-overlay"
       @click="showLossScreen = false"
     >
@@ -404,57 +456,61 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <!-- Artifact Reward UI -->
-    <div 
+    <div
       v-if="showArtifactReward && rewardedArtifact"
       class="game-artifact-reward-overlay"
       @click="closeArtifactReward"
     >
       <div class="game-artifact-reward-content">
         <div class="game-artifact-reward-icon">
-          <div 
+          <div
             class="game-artifact-box"
             :style="{ backgroundColor: rewardedArtifact.color }"
           >
-            <img 
-              v-if="rewardedArtifact.image" 
-              :src="rewardedArtifact.image" 
+            <img
+              v-if="rewardedArtifact.image"
+              :src="rewardedArtifact.image"
               :alt="rewardedArtifact.name"
             />
           </div>
         </div>
         <h2>Artifact Obtained!</h2>
         <h3 class="game-artifact-name">{{ rewardedArtifact.name }}</h3>
-        <p class="game-artifact-description" v-html="rewardedArtifact.description"></p>
+        <p
+          class="game-artifact-description"
+          v-html="rewardedArtifact.description"
+        ></p>
         <p class="game-artifact-dismiss">Click or press SPACE to continue</p>
       </div>
     </div>
   </div>
   <div class="game-artifact-inventory">
-      <div class="game-artifact-inventory-slots">
-        <div 
-          v-for="(artifact, index) in playerStatsStore.inventory" 
-          :key="artifact.id"
-          class="game-artifact-slot"
-          :title="`${artifact.name}: ${artifact.description}`"
+    <div class="game-artifact-inventory-slots">
+      <div
+        v-for="(artifact, index) in playerStatsStore.inventory"
+        :key="artifact.id"
+        class="game-artifact-slot"
+        :title="`${artifact.name}: ${artifact.description}`"
+      >
+        <div
+          class="game-artifact-box"
+          :style="{ backgroundColor: artifact.color }"
         >
-          <div 
-            class="game-artifact-box"
-            :style="{ backgroundColor: artifact.color }"
-          >
-            <img 
-              v-if="artifact.image" 
-              :src="artifact.image" 
-              :alt="artifact.name"
-            />
-          </div>
+          <img
+            v-if="artifact.image"
+            :src="artifact.image"
+            :alt="artifact.name"
+          />
         </div>
-        <div 
-          v-for="n in playerStatsStore.MAX_INVENTORY_SIZE - playerStatsStore.inventory.length"
-          :key="`empty-${n}`"
-          class="game-artifact-slot game-artifact-slot--empty"
-        >
-          <div class="game-artifact-box-empty"></div>
-        </div>
+      </div>
+      <div
+        v-for="n in playerStatsStore.MAX_INVENTORY_SIZE -
+        playerStatsStore.inventory.length"
+        :key="`empty-${n}`"
+        class="game-artifact-slot game-artifact-slot--empty"
+      >
+        <div class="game-artifact-box-empty"></div>
+      </div>
     </div>
   </div>
 </template>

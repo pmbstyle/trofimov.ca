@@ -1,6 +1,11 @@
 import * as Phaser from 'phaser'
 
-export type NPCType = 'blacksmith' | 'scarecrow' | 'mailbox' | 'stand' | 'statue'
+export type NPCType =
+  | 'blacksmith'
+  | 'scarecrow'
+  | 'mailbox'
+  | 'stand'
+  | 'statue'
 
 export type StatType = 'health' | 'attackSpeed' | 'armor' | 'evasion'
 
@@ -65,4 +70,3 @@ export interface ArtifactReward {
   artifact: Artifact
   show: boolean
 }
-

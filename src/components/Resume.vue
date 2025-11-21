@@ -157,11 +157,13 @@ const skills = [
     </p>
     <section>
       <p>
-        Full-Stack Engineer focused on front-end (Vue/Nuxt) and AI, with strong back-end in Laravel/PHP,
-        Node.js, and Python. Leads features end-to-end, from architecture to launch, integrating AI (OpenAI
-        API, custom models, and agentic flows), resolving hard production bugs, and enhancing quality with
-        Vitest/Playwright and CI/CD. Proven track record improving performance and exceeding team KPIs
-        for delivery, quality, and reliability
+        Full-Stack Engineer focused on front-end (Vue/Nuxt) and AI, with strong
+        back-end in Laravel/PHP, Node.js, and Python. Leads features end-to-end,
+        from architecture to launch, integrating AI (OpenAI API, custom models,
+        and agentic flows), resolving hard production bugs, and enhancing
+        quality with Vitest/Playwright and CI/CD. Proven track record improving
+        performance and exceeding team KPIs for delivery, quality, and
+        reliability
       </p>
       <p v-for="(p, index) in profile" :key="index" v-html="p"></p>
     </section>

@@ -80,30 +80,43 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     // Check if SPACE is pressed
     if (Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
       // First, check if player is near any NPC
-      const npcs: NPCType[] = ['blacksmith', 'scarecrow', 'mailbox', 'stand', 'statue']
+      const npcs: NPCType[] = [
+        'blacksmith',
+        'scarecrow',
+        'mailbox',
+        'stand',
+        'statue',
+      ]
       const playerSensor = this.body.parts[1]
       let nearNPC: NPCType | null = null
-      
+
       if (playerSensor) {
         npcs.forEach(npc => {
           // Get NPC sprite from scene (MainScene stores it as a property for compatibility)
-          const npcSprite = (this.scene as any)[npc] as Phaser.Physics.Matter.Sprite
+          const npcSprite = (this.scene as any)[
+            npc
+          ] as Phaser.Physics.Matter.Sprite
           if (!npcSprite || !npcSprite.body) return
 
           // Find the NPC sensor by label (more reliable than array index)
           const npcBody = npcSprite.body as any
           const sensorLabel = npc + 'Sensor'
-          const npcSensor = npcBody.parts?.find((part: any) => part.label === sensorLabel)
+          const npcSensor = npcBody.parts?.find(
+            (part: any) => part.label === sensorLabel
+          )
           if (!npcSensor) return
-          
+
           // Check collision between player sensor and NPC sensor
-          const npcCollision = this.scene.matter.overlap(playerSensor, npcSensor)
+          const npcCollision = this.scene.matter.overlap(
+            playerSensor,
+            npcSensor
+          )
           if (npcCollision) {
             nearNPC = npc
           }
         })
       }
-      
+
       // If near an NPC, interact with it (which will toggle dialog)
       // If not near any NPC, close any open dialog
       if (nearNPC) {
@@ -122,4 +135,3 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     super.destroy()
   }
 }
-

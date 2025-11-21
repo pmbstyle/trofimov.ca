@@ -10,10 +10,10 @@ export default class Projectile extends Phaser.Physics.Matter.Sprite {
     super(scene.matter.world, x, y, 'projectile')
     this.scene = scene
     this.scene.add.existing(this)
-    
+
     this.damage = damage
     this.isPlayerProjectile = isPlayerProjectile
-    
+
     // Create simple circular body for projectile - smaller collision radius
     const { Bodies } = Phaser.Physics.Matter.Matter
     const body = Bodies.circle(x, y, 6, {
@@ -27,12 +27,12 @@ export default class Projectile extends Phaser.Physics.Matter.Sprite {
     this.setExistingBody(body)
     this.setScale(1)
     this.setDisplaySize(16, 16)
-    
+
     // Ensure body is not static
     if (this.body) {
-      (this.body as any).isStatic = false
+      ;(this.body as any).isStatic = false
     }
-    
+
     // Set velocity using both Phaser and Matter.js methods
     const Matter = Phaser.Physics.Matter.Matter
     if (this.body) {
@@ -46,11 +46,11 @@ export default class Projectile extends Phaser.Physics.Matter.Sprite {
       this.setVelocityX(velocityX)
       this.setVelocityY(0)
     }
-    
+
     // Store start position
     ;(this as any).startX = x
     ;(this as any).startY = y
-    
+
     // Start bounds checking immediately - but with generous padding
     this.scene.events.on('update', this.checkBounds, this)
   }
@@ -68,12 +68,12 @@ export default class Projectile extends Phaser.Physics.Matter.Sprite {
 
   private checkBounds(): void {
     if (!this.active || !this.body) return
-    
+
     // Maintain velocity (sometimes Matter.js clears it)
     const Matter = Phaser.Physics.Matter.Matter
     const currentVelocity = Matter.Body.getVelocity(this.body)
     const targetVelocityX = this.isPlayerProjectile ? 8 : -8
-    
+
     // Re-apply velocity if it's not moving - use both methods
     if (Math.abs(currentVelocity.x) < 0.1) {
       Matter.Body.setVelocity(this.body, { x: targetVelocityX, y: 0 })
@@ -84,26 +84,26 @@ export default class Projectile extends Phaser.Physics.Matter.Sprite {
       this.setVelocityX(currentVelocity.x)
       this.setVelocityY(currentVelocity.y)
     }
-    
+
     // Destroy if projectile has traveled beyond reasonable distance
     const startX = (this as any).startX
     if (startX) {
       const distanceTraveled = Math.abs(this.x - startX)
-      
+
       // If projectile has traveled more than 500 pixels, destroy it
       if (distanceTraveled > 500) {
         this.destroy()
         return
       }
     }
-    
+
     // Fallback: check if way off screen
     const camera = this.scene.cameras.main
     const scrollX = camera.scrollX
     const scrollY = camera.scrollY
     const cameraWidth = camera.width / camera.zoom
     const cameraHeight = camera.height / camera.zoom
-    
+
     // Check if way outside camera view (with 1000px padding)
     if (
       this.x < scrollX - 1000 ||

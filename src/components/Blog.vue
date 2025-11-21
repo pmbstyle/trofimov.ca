@@ -6,9 +6,7 @@
           Blog
           <span>({{ sortedPosts.length }} posts)</span>
         </h1>
-        <p>
-          Thoughts, tutorials, and insights on web development
-        </p>
+        <p>Thoughts, tutorials, and insights on web development</p>
 
         <section v-if="loading">
           <p>Loading blog posts...</p>
@@ -95,7 +93,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  initialSlug: undefined
+  initialSlug: undefined,
 })
 
 const router = useRouter()
@@ -135,12 +133,12 @@ const formatDate = (dateString: string) => {
 const selectPost = async (post: BlogPost) => {
   const processedPost = {
     ...post,
-    content: removeDuplicateHeader(post.content)
+    content: removeDuplicateHeader(post.content),
   }
-  
+
   selectedPost.value = processedPost
   router.push(`/blog/${post.slug}`)
-  
+
   await nextTick()
   highlightCodeBlocks()
 }
@@ -156,21 +154,21 @@ const removeDuplicateHeader = (content: string) => {
 
 const highlightCodeBlocks = () => {
   const preBlocks = document.querySelectorAll('.blog-content pre')
-  preBlocks.forEach((pre) => {
+  preBlocks.forEach(pre => {
     const code = pre.querySelector('code')
     if (!code) return
-    
+
     const className = code.className
     let language = ''
-    
+
     const langMatch = className.match(/language-(\w+)/)
     if (langMatch) {
       language = langMatch[1]
       pre.setAttribute('data-language', language)
     }
-    
+
     hljs.highlightElement(code as HTMLElement)
-    
+
     if (!pre.querySelector('.copy-button')) {
       addCopyButton(pre as HTMLElement, code.textContent || '')
     }
@@ -182,7 +180,7 @@ const addCopyButton = (pre: HTMLElement, code: string) => {
   button.className = 'copy-button'
   button.innerHTML = '📋'
   button.title = 'Copy code'
-  
+
   button.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(code)
@@ -199,7 +197,7 @@ const addCopyButton = (pre: HTMLElement, code: string) => {
       }, 2000)
     }
   })
-  
+
   pre.appendChild(button)
 }
 
@@ -237,7 +235,7 @@ const loadBlogPosts = async () => {
 
 const loadPostFromRoute = async () => {
   if (posts.value.length === 0) return
-  
+
   const slug = (route.params.slug as string) || props.initialSlug
   if (slug) {
     const post = posts.value.find(p => p.slug === slug)
@@ -253,13 +251,16 @@ const loadPostFromRoute = async () => {
   }
 }
 
-watch(() => route.params.slug, async () => {
-  await loadPostFromRoute()
-}, { immediate: false })
+watch(
+  () => route.params.slug,
+  async () => {
+    await loadPostFromRoute()
+  },
+  { immediate: false }
+)
 
 onMounted(async () => {
   await loadBlogPosts()
   await loadPostFromRoute()
 })
 </script>
-
