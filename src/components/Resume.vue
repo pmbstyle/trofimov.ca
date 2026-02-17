@@ -2,6 +2,12 @@
 import pdf from '@/assets/Slava_Trofimov_Full_Stack_Engineer.pdf'
 const experience = [
   {
+    title: 'AI Engineer',
+    company: 'Loblaw Digital, Toronto, ON',
+    date: 'January 2026 to current',
+    description: `Building AI-powered tools and workflows with the Loblaw Digital team`,
+  },
+  {
     title: 'Senior Full Stack Engineer',
     company: 'Jobscan - Seattle, WA',
     date: 'February 2024 to Jul 2025',

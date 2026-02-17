@@ -6,6 +6,16 @@ Last 5 years of experience, for more information please check out my [LinkedIn](
 
 <br />
 
+**AI Engineer**
+
+_Loblaw Digital_
+
+_Jan 2026 - current_
+
+_Toronto, Canada_
+
+<br />
+
 **Senior Full Stack Engineer**
 
 _Jobscan_
