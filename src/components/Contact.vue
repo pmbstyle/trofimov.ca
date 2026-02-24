@@ -2,6 +2,11 @@
 import { ref } from 'vue'
 import emailjs from '@emailjs/browser'
 
+const editorOptions = {
+  theme: 'snow',
+  placeholder: 'Write your message...',
+}
+
 const error = ref({
   status: false,
   message: '',
@@ -67,8 +72,10 @@ const sendEmail = async () => {
       subject: '',
       text: '',
     }
-  } catch (e) {
-    console.error('FAILED...', e.text)
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : String(e)
+    console.error('FAILED...', errorMessage)
+    error.value.message = 'Failed to send message. Please try again.'
     displayToast('error')
   }
 }
@@ -108,7 +115,7 @@ const sendEmail = async () => {
         id="to"
         name="to"
         value="slava@trofimov.ca"
-        @keyup="handleToChange"
+        readonly
       />
     </div>
     <div class="flex items-center pt-2">
