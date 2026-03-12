@@ -2,30 +2,34 @@
 
 <br/>
 
-My primary stack is **Laravel/NodeJs + Vue**.
-
-Using **SCSS, LESS, TailwindCSS, Bootstrap**, etc.
-
-Compiling with **Vite, Webpack** and **Gulp**.
-
-Have a wide experience with many frameworks, libraries and platforms, such as:
-
-**NodeJs, WordPress, Electron, Opencart, jQuery**, etc.
+**AI Systems & LLM Engineering:** LLM APIs (OpenAI, Anthropic, OpenRouter, etc.),
+Agentic architectures & tool-calling systems, RAG pipelines & vector search (Qdrant/Weaviate etc.),
+Structured outputs & schema validation, Prompt engineering & evaluation workflows, Memory
+layers (semantic + canonical), MCP integrations & external tool orchestration, Conversational AI
+systems, TTS / STT / embeddings pipelines
 
 <br/>
 
-Experienced in **Figma, Photoshop, and Gimp**.
-
-Working with **PHP, JavaScript, TypeScript** daily, also familiar with **Python** and **Go**.
-
-Connecting all of it to **MySQL, MongoDB, PostgreSQL, SQLite**, etc.
-
-Version control, CI/CD with **Github** and **BitBucket**.
+**Data & Backend Infrastructure:** Python (FastAPI), Node.js, Laravel, Distributed ingestion pipelines
+(PDF/HTML/Markdown), Chunking, enrichment, indexing workflows, Airflow, REST / GraphQL APIs,
+MySQL, PostgreSQL, MongoDB, SQLite, Docker & containerized services, CI/CD & automated
+validation
 
 <br/>
 
-Task management in **Jira**, **ClickUp**.
+**Agent Frameworks & Orchestration:** LangChain, LangGraph, CrewAI, Custom orchestration layers,
+Async task delegation patterns, Multi-agent workflows
 
-Using **Linux/Mac/Windows** on a daily basis, have **DevOps** and system administration skills.
+<br/>
 
-Communication (English/Russian) in **Slack, Google meet**, etc.
+**Front-end:** JavaScript (ES6+), TypeScript, Vue 3, Nuxt 3 (SSR/SSG), Pinia, Vite, Vue Router, Tailwind
+CSS, shadcn/ui, SASS/SCSS, React, Electron, SPA/PWA, browser extensions, accessibility (WCAG 2.1)
+
+<br/>
+
+**DevOps:** Docker & Docker Compose, Git/GitHub, GitHub Actions (CI/CD), Nginx, Linux
+
+<br/>
+
+**AI Tools:** Cursor, Claude Code, Codex, OpenCode, Gemini CLI, self-made agentic tools (multi-agent
+orchestration)

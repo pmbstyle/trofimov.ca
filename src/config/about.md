@@ -1,12 +1,14 @@
 # About me
 
 <br />
-👋 Hi, I’m Slava Trofimov, a Full-Stack Engineer located in Welland, Ontario.  <br />
+👋 Hi, I’m Slava Trofimov, a Full-Stack AI Engineer located in Welland, Ontario.<br />
 
-I'm focused on front-end (Vue/Nuxt) and AI, with strong back-end in Laravel/PHP,
-Node.js, and Python. Leads features end-to-end, from architecture to launch, integrating AI (OpenAI
-API, custom models, and agentic flows), resolving hard production bugs, and enhancing quality with
-Vitest/Playwright and CI/CD. Proven track record improving performance and exceeding team KPIs
-for delivery, quality, and reliability.
-
-Always seeking skill improvement and better practices.
+AI engineer specializing in production-grade LLM systems, agentic architectures, and intelligent data
+pipelines.Designs scalable ingestion, retrieval, and orchestration layers for enterprise AI
+applications. Experienced in building RAG systems, vector search, tool-calling agents, and
+structured-output workflows.
+Background in full-stack engineering enables end-to-end ownership, from distributed backend
+systems to user-facing AI experiences, with a strong focus on reliability, evaluation, and performance
+in production environments.
+Actively exploring multi-agent architectures and autonomous orchestration systems in independent
+research projects.

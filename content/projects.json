@@ -1,0 +1,81 @@
+[
+  {
+    "slug": "broodmind",
+    "name": "BroodMind",
+    "status": "active",
+    "featured": true,
+    "summary": "A local AI orchestration system built around a Queen + Workers architecture for persistent assistant workflows.",
+    "description": "BroodMind is a local AI orchestration system designed for persistent assistant workflows instead of one-off prompts. It combines memory, planning, worker delegation, policy controls, scheduling, and operations tooling into a self-hosted Queen + Workers runtime.",
+    "stack": ["Local AI", "Multi-agent orchestration", "Memory systems", "Scheduling", "Ops dashboard"],
+    "links": {
+      "repo": "https://github.com/pmbstyle/BroodMind"
+    },
+    "tags": ["ai", "multi-agent", "orchestration", "local-first", "automation"]
+  },
+  {
+    "slug": "alice",
+    "name": "Alice",
+    "status": "active",
+    "featured": true,
+    "summary": "An open-source desktop AI companion with voice interaction, tool use, and strong context awareness.",
+    "description": "Alice is an open-source AI companion designed to feel present, useful, and emotionally engaging on the desktop. It combines voice interaction, intelligent context awareness, powerful tooling, and a companion-style user experience.",
+    "stack": ["Desktop AI", "Voice interaction", "Tooling", "Context awareness", "Assistant UX"],
+    "links": {
+      "repo": "https://github.com/pmbstyle/Alice"
+    },
+    "tags": ["ai", "desktop", "assistant", "voice", "open-source"]
+  },
+  {
+    "slug": "fara-agent",
+    "name": "Fara Browser Automation Agent",
+    "status": "active",
+    "featured": true,
+    "summary": "A 100 percent local browser automation agent optimized for LM Studio inference on consumer hardware.",
+    "description": "Fara Browser Automation Agent is a local browser automation system based on the Microsoft Fara-7B model and optimized for LM Studio. It is designed to run browser automation locally with quantized models and no external dependencies.",
+    "stack": ["Local AI", "Browser automation", "Playwright", "LM Studio", "Quantized models"],
+    "links": {
+      "repo": "https://github.com/pmbstyle/fara-agent"
+    },
+    "tags": ["ai", "browser-automation", "local-first", "playwright", "research"]
+  },
+  {
+    "slug": "gemini-browser-agent",
+    "name": "Gemini Browser Agent",
+    "status": "active",
+    "featured": false,
+    "summary": "A browser automation research project that connects a Chrome extension to Gemini Computer Use capabilities.",
+    "description": "Gemini Browser Agent is a browser automation experiment that bridges a Chrome extension with Google's Gemini Computer Use API. It observes the active tab, exchanges screenshots and events with the model, and performs actions directly in the user's own browser.",
+    "stack": ["Chrome extension", "Gemini API", "Browser automation", "Screenshots", "Research tooling"],
+    "links": {
+      "repo": "https://github.com/pmbstyle/gemini-browser-agent"
+    },
+    "tags": ["ai", "browser-agent", "chrome-extension", "automation", "research"]
+  },
+  {
+    "slug": "riddi",
+    "name": "Riddi",
+    "status": "active",
+    "featured": false,
+    "summary": "A local text-to-speech browser reader that converts web articles to speech using built-in local AI models.",
+    "description": "Riddi is a Chrome extension for reading web articles aloud using local AI models running directly in the browser. It is designed to avoid cloud dependencies and external API keys while keeping the experience fast and private.",
+    "stack": ["Chrome extension", "Text-to-speech", "Local AI", "Browser UX"],
+    "links": {
+      "repo": "https://github.com/pmbstyle/Riddi"
+    },
+    "tags": ["ai", "tts", "browser-extension", "local-first", "accessibility"]
+  },
+  {
+    "slug": "trofimov-ca",
+    "name": "trofimov.ca",
+    "status": "active",
+    "featured": true,
+    "summary": "A personal website presented as an interactive desktop experience with a terminal, a game layer, and a public API for humans and agents.",
+    "description": "trofimov.ca is a Vue 3 and Vite personal site that treats the portfolio as an interactive experience instead of a static resume. It combines a desktop metaphor, terminal commands, a Phaser-based resume game, blog content, an AI guide character, and a structured public API for agent consumption.",
+    "stack": ["Vue 3", "TypeScript", "Pinia", "Phaser 3", "Tailwind CSS", "Vite", "Fastify"],
+    "links": {
+      "site": "https://trofimov.ca",
+      "repo": "https://github.com/pmbstyle/trofimov.ca"
+    },
+    "tags": ["portfolio", "interactive-ui", "public-api", "game-ui", "frontend"]
+  }
+]

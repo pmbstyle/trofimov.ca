@@ -1,33 +1,73 @@
 <script lang="ts" setup>
-import pdf from '@/assets/Slava_Trofimov_Full_Stack_Engineer.pdf'
+import pdf from '@/assets/Slava_Trofimov-Full_Stack_AI_Engineer_resume.pdf'
 const experience = [
   {
     title: 'AI Engineer',
     company: 'Loblaw Digital, Toronto, ON',
     date: 'January 2026 to current',
-    description: `Building AI-powered tools and workflows with the Loblaw Digital team`,
+    description: `
+    <ul>
+      <li>Architected and implemented scalable multi-source ingestion pipelines for unstructured
+      healthcare and enterprise data (PDF, HTML, Markdown) with parallel processing and validation layers
+      </li>
+      <li>Designed AI-powered document intelligence workflows for internal and customer-facing
+      applications, enabling structured extraction and semantic enrichment for downstream AI applications
+      </li>
+      <li>Designed and deployed a vector-based retrieval infrastructure processing thousands of
+      documents daily and enabling low-latency semantic search
+      </li>
+      <li>Developed agentic tooling integrating third-party APIs, enterprise systems, and secure data
+      sources
+      </li>
+      <li>Implemented evaluation, monitoring, and reprocessing pipelines to ensure data quality and
+    model reliability
+      </li>
+      <li>Collaborated with cross-functional teams (Product, Data, Security, Architecture) to align AI
+  solutions with enterprise standards and compliance requirements
+      </li>
+    </ul>`,
   },
   {
-    title: 'Senior Full Stack Engineer',
+    title: 'AI Engineer',
+    company: 'AliceAI, Toronto, ON',
+    date: 'July 2025 to January 2026',
+    description: `
+    <ul>
+    <li>Designed and implemented Python-based data ingestion pipelines for unstructured
+    documents (PDF, HTML, Markdown)</li>
+    </li>
+    <li>Built RAG systems using vector databases (Qdrant) for semantic search and retrieval
+    </li>
+    <li>Implemented LLM-powered tooling using LangChain and LangGraph-style agent
+    orchestration
+    </li>
+    <li>Integrated OpenAI APIs for embeddings, tool calling, and structured outputs
+    </li>
+    <li>Developed internal CLI and API tooling to support indexing, reprocessing, and evaluation
+    workflows
+    </li>
+    </ul>`,
+  },
+  {
+    title: 'Senior Full Stack Engineer / AI Engineer',
     company: 'Jobscan - Seattle, WA',
     date: 'February 2024 to Jul 2025',
     description: `
     <ul>
-    <li>Shipped core product features end-to-end with Vue.js, Laravel, and AI agentic flows; owned a
-    flagship feature as the sole engineer from design through launch
-    </li>
-    <li>Integrated AI into critical workflows using the OpenAI API and in-house models; built
-    agentic/tool-calling pipelines that automated key processes and enriched user experience
-    </li>
-    <li>Tracked down and fixed hard-to-reproduce frontend/backend/agentic bugs, improving
-    stability and reducing latency (TTFT)
-    </li>
-    <li>Raised quality by introducing Vitest unit tests and Playwright E2E suites, increasing coverage,
-    and adding CI gates
-    </li>
-    <li>Partnered with PM/Design/ML/Support and consistently exceeded individual and team KPIs
-    for delivery, quality, and reliability
-    </li>
+    <li>Integrated AI into critical product workflows using the OpenAI API and internal models; built
+    agentic and tool-calling pipelines to automate core processes</li>
+    <li>Designed and shipped backend services supporting AI features, including data processing,
+    orchestration, and integration with existing systems</li>
+    <li>Shipped core product features end-to-end using Vue.js and Laravel; owned a flagship feature
+    as the sole engineer from design through launch</li>
+    <li>Investigated and resolved complex frontend and backend issues, improving system stability
+    and reducing support load</li>
+    <li>Improved code quality and reliability by introducing Vitest unit tests and Playwright E2E
+    suites with CI enforcement</li>
+    <li>Optimized performance across key flows via query tuning, caching strategies, and UI
+    optimizations</li>
+    <li>Partnered closely with PM, Design, and Support, consistently exceeding delivery and quality
+    KPIs</li>
     </ul>`,
   },
   {
@@ -116,12 +156,16 @@ const experience = [
   },
 ]
 const profile = [
-  '<strong>Front-end:</strong> JavaScript (ES6+), TypeScript, Vue 3, Nuxt 3 (SSR/SSG), Pinia, Vite, Vue Router, TailwindCSS, shadcn/ui, SASS/SCSS, React, Electron, SPA/PWA, accessibility (WCAG 2.1)',
-  '<strong>Backend:</strong> PHP (Laravel), Node.js, Python',
-  '<strong>Testing & QA:</strong> Vitest, Playwright, Cypress, CI gates',
-  '<strong>APIs & Data:</strong> REST, GraphQL, MySQL/PostgreSQL, SQLite',
-  '<strong>DevOps:</strong> Docker & Docker Compose, Git/GitHub, GitHub Actions (CI/CD), Nginx',
-  '<strong>AI & Agentic:</strong> OpenAI/Anthropic API, OpenRouter, agent/tool-calling flows, RAG, vector DBs (Pinecone/Chroma/HNSWlib), MCP, LangGraph, CrewAI',
+  '<strong>Agentic architectures & tool-calling systems:</strong> RAG pipelines & vector search (Qdrant/Weaviate etc.)',
+  '<strong>Structured outputs & schema validation:</strong> Prompt engineering & evaluation workflows',
+  '<strong>Memory layers (semantic + canonical):</strong> MCP integrations & external tool orchestration',
+  '<strong>Conversational AI systems:</strong> TTS / STT / embeddings pipelines',
+  '<strong>Data & Backend Infrastructure:</strong> Python (FastAPI), Node.js, Laravel, Distributed ingestion pipelines (PDF/HTML/Markdown), Chunking, enrichment, indexing workflows, Airflow, REST / GraphQL APIs, MySQL, PostgreSQL, MongoDB, SQLite, Docker & containerized services, CI/CD & automated validation',
+  '<strong>Agent Frameworks & Orchestration:</strong> LangChain, LangGraph, CrewAI, Custom orchestration layers, Async task delegation patterns, Multi-agent workflows',
+  '<strong>Front-end:</strong> JavaScript (ES6+), TypeScript, Vue 3, Nuxt 3 (SSR/SSG), Pinia, Vite, Vue Router, Tailwind CSS, shadcn/ui, SASS/SCSS, React, Electron, SPA/PWA, browser extensions, accessibility (WCAG 2.1)',
+  '<strong>DevOps:</strong> Docker & Docker Compose, Git/GitHub, GitHub Actions (CI/CD), Nginx, Linux',
+  '<strong>AI Tools:</strong> Cursor, Claude Code, Codex, OpenCode, Gemini CLI, self-made agentic tools (multi-agent orchestration)',
+
 ]
 const education = [
   {
@@ -129,24 +173,6 @@ const education = [
     place: 'Moscow State Open University',
     date: '2003 to 2008',
   },
-]
-const skills = [
-  'Vue.js / Nuxt.js (6 years)',
-  'Laravel / PHP (4 years)',
-  'Javascript (8 years)',
-  'TypeScript (4 years)',
-  'Bootstrap / Tailwindcss (5 years)',
-  'React.js / Next.js (1 year)',
-  'HTML5 / SCSS (8 years)',
-  'REST (6 years)',
-  'jQuery (7 years)',
-  'MySQL/ MangoDB (6 years)',
-  'Node.js (3 years)',
-  'Responsive styling (8 years)',
-  'Webpack / Vite / Gulp (5 years)',
-  'WordPress / OpenCart (8 years)',
-  'GitHub (8 years)',
-  'Docker (5 years)',
 ]
 </script>
 <template>
@@ -163,13 +189,15 @@ const skills = [
     </p>
     <section>
       <p>
-        Full-Stack Engineer focused on front-end (Vue/Nuxt) and AI, with strong
-        back-end in Laravel/PHP, Node.js, and Python. Leads features end-to-end,
-        from architecture to launch, integrating AI (OpenAI API, custom models,
-        and agentic flows), resolving hard production bugs, and enhancing
-        quality with Vitest/Playwright and CI/CD. Proven track record improving
-        performance and exceeding team KPIs for delivery, quality, and
-        reliability
+        AI engineer specializing in production-grade LLM systems, agentic architectures, and intelligent data
+        pipelines.Designs scalable ingestion, retrieval, and orchestration layers for enterprise AI
+        applications. Experienced in building RAG systems, vector search, tool-calling agents, and
+        structured-output workflows.
+        Background in full-stack engineering enables end-to-end ownership, from distributed backend
+        systems to user-facing AI experiences, with a strong focus on reliability, evaluation, and performance
+        in production environments.
+        Actively exploring multi-agent architectures and autonomous orchestration systems in independent
+        research projects.
       </p>
       <p v-for="(p, index) in profile" :key="index" v-html="p"></p>
     </section>

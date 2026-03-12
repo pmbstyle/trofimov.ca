@@ -7,6 +7,11 @@ const emit = defineEmits(['openUrl'])
 
 const projects = [
   {
+    name: 'BroodMind autonomous multi-agent system',
+    url: 'https://github.com/pmbstyle/BroodMind',
+    iconClass: 'item-broodmind',
+  },
+  {
     name: 'Alice Smart Desktop AI Assistant',
     url: 'https://github.com/pmbstyle/Alice',
     iconClass: 'item-alice',
@@ -17,14 +22,9 @@ const projects = [
     iconClass: 'item-gemini',
   },
   {
-    name: 'OpenRouter LLM Proxy Service',
-    url: 'https://github.com/pmbstyle/openrouter-proxy',
-    iconClass: 'item-openrouter',
-  },
-  {
-    name: 'BootVue',
-    url: 'https://github.com/pmbstyle/BootVue',
-    iconClass: 'item-github',
+    name: 'Riddi Local Text-to-Speech Browser Reader',
+    url: 'https://github.com/pmbstyle/riddi',
+    iconClass: 'item-riddi',
   },
   {
     name: 'Temporal Awareness MCP Server',
@@ -32,8 +32,8 @@ const projects = [
     iconClass: 'item-github',
   },
   {
-    name: 'OntarioDoctor (PoC)',
-    url: 'https://github.com/pmbstyle/OntarioDoctor',
+    name: 'Fara Browser Automation Agent',
+    url: 'https://github.com/pmbstyle/fara-agent',
     iconClass: 'item-github',
   },
 ]

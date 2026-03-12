@@ -1,0 +1,57 @@
+{
+  "name": "Slava Trofimov",
+  "headline": "Full-Stack AI Engineer specializing in production LLM systems, agentic architectures, and intelligent data pipelines",
+  "title": "Full-Stack AI Engineer",
+  "location": {
+    "city": "Welland",
+    "region": "Ontario",
+    "country": "Canada",
+    "timezone": "America/Toronto"
+  },
+  "summary": "Full-Stack AI Engineer with a background in end-to-end product delivery and a current focus on production-grade LLM systems, agentic workflows, RAG, vector search, and structured-output pipelines.",
+  "bio": "Slava Trofimov is a Canada-based Full-Stack AI Engineer with more than a decade of experience spanning front-end architecture, full-stack product delivery, and modern AI systems. His recent work centers on ingestion, retrieval, orchestration, and evaluation layers for enterprise AI applications. He combines a strong product engineering background with practical experience building reliable LLM-powered systems, tool-calling agents, and intelligent data pipelines for production environments.",
+  "yearsOfExperience": 12,
+  "focusAreas": [
+    "Production-grade LLM systems",
+    "Agentic architectures and tool orchestration",
+    "RAG pipelines and vector search",
+    "Intelligent data ingestion and retrieval",
+    "End-to-end AI product engineering"
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "Fluent"
+    },
+    {
+      "name": "Russian",
+      "level": "Native or bilingual"
+    }
+  ],
+  "interests": [
+    "Artificial intelligence",
+    "Gaming",
+    "Space and science",
+    "Music",
+    "Human-machine collaboration"
+  ],
+  "education": [
+    {
+      "degree": "Master in Computer Science",
+      "institution": "Moscow State Open University",
+      "startYear": 2003,
+      "endYear": 2008
+    }
+  ],
+  "availability": {
+    "openToRemote": true,
+    "openToHybrid": true,
+    "openToRelocation": false,
+    "interestedIn": [
+      "AI engineering roles",
+      "LLM and agentic systems",
+      "Full-stack AI product engineering",
+      "Platform and orchestration work"
+    ]
+  }
+}

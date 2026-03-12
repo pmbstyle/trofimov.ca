@@ -2,7 +2,7 @@
 
 <br />
 
-Last 5 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-ca) profile or Resume section.
+Last 8 years of experience, for more information please check out my [LinkedIn](https://www.linkedin.com/in/slava-trofimov-ca) profile or Resume section.
 
 <br />
 
@@ -14,9 +14,46 @@ _Jan 2026 - current_
 
 _Toronto, Canada_
 
+- Architected and implemented scalable multi-source ingestion pipelines for unstructured
+healthcare and enterprise data (PDF, HTML, Markdown) with parallel processing and
+validation layers
+- Designed AI-powered document intelligence workflows for internal and customer-facing
+applications, enabling structured extraction and semantic enrichment
+- Designed and deployed a vector-based retrieval infrastructure processing thousands of
+documents daily and enabling low-latency semantic search for downstream AI applications
+- Developed agentic tooling integrating third-party APIs, enterprise systems, and secure data
+sources
+- Implemented evaluation, monitoring, and reprocessing pipelines to ensure data quality and
+model reliability
+- Collaborated with cross-functional teams (Product, Data, Security, Architecture) to align AI
+solutions with enterprise standards and compliance requirements
+
+**Skills:** Python · Agentic AI · Vector DB · RAG · LangChain
+
 <br />
 
-**Senior Full Stack Engineer**
+**AI Engineer**
+
+_AliceAI_
+
+_Jul 2025 - Jan 2026_
+
+_Toronto, Canada_
+
+- Designed and implemented Python-based data ingestion pipelines for unstructured
+documents (PDF, HTML, Markdown)
+- Built RAG systems using vector databases (Qdrant) for semantic search and retrieval
+- Implemented LLM-powered tooling using LangChain and LangGraph-style agent
+orchestration
+- Integrated OpenAI APIs for embeddings, tool calling, and structured outputs
+- Developed internal CLI and API tooling to support indexing, reprocessing, and evaluation
+workflows
+
+**Skills:** TypesScript · Python · Agentic AI · Vector DB · RAG · LangChain
+
+<br />
+
+**Senior Full Stack Engineer / AI Engineer**
 
 _Jobscan_
 
@@ -24,17 +61,20 @@ _Feb 2024 - Jul 2025_
 
 _Seattle, WA_
 
-- Shipped core product features end-to-end with Vue.js, Laravel, and AI agentic flows; owned a
-flagship feature as the sole engineer from design through launch
-- Integrated AI into critical workflows using the OpenAI API and in-house models; built
-agentic/tool-calling pipelines that automated key processes and enriched user experience
-- Tracked down and fixed hard-to-reproduce frontend/backend/agentic bugs, improving
-stability and reducing latency (TTFT)
-- Raised quality by introducing Vitest unit tests and Playwright E2E suites, increasing coverage,
-and adding CI gates
-- Streamlined performance across key flows with query tuning, caching, and UI optimizations
-- Partnered with PM/Design/ML/Support and consistently exceeded individual and team KPIs
-for delivery, quality, and reliability
+- Integrated AI into critical product workflows using the OpenAI API and internal models; built
+agentic and tool-calling pipelines to automate core processes
+- Designed and shipped backend services supporting AI features, including data processing,
+orchestration, and integration with existing systems
+- Shipped core product features end-to-end using Vue.js and Laravel; owned a flagship feature
+as the sole engineer from design through launch
+- Investigated and resolved complex frontend and backend issues, improving system stability
+and reducing support load
+- Improved code quality and reliability by introducing Vitest unit tests and Playwright E2E
+suites with CI enforcement
+- Optimized performance across key flows via query tuning, caching strategies, and UI
+optimizations
+- Partnered closely with PM, Design, and Support, consistently exceeding delivery and quality
+KPIs
 
 **Skills:** VueJS · Laravel · TypesScript · PHP · Python · Git · Docker
 

@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What kind of roles is Slava best suited for?",
+    "answer": "AI engineering, full-stack AI product engineering, and senior engineering roles where production LLM systems, agentic workflows, data pipelines, and end-to-end ownership matter.",
+    "tags": ["roles", "fit", "hiring"]
+  },
+  {
+    "question": "Does Slava work with AI or only classic front-end?",
+    "answer": "AI is a core part of his recent work. He has hands-on experience with LLM APIs, tool-calling systems, RAG, vector search, ingestion and retrieval pipelines, structured outputs, MCP integrations, and practical production AI systems.",
+    "tags": ["ai", "agentic", "llm"]
+  },
+  {
+    "question": "Is Vue still one of his strongest front-end stacks?",
+    "answer": "Yes. Vue and Nuxt remain core strengths, backed by broader full-stack experience. His current profile adds deeper specialization in AI systems and orchestration on top of that foundation.",
+    "tags": ["vue", "frontend"]
+  },
+  {
+    "question": "Can agents query structured public profile data without scraping the website?",
+    "answer": "Yes. The API exposes public professional data in machine-readable form, including profile, experience, skills, projects, summaries, and search endpoints.",
+    "tags": ["api", "agent", "machine-readable"]
+  }
+]

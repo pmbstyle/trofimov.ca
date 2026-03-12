@@ -1,0 +1,19 @@
+# trofimov.ca for LLMs
+
+This site exposes a public machine-readable profile API for Slava Trofimov.
+
+Start here:
+- /SKILL.md
+
+Then use:
+- /api/context
+- /api/profile
+- /api/skills
+- /api/experience
+- /api/projects
+- /api/summary?audience=agent
+- /api/search?q=...
+- /api/contact-info
+
+Schema:
+- /openapi.json

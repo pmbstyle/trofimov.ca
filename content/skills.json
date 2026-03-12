@@ -1,0 +1,98 @@
+{
+  "categories": [
+    {
+      "name": "ai-systems-and-llm-engineering",
+      "items": [
+        "OpenAI",
+        "Anthropic",
+        "OpenRouter",
+        "Agentic architectures",
+        "Tool-calling systems",
+        "RAG pipelines",
+        "Vector search",
+        "Structured outputs",
+        "Prompt engineering",
+        "Evaluation workflows",
+        "Memory layers",
+        "MCP integrations",
+        "Conversational AI",
+        "TTS/STT/embeddings pipelines"
+      ]
+    },
+    {
+      "name": "data-and-backend-infrastructure",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Node.js",
+        "Laravel",
+        "Distributed ingestion pipelines",
+        "Chunking and enrichment workflows",
+        "Indexing pipelines",
+        "Airflow",
+        "REST APIs",
+        "GraphQL",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "SQLite"
+      ]
+    },
+    {
+      "name": "agent-frameworks-and-orchestration",
+      "items": [
+        "LangChain",
+        "LangGraph",
+        "CrewAI",
+        "Custom orchestration layers",
+        "Async task delegation",
+        "Multi-agent workflows"
+      ]
+    },
+    {
+      "name": "frontend",
+      "items": [
+        "JavaScript",
+        "TypeScript",
+        "Vue 3",
+        "Nuxt 3",
+        "Pinia",
+        "Vite",
+        "Vue Router",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "SCSS",
+        "React",
+        "Electron",
+        "SPA/PWA",
+        "Browser extensions",
+        "Accessibility (WCAG 2.1)"
+      ]
+    },
+    {
+      "name": "devops",
+      "items": [
+        "Docker",
+        "Docker Compose",
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "Nginx",
+        "Linux",
+        "CI/CD",
+        "Automated validation"
+      ]
+    },
+    {
+      "name": "ai-tools",
+      "items": [
+        "Cursor",
+        "Claude Code",
+        "Codex",
+        "OpenCode",
+        "Gemini CLI",
+        "Custom agentic tools"
+      ]
+    }
+  ]
+}

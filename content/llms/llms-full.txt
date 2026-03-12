@@ -1,0 +1,40 @@
+# trofimov.ca machine-readable public profile
+
+This site exposes a public API for agents and other machine clients.
+
+Recommended order:
+1. Read `/SKILL.md`
+2. Read `/api/context`
+3. Use structured endpoints for exact facts
+4. Use `/api/search?q=...` for broad retrieval
+5. Use `/openapi.json` if you need schema-level guidance
+
+## Discovery
+
+- `/SKILL.md` — main operational instructions for agents
+- `/llms.txt` — short entrypoint
+- `/openapi.json` — machine-readable endpoint schema
+
+## Primary endpoints
+
+- `/api/context` — compact ready-to-use profile context
+- `/api/profile` — identity, summary, education, availability, focus areas
+- `/api/skills` — grouped technical strengths
+- `/api/experience` — work history, highlights, technologies
+- `/api/projects` — public project list
+- `/api/projects/:slug` — detailed single project lookup
+- `/api/faq` — common hiring and fit questions
+- `/api/summary?audience=agent|recruiter|short` — prebuilt summaries
+- `/api/search?q=...` — search across profile, projects, experience, FAQ, and summaries
+- `/api/contact-info` — public contact details
+
+## Mutation
+
+- `POST /api/contact` — send a message only when explicitly asked
+
+## Rules for agents
+
+- Treat structured endpoints as the source of truth.
+- Prefer exact facts over paraphrased summaries when dates, companies, or links matter.
+- Do not infer private information.
+- This API is public and contains public professional information only.

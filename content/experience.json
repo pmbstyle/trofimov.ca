@@ -1,0 +1,94 @@
+[
+  {
+    "id": "loblaw-digital",
+    "role": "AI Engineer",
+    "company": "Loblaw Digital",
+    "location": "Toronto, ON, Canada",
+    "employmentType": "Full-time",
+    "start": "2026-01",
+    "end": null,
+    "summary": "Architecting and implementing production AI systems for enterprise and healthcare-oriented document workflows.",
+    "highlights": [
+      "Architected scalable multi-source ingestion pipelines for unstructured PDF, HTML, and Markdown data",
+      "Designed AI-powered document intelligence workflows for structured extraction and semantic enrichment",
+      "Built vector-based retrieval infrastructure enabling low-latency semantic search across thousands of documents daily",
+      "Developed agentic tooling that integrates third-party APIs, enterprise systems, and secure data sources",
+      "Implemented evaluation, monitoring, and reprocessing pipelines to improve model reliability and data quality",
+      "Collaborated with product, data, security, and architecture teams to align AI solutions with enterprise requirements"
+    ],
+    "skills": ["Python", "Agentic AI", "Vector DB", "RAG", "LangChain"]
+  },
+  {
+    "id": "aliceai",
+    "role": "AI Engineer",
+    "company": "AliceAI",
+    "location": "Toronto, ON, Canada",
+    "employmentType": "Full-time",
+    "start": "2025-07",
+    "end": "2026-01",
+    "summary": "Built ingestion, retrieval, and orchestration systems for unstructured content and LLM-powered workflows.",
+    "highlights": [
+      "Designed and implemented Python-based ingestion pipelines for unstructured documents",
+      "Built RAG systems using Qdrant for semantic search and retrieval",
+      "Implemented LangChain and LangGraph-style orchestration for LLM-powered tooling",
+      "Integrated OpenAI APIs for embeddings, tool calling, and structured outputs",
+      "Developed CLI and API tooling for indexing, reprocessing, and evaluation workflows"
+    ],
+    "skills": ["TypeScript", "Python", "Agentic AI", "Vector DB", "RAG", "LangChain"]
+  },
+  {
+    "id": "jobscan",
+    "role": "Senior Full Stack Engineer / AI Engineer",
+    "company": "Jobscan",
+    "location": "Seattle, WA, United States (Remote)",
+    "employmentType": "Full-time",
+    "start": "2024-02",
+    "end": "2025-07",
+    "summary": "Shipped core product features and AI-powered workflows across Vue.js, Laravel, backend services, and testing infrastructure.",
+    "highlights": [
+      "Integrated AI into critical product workflows using OpenAI APIs and internal models",
+      "Built agentic and tool-calling pipelines that automated core processes",
+      "Designed and shipped backend services for orchestration, data processing, and integrations",
+      "Owned flagship product features end-to-end using Vue.js and Laravel",
+      "Resolved complex frontend and backend issues to improve stability and supportability",
+      "Introduced Vitest, Playwright, and CI enforcement to raise quality and reliability",
+      "Optimized performance through query tuning, caching strategies, and UI improvements"
+    ],
+    "skills": ["Vue.js", "Laravel", "TypeScript", "PHP", "Python", "Git", "Docker"]
+  },
+  {
+    "id": "codepxl",
+    "role": "Senior Front End Developer",
+    "company": "codepxl",
+    "location": "Toronto, ON, Canada",
+    "employmentType": "Full-time",
+    "start": "2019-01",
+    "end": "2024-02",
+    "summary": "Led front-end delivery for client and product work across Vue.js, Nuxt.js, Laravel, and reusable design systems.",
+    "highlights": [
+      "Led the frontend team and owned projects from architecture and estimation through QA and deployment",
+      "Built responsive Vue.js and Nuxt.js applications and reusable component libraries from design files",
+      "Acted as the main technical contact for clients, including discovery, requirements, and delivery alignment",
+      "Improved delivery speed by approximately 30 percent through reuse, planning, and CI discipline",
+      "Raised quality through code reviews, mentoring, accessibility standards, and testing practices"
+    ],
+    "skills": ["Vue.js", "Nuxt.js", "JavaScript", "Tailwind CSS", "SCSS", "Laravel", "Node.js", "WordPress"]
+  },
+  {
+    "id": "evolutionindesignz",
+    "role": "Front End Developer",
+    "company": "EvolutionInDesignZ",
+    "location": "Toronto, ON, Canada",
+    "employmentType": "Full-time",
+    "start": "2018-05",
+    "end": "2018-12",
+    "summary": "Delivered responsive client websites and apps across Laravel, WordPress, OpenCart, Vue.js, Nuxt.js, and Electron.",
+    "highlights": [
+      "Built custom sites and apps for clients across Laravel, WordPress, and OpenCart",
+      "Translated Figma and Sketch designs into responsive, SEO-friendly, WCAG-aware interfaces",
+      "Built a scalable SPA using Vue.js, Nuxt.js, and Electron",
+      "Collaborated with design and backend teams on requirements, QA, and implementation"
+    ],
+    "skills": ["Vue.js", "JavaScript", "SCSS", "Laravel", "Node.js", "HTML5", "WordPress", "Electron"]
+  }
+]

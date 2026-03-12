@@ -4,60 +4,54 @@ import { ref } from 'vue'
 export const useDialogsStore = defineStore('dialogs', () => {
   const content = {
     about: `<p><strong>📜 A parchment glows faintly...</strong></p>
-    <p>You unroll it to reveal tales of <strong>Slava Trofimov</strong>, the <em>Full-Stack Engineer of the North</em>, dwelling in Welland, Ontario.</p>
-    <p>For over a decade, he’s traversed the realms of the web, a <strong>Front-end Champion</strong> by origin (Vue, Nuxt, React) and <strong>AI Technomancer</strong> by evolution. With Laravel and Node.js as his twin blades, he forges experiences that blend design, logic, and intelligence.</p>
-    <p>In recent quests, he has bound together <strong>OpenAI</strong>, <strong>Anthropic</strong>, and local spellbooks through agentic rituals — LangGraph, CrewAI, RAG, and MCP — breathing cognition into lifeless code.</p>
-    <p>Between adventures, Slava roams the wilderness of ideas: gaming realms, distant galaxies, the rhythm of music, and the mysterious frontier of human-machine harmony.</p>
+    <p>You unroll it to reveal tales of <strong>Slava Trofimov</strong>, the <em>Full-Stack AI Engineer of the North</em>, dwelling in Welland, Ontario.</p>
+    <p>His craft now centers on <strong>production-grade LLM systems</strong>, <strong>agentic architectures</strong>, and <strong>intelligent data pipelines</strong>. He designs ingestion, retrieval, and orchestration layers for enterprise AI applications, turning unruly documents into useful knowledge.</p>
+    <p>Though forged in front-end lands and seasoned across the full stack, his recent mastery lies in <strong>RAG systems</strong>, <strong>vector search</strong>, <strong>tool-calling agents</strong>, and <strong>structured-output workflows</strong> that behave reliably in the wild.</p>
+    <p>Beyond the guild hall, he continues independent research into <strong>multi-agent systems</strong> and <strong>autonomous orchestration</strong>, always seeking better ways for humans and machines to collaborate.</p>
     <p>⚔️ Traveler, should you seek inspiration or wish to trade code-secrets, speak with the NPCs — they guard fragments of his saga.</p>`,
 
     skills: `<p><strong>🎒 Inventory of Skills</strong></p>
     <ul>
-      <li><strong>Front-end Arts:</strong> JavaScript/TypeScript, Vue 3, Nuxt 3 (SSR/SSG), React, Pinia, Vite, TailwindCSS, shadcn/ui, SCSS, Electron, browser extensions, accessibility (WCAG 2.1)</li>
-      <li><strong>Back-end Smithing:</strong> Laravel (PHP), Node.js, Python</li>
-      <li><strong>DevOps Runes:</strong> Docker + Compose, GitHub Actions, Nginx, Linux</li>
-      <li><strong>Data Tomes:</strong> REST, GraphQL, MySQL/PostgreSQL, SQLite</li>
-      <li><strong>Testing Guild:</strong> Vitest, Playwright, Cypress — guardians of quality</li>
-    </ul>
-    <p><strong>🧠 AI & Agentic Magic</strong></p>
-    <ul>
-      <li>OpenAI / Anthropic / OpenRouter API mastery, with prompt crafting and model orchestration</li>
-      <li>RAG architectures powered by vector DBs and rerankers</li>
-      <li>LangGraph, CrewAI, MCP servers for multi-tool reasoning</li>
-      <li>Speech & vision spells (TTS / STT / Embeddings) for living interfaces</li>
-      <li>Local summoning via Ollama + Groq + LM Studio integrations</li>
+      <li><strong>AI Systems & LLM Engineering:</strong> OpenAI, Anthropic, OpenRouter, tool-calling systems, RAG pipelines, vector search, prompt engineering, evaluation flows, memory layers, MCP integrations, and conversational AI interfaces</li>
+      <li><strong>Data & Back-end Smithing:</strong> Python (FastAPI), Node.js, Laravel, distributed ingestion pipelines, chunking, enrichment, indexing, REST, GraphQL, MySQL, PostgreSQL, MongoDB, and SQLite</li>
+      <li><strong>Agent Frameworks & Orchestration:</strong> LangChain, LangGraph, CrewAI, custom orchestration layers, async task delegation, and multi-agent workflows</li>
+      <li><strong>Front-end Arts:</strong> JavaScript, TypeScript, Vue 3, Nuxt 3, Pinia, Vite, TailwindCSS, shadcn/ui, SCSS, React, Electron, browser extensions, and accessibility (WCAG 2.1)</li>
+      <li><strong>DevOps Runes:</strong> Docker, Docker Compose, Git/GitHub, GitHub Actions, Nginx, Linux, and automated validation rituals</li>
+      <li><strong>Tools of the Modern Guild:</strong> Cursor, Claude Code, Codex, OpenCode, Gemini CLI, plus self-made agentic tooling</li>
     </ul>
     <p><em>All these artifacts are maintained, polished, and occasionally enchanted under moonlight.</em></p>`,
 
     experience: `<p><strong>📖 Chronicle of Adventures</strong></p>
-    <p><strong>Senior Full Stack Engineer</strong><br/>
+    <p><strong>AI Engineer</strong><br/>
+    Loblaw Digital — Toronto, Canada<br/><i>Jan 2026 – Present</i></p>
+    <ul>
+      <li>Architected multi-source ingestion pipelines for healthcare and enterprise scrolls: PDF, HTML, and Markdown alike</li>
+      <li>Designed document-intelligence workflows for structured extraction, semantic enrichment, and low-latency retrieval</li>
+      <li>Forged vector search infrastructure handling thousands of documents per day</li>
+      <li>Built agentic tools that bridge third-party APIs, enterprise systems, and secure internal knowledge</li>
+      <li>Maintained evaluation, monitoring, and reprocessing rituals to keep models reliable in production</li>
+    </ul>
+
+    <p><strong>AI Engineer</strong><br/>
+    AliceAI — Toronto, Canada<br/><i>Jul 2025 – Jan 2026</i></p>
+    <ul>
+      <li>Built Python-based ingestion pipelines for unstructured knowledge sources</li>
+      <li>Crafted RAG systems with Qdrant-backed retrieval and semantic search</li>
+      <li>Implemented LangChain and LangGraph-style orchestration for LLM-powered tooling</li>
+      <li>Integrated embeddings, tool calling, and structured outputs into practical internal workflows</li>
+    </ul>
+
+    <p><strong>Senior Full Stack Engineer / AI Engineer</strong><br/>
     Jobscan — Seattle, United States (Remote)<br/><i>Feb 2024 – Jul 2025</i></p>
     <ul>
-      <li>Led development of flagship features (Vue + Laravel) from first sketch to post-launch polish</li>
-      <li>Forged AI pipelines using OpenAI and in-house models — true agentic tool-chains</li>
-      <li>Banished elusive bugs haunting both front and back ends</li>
-      <li>Summoned Vitest & Playwright test guardians to protect the realm of CI/CD</li>
-      <li>Optimized performance and morale alike, surpassing all guild KPIs</li>
+      <li>Integrated AI into critical product workflows using OpenAI and internal models</li>
+      <li>Designed backend services for orchestration, data processing, and existing-system integrations</li>
+      <li>Shipped flagship product features end-to-end with Vue.js and Laravel</li>
+      <li>Strengthened quality with Vitest, Playwright, and performance-focused fixes across the stack</li>
     </ul>
-  
-    <p><strong>Senior Front End Developer</strong><br/>
-    codepxl — Toronto, Canada<br/><i>Jan 2019 – Jan 2024</i></p>
-    <ul>
-      <li>Architected and launched high-performance Vue/Nuxt SSR applications</li>
-      <li>Forged reusable component libraries from Figma blueprints</li>
-      <li>Led squads through Agile battles, unlocking +30% delivery speed buff</li>
-      <li>Balanced magic and logic to keep UX delightful and code elegant</li>
-    </ul>
-  
-    <p><strong>Front End Developer</strong><br/>
-    EvolutionInDesignZ — Toronto, Canada<br/><i>May 2018 – Dec 2018</i></p>
-    <ul>
-      <li>Created cross-realm UIs with Laravel, WordPress, and OpenCart</li>
-      <li>Trained in the sacred arts of semantic HTML5 and SASS weaving</li>
-      <li>Built Vue + Nuxt + Electron SPAs — small but mighty familiars</li>
-    </ul>
-  
-    <p><em>Earlier Expeditions:</em> Electrolight Ent., iMoan, and Web-Solution LTD, lands where he mastered commerce spells, SEO enchantments, and UI rituals.</p>
-    <p><strong>Side Quests:</strong> <a href="https://github.com/pmbstyle/Alice" target="_blank">Alice AI Companion</a>, <a href="https://github.com/pmbstyle/gemini-browser-agent" target="_blank">Gemini Browser Agent</a>, <a href="https://github.com/pmbstyle/openrouter-proxy" target="_blank">OpenRouter Proxy</a>, <a href="https://github.com/pmbstyle/BootVue" target="_blank">BootVue CLI</a>, <a href="https://github.com/pmbstyle/temporal-awareness-mcp" target="_blank">Temporal Awareness MCP</a>.</p>`,
+
+    <p><strong>Earlier Expeditions:</strong> codepxl and EvolutionInDesignZ, where he led front-end squads, built Vue/Nuxt realms, shaped reusable component systems, and sharpened his craft across performance, accessibility, QA, and delivery.</p>
+    <p><strong>Side Quests:</strong> <a href="https://github.com/pmbstyle/BroodMind" target="_blank">BroodMind</a>, <a href="https://github.com/pmbstyle/Alice" target="_blank">Alice</a>, <a href="https://github.com/pmbstyle/fara-agent" target="_blank">Fara Browser Automation Agent</a>, <a href="https://github.com/pmbstyle/gemini-browser-agent" target="_blank">Gemini Browser Agent</a>, and <a href="https://github.com/pmbstyle/Riddi" target="_blank">Riddi</a>.</p>`,
 
     education: `<p><strong>🏛 Academy of Knowledge</strong></p>
     <p><strong>Master’s Degree in Computer Science</strong><br/>
@@ -72,10 +66,10 @@ export const useDialogsStore = defineStore('dialogs', () => {
     <p>Should you choose to contact him, send a raven (or, more reliably, an email).</p>`,
 
     hello: `<h3 class="font-semibold">👋 Hello, traveler!</h3>
-    <p>I’m <strong>Slava Trofimov</strong> — Full-Stack Web & AI Engineer, explorer of code and consciousness.</p>
+    <p>I’m <strong>Slava Trofimov</strong> — Full-Stack AI Engineer, Researcher and simply a nice guy.</p>
     <div style="padding: 10px 0;">
-    <p>This website offers multiple paths:</p>
-    <p style="padding-left:10px;"><strong>💻 Terminal Mode:</strong> Enter commands to unlock knowledge and secrets of my journey.</p>
+    <p>As you see, this is not a regular website, it has some cool features:</p>
+    <p style="padding-left:10px;"><strong>💻 Terminal Mode:</strong> Enter commands to unlock knowledge and secrets of my professional journey.</p>
     <p style="padding-left:10px;"><strong>🧭 Interactive World:</strong> Walk around, chat and battle with NPCs — each tells a piece of my story.</p>
     <p style="padding-left:10px;"><strong>📜 Classic Resume:</strong> For the lore-seekers preferring structured scrolls, download my resume.</p>
     <p style="padding-left:10px;"><strong>🐾 Whiskers the Catbot:</strong> Try to catch him for AI-powered tales and answers.</p>

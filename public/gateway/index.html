@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slava Trofimov Full Stack AI Engineer</title>
+    <meta
+      name="description"
+      content="Slava Trofimov is a full stack AI engineer with a passion for building agentic applications. He is a self-taught developer who is always looking for new challenges and opportunities to learn."
+    />
+    <link rel="icon" type="image/png" href="/fav.png" />
+    <style>
+      :root {
+        --monitor-frame: #333333;
+        --monitor-base: #d3d3d3;
+        --screen-bg: linear-gradient(
+          315deg,
+          rgba(101, 0, 94, 1) 3%,
+          rgba(60, 132, 206, 1) 38%,
+          rgba(48, 238, 226, 1) 68%,
+          rgba(255, 25, 25, 1) 98%
+        );
+        --panel: rgba(13, 19, 31, 0.86);
+        --panel-border: rgba(255, 255, 255, 0.18);
+        --text: #f7fafc;
+        --muted: #cbd5e1;
+        --accent: #78a205;
+        --accent-2: #ffd166;
+        --desk: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        background: linear-gradient(to bottom, #475569, #1f2937);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .table {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 26vh;
+        background: var(--desk);
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+        width: min(1280px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 0;
+      }
+
+      .monitor {
+        position: relative;
+      }
+
+      .monitor-screen {
+        position: relative;
+        height: 60vh;
+        border: 20px solid var(--monitor-frame);
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+        background: var(--screen-bg);
+        background-size: 400% 400%;
+        animation: gradient 30s ease infinite;
+        box-shadow: var(--shadow);
+      }
+
+      .monitor-screen::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.16),
+          rgba(255, 255, 255, 0.03)
+        );
+        pointer-events: none;
+      }
+
+      .wave {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 200%;
+        height: 12em;
+        border-radius: 1000% 1000% 0 0;
+        background: rgba(255, 255, 255, 0.24);
+        animation: wave 10s -3s linear infinite;
+        opacity: 0.8;
+      }
+
+      .wave.wave-2 {
+        bottom: -1.25em;
+        animation: wave 18s linear reverse infinite;
+      }
+
+      .wave.wave-3 {
+        bottom: -2.5em;
+        animation: wave 20s -1s reverse infinite;
+      }
+
+      .top-menu {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 14px;
+        backdrop-filter: blur(8px);
+      }
+
+      .top-menu .avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .top-menu-title {
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .desktop {
+        position: relative;
+        z-index: 3;
+        height: calc(100% - 46px);
+        padding: 18px;
+      }
+
+      .window {
+        width: 100%;
+        min-height: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .window-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .window-controls {
+        display: flex;
+        gap: 10px;
+      }
+
+      .window-controls span {
+        display: block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+      }
+
+      .window-controls .close {
+        background: #ff5f56;
+      }
+
+      .window-controls .minimize {
+        background: #e5b913;
+      }
+
+      .window-controls .maximize {
+        background: #00ca4e;
+      }
+
+      .window-body {
+        padding: 28px;
+        min-height: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        justify-content: space-between;
+      }
+
+      .hero {
+        margin-bottom: 26px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 12px;
+        padding: 6px 10px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #0f172a;
+        background: var(--accent-2);
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(30px, 5vw, 54px);
+        line-height: 1.02;
+      }
+
+      .lead {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 60ch;
+      }
+
+      .choices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .choice {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 22px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .choice h3 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .choice p {
+        margin: 0;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .choice ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: auto;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.18s ease, opacity 0.18s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-primary {
+        background: var(--accent);
+        color: #091108;
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .agent-hint {
+        margin-top: 22px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: rgba(120, 162, 5, 0.1);
+        border: 1px solid rgba(120, 162, 5, 0.25);
+        color: #e7f5bf;
+      }
+
+      .agent-hint strong {
+        color: #ffffff;
+      }
+
+      .monitor-screen-bottom {
+        position: relative;
+        height: 60px;
+        border-radius: 0 0 20px 20px;
+        background: linear-gradient(to top, #cbd5e1, #e2e8f0);
+      }
+
+      .tux-badge {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background-image: url("/gateway/img/tux.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .monitor-stand {
+        width: 200px;
+        height: 100px;
+        margin: 0 auto;
+        position: relative;
+        background: #bab9ba;
+      }
+
+      .monitor-stand::before,
+      .monitor-stand::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 50px;
+        height: 100px;
+        background: #bab9ba;
+      }
+
+      .monitor-stand::before {
+        left: 81%;
+        transform: skewX(10deg);
+      }
+
+      .monitor-stand::after {
+        right: 81%;
+        transform: skewX(-10deg);
+      }
+
+      .monitor-base {
+        width: 400px;
+        height: 20px;
+        margin: 0 auto;
+        background: var(--monitor-base);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @keyframes wave {
+        2% {
+          transform: translateX(1px);
+        }
+
+        25% {
+          transform: translateX(-25%);
+        }
+
+        50% {
+          transform: translateX(-50%);
+        }
+
+        75% {
+          transform: translateX(-25%);
+        }
+
+        100% {
+          transform: translateX(1px);
+        }
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 0%;
+        }
+
+        50% {
+          background-position: 100% 100%;
+        }
+
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .monitor-screen {
+          height: auto;
+          min-height: 100vh;
+          border-width: 12px;
+          border-radius: 0;
+        }
+
+        .choices {
+          grid-template-columns: 1fr;
+        }
+
+        .window {
+          width: 100%;
+          min-height: 0;
+        }
+
+        .table,
+        .monitor-base,
+        .monitor-stand {
+          display: none;
+        }
+
+        .container {
+          width: 100%;
+          padding-top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="container">
+        <section class="monitor" aria-labelledby="gateway-title">
+          <div class="monitor-screen">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+
+            <header class="top-menu">
+              <img src="/gateway/img/avatar.jpg" class="avatar" />
+              <div class="top-menu-title">
+                <span class="text-sm window-title">Slava Trofimov</span>
+              </div>
+            </header>
+
+            <div class="desktop">
+              <article class="window" aria-labelledby="gateway-title">
+                <header class="window-header">
+                  <div class="window-controls" aria-hidden="true">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                  </div>
+                </header>
+
+                <div class="window-body">
+                  <section class="hero">
+                    <div>
+                      <div class="eyebrow">Welcome</div>
+                      <h1 id="gateway-title">Choose your interface.</h1>
+                      <p class="lead">
+                        Humans can open the regular website. AI agents,
+                        assistants, and crawlers can use the machine-readable source.
+                      </p>
+                    </div>
+                  </section>
+
+                  <section class="choices" aria-label="Entry choices">
+                    <article class="choice">
+                      <h3>I'm Human</h3>
+                      <p>
+                        Open the full website. Nothing fancy, just good old personal website.
+                      </p>
+                      <ul>
+                        <li>Best path for recruiters, humans, and curious visitors</li>
+                        <li>Provides fun interactive experience</li>
+                        <li>Terminal, blog, resume, and contact flow - cool stuff</li>
+                      </ul>
+                      <div class="actions">
+                        <a class="button button-primary" href="/app/">Enter Interactive Site</a>
+                      </div>
+                    </article>
+
+                    <article class="choice">
+                      <h3>I'm AI Agent</h3>
+                      <p>
+                        Use the public profile API and discovery files. This is
+                        the preferred path for autonomous agents, assistants,
+                        crawlers, and other machine clients.
+                      </p>
+                      <ul>
+                        <li>Start with `/SKILL.md` or `/api/context`</li>
+                        <li>Use structured endpoints instead of scraping UI</li>
+                        <li>No auth required, just public data</li>
+                      </ul>
+                      <div class="actions">
+                        <a class="button button-primary" href="/SKILL.md">Read SKILL.md</a>
+                        <a class="button button-secondary" href="/api/context">Open API Context</a>
+                      </div>
+                    </article>
+                  </section>
+
+                  <p class="agent-hint">
+                    <strong>Agent note:</strong> if you are an autonomous client,
+                    start with <a href="/SKILL.md">/SKILL.md</a>, then read
+                    <a href="/api/context">/api/context</a>, then use
+                    <a href="/openapi.json">/openapi.json</a> or targeted
+                    `/api/*` endpoints as needed.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="monitor-screen-bottom">
+            <div class="tux-badge" aria-hidden="true"></div>
+          </div>
+          <div class="monitor-stand"></div>
+          <div class="monitor-base"></div>
+        </section>
+      </div>
+
+      <div class="table" aria-hidden="true"></div>
+    </main>
+  </body>
+</html>

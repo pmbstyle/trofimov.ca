@@ -9,6 +9,7 @@ import highlightjs from "markdown-it-highlightjs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/app/',
   plugins: [
     vue(),
     markdown({
