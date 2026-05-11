@@ -7,9 +7,9 @@ const emit = defineEmits(['openUrl'])
 
 const projects = [
   {
-    name: 'BroodMind autonomous multi-agent system',
-    url: 'https://github.com/pmbstyle/BroodMind',
-    iconClass: 'item-broodmind',
+    name: 'Octopal autonomous multi-agent system',
+    url: 'https://github.com/pmbstyle/Octopal',
+    iconClass: 'item-octopal',
   },
   {
     name: 'Alice Smart Desktop AI Assistant',

@@ -51,7 +51,7 @@ export const useDialogsStore = defineStore('dialogs', () => {
     </ul>
 
     <p><strong>Earlier Expeditions:</strong> codepxl and EvolutionInDesignZ, where he led front-end squads, built Vue/Nuxt realms, shaped reusable component systems, and sharpened his craft across performance, accessibility, QA, and delivery.</p>
-    <p><strong>Side Quests:</strong> <a href="https://github.com/pmbstyle/BroodMind" target="_blank">BroodMind</a>, <a href="https://github.com/pmbstyle/Alice" target="_blank">Alice</a>, <a href="https://github.com/pmbstyle/fara-agent" target="_blank">Fara Browser Automation Agent</a>, <a href="https://github.com/pmbstyle/gemini-browser-agent" target="_blank">Gemini Browser Agent</a>, and <a href="https://github.com/pmbstyle/Riddi" target="_blank">Riddi</a>.</p>`,
+    <p><strong>Side Quests:</strong> <a href="https://github.com/pmbstyle/Octopal" target="_blank">Octopal</a>, <a href="https://github.com/pmbstyle/Alice" target="_blank">Alice</a>, <a href="https://github.com/pmbstyle/fara-agent" target="_blank">Fara Browser Automation Agent</a>, <a href="https://github.com/pmbstyle/gemini-browser-agent" target="_blank">Gemini Browser Agent</a>, and <a href="https://github.com/pmbstyle/Riddi" target="_blank">Riddi</a>.</p>`,
 
     education: `<p><strong>🏛 Academy of Knowledge</strong></p>
     <p><strong>Master’s Degree in Computer Science</strong><br/>

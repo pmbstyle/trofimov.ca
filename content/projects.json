@@ -1,14 +1,14 @@
 [
   {
-    "slug": "broodmind",
-    "name": "BroodMind",
+    "slug": "octopal",
+    "name": "Octopal",
     "status": "active",
     "featured": true,
     "summary": "A local AI orchestration system built around a Queen + Workers architecture for persistent assistant workflows.",
-    "description": "BroodMind is a local AI orchestration system designed for persistent assistant workflows instead of one-off prompts. It combines memory, planning, worker delegation, policy controls, scheduling, and operations tooling into a self-hosted Queen + Workers runtime.",
+    "description": "Octopal is a local AI orchestration system designed for persistent assistant workflows instead of one-off prompts. It combines memory, planning, worker delegation, policy controls, scheduling, and operations tooling into a self-hosted Octo + Workers runtime.",
     "stack": ["Local AI", "Multi-agent orchestration", "Memory systems", "Scheduling", "Ops dashboard"],
     "links": {
-      "repo": "https://github.com/pmbstyle/BroodMind"
+      "repo": "https://github.com/pmbstyle/Octopal"
     },
     "tags": ["ai", "multi-agent", "orchestration", "local-first", "automation"]
   },

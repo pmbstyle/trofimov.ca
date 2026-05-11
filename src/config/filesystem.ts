@@ -2,7 +2,7 @@ import { html as about } from '@/config/about.md'
 import { html as skills } from '@/config/skills.md'
 import { html as contact } from '@/config/contact.md'
 import { html as experience } from '@/config/experience.md'
-import { html as broodmind } from '@/config/broodmind.md'
+import { html as octopal } from '@/config/octopal.md'
 import { html as alice } from '@/config/alice.md'
 import { html as riddi } from '@/config/riddi.md'
 import { html as geminiBrowserAgent } from '@/config/gemini-browser-agent.md'
@@ -22,9 +22,9 @@ const files: FileType[] = [
   },
   {
     type: 'file',
-    content: broodmind,
+    content: octopal,
     path: '~/projects/',
-    name: 'broodmind.md',
+    name: 'octopal.md',
   },
   {
     type: 'file',
